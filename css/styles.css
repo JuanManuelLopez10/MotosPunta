@@ -325,3 +325,68 @@ footer ul span{
     width: 95%;
     height: 80%;
 }
+@media screen and (min-width: 516px) {
+    body{
+        overflow-x: hidden;
+    }
+    #marcas{
+        height: 180px;
+        width: 180;
+    }
+    #contacto_sect{
+        padding-top: 20px;
+        background-color: rgb(49, 49, 49);
+        display: grid;
+        grid-template-columns: 10% 45% 35% 10%;
+        justify-content: center;
+    }
+    .otros_contactos{
+        visibility: visible;
+    }
+    
+}
+@media screen and (min-width: 600px){
+    body{
+        overflow-x: hidden;
+    }
+    header{
+        position: sticky;
+        top: 0px;
+    }
+    nav{
+        height: 100%;
+        display: grid;
+        grid-template-rows: 70% 30%;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 
+        "logo secundario"
+        "primario primario";
+        align-items: center;
+    }
+    .menu_secundario{
+        font-size: 1.1rem;
+    }
+    .menu_primario{
+        font-size: 1.5rem;
+    }
+    #marcas{
+        height: 200px;
+    }
+    #ofertas_del_mes{
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 200px;
+    }
+    #ofertas_del_mes__div_1{
+        width: 100%;
+        padding-left: 10px;
+    }
+    #ofertas_del_mes__div_2{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    #ofertas_del_mes__div_2 .producto_div{
+        width: 150px;
+    }
+}
