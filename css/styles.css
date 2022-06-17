@@ -390,3 +390,65 @@ footer ul span{
         width: 150px;
     }
 }
+@media screen and (min-width: 768px) {
+    body{
+        overflow-x: hidden;
+    }
+    .opciones{
+        width: 100%;
+        height: 380px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "listas foto";
+        justify-content: center;
+        align-items: center;
+    }
+    .opciones_foto{
+        visibility: visible;
+        grid-area: foto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .foto_opciones{
+        width: 70%;
+        height: 20%;
+    }
+    .opciones li a{
+        font-size: 1.8rem;
+    }
+}
+@media screen and (min-width: 1025px) {
+    nav{
+        width: 100vw;
+        overflow-x: hidden;
+        display: grid;
+        grid-template-rows: 60% 40%;
+        grid-template-columns: 40% 60%;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo{
+        grid-area: 1 / 1 / 3 / 2;
+        margin-top: 20px;
+    }
+    .menu_secundario{
+        grid-area: secundario;
+    }
+    .menu_primario{
+        width: 101%;
+        height: 100%;
+        grid-area: 2 / 1 / 3 / 3;
+        font-size: 1.9rem;
+    }
+    .menu_primario li{
+        padding: 15px 0px;
+        margin: 0px;
+    }
+    .menu_secundario{
+        font-size: 1.5rem;
+    }
+    #marcas{
+        height: 195px;
+    }
+}
