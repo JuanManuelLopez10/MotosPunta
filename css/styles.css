@@ -3,6 +3,10 @@
     padding: 0px;
     box-sizing: border-box;
 }
+html{
+    width: 100vw;
+    overflow-x: hidden;
+}
 body{
     width: 100vw;
     display: flex;
@@ -39,7 +43,7 @@ header li a{
     justify-content: space-around;
     width: 100vw;
     flex-wrap: wrap;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 .wallpaper{
     width: 100%;
@@ -197,6 +201,9 @@ footer ul span{
     list-style: none;
     padding: 10px 0px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .opciones li a{
     text-decoration: none;
@@ -236,10 +243,13 @@ footer ul span{
     font-family: 'Bebas Neue', cursive;
 }
 .producto_div img{
-    height: 100px;
+    width: 130px;
 }
 .producto_div h4{
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+}
+.producto_div h5{
+    font-size: 1.2rem;
 }
 #contacto_sect h1{
     font-family: 'Bebas Neue', cursive;
@@ -386,7 +396,14 @@ footer ul span{
     .otros_contactos{
         visibility: visible;
     }
-    
+    .opciones li a{
+        text-decoration: none;
+        color: black;
+        font-size: 1.3rem;
+    }
+    #productos h3{
+        font-size: 2.1rem;
+    }
 }
 @media screen and (min-width: 600px){
     body{
@@ -434,6 +451,35 @@ footer ul span{
     }
     #ofertas_del_mes__div_2 .producto_div{
         width: 150px;
+    }
+    #productos h3{
+        font-size: 2.6rem;
+    }
+    .producto_div{
+        padding: 5px;
+        margin: 10px;
+        width: 200px;
+        border-radius: 20px;
+        background-color: white;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0px 5px 7px rgb(0, 0, 0);
+        font-family: 'Bebas Neue', cursive;
+    }
+    .producto_div img{
+        width: 170px;
+    }
+    .producto_div h4{
+        font-size: 1.7rem;
+    }
+    .producto_div h5{
+        font-size: 1.3rem;
+    }
+    .opciones li a{
+        font-size: 1.3rem;
     }
 }
 @media screen and (min-width: 768px) {
@@ -510,7 +556,7 @@ footer ul span{
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "listas foto";
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
     }
     .opciones_foto{
@@ -580,8 +626,8 @@ footer ul span{
         grid-template-rows: 50% 50%;
     }
     #ofertas_del_mes__div_2 .producto_div{
-        width: 65%;
-        height: 95%;
+        width: 60%;
+        height: 85%;
         justify-self: center;
     }
     #ofertas_del_mes__div_2 .producto_div img{
@@ -594,5 +640,7 @@ footer ul span{
     #ofertas_del_mes__div_2 .producto_div h5{
         font-size: 1.4rem;
     }
-    
+    #productos h3{
+        font-size: 3rem;
+    }   
 }
