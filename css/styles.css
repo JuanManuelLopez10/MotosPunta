@@ -79,11 +79,12 @@ header li a{
     justify-content: flex-start;
     flex-wrap: nowrap;
 }
-.producto_ofertas_del_mes{
+#ofertas_del_mes__div_2 .producto_div{
     padding: 5px;
     margin: 10px;
     border: 2px double gray;
-    width: 33%;
+    width: 100px;
+    height: 190px;
     border-radius: 20px;
     background-color: white;
     display: flex;
@@ -93,13 +94,13 @@ header li a{
     text-align: center;
     font-family: 'Bebas Neue', cursive;
 }
-.producto_ofertas_del_mes img{
-    width: 80%;
+#ofertas_del_mes__div_2 .producto_div img{
+    width: 90px;
 }
-.producto_ofertas_del_mes h4{
+#ofertas_del_mes__div_2 .producto_div h4{
     font-size: 1.1rem;
 }
-.producto_ofertas_del_mes h5{
+#ofertas_del_mes__div_2 .producto_div h5{
     font-size: 1rem;
 }
 .producto_ofertas_del_mes span{
@@ -228,29 +229,6 @@ footer ul span{
     width: 100%;
 }
 
-.producto_div{
-    padding: 5px;
-    margin: 10px;
-    width: 150px;
-    border-radius: 20px;
-    background-color: white;
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0px 3px 5px rgb(0, 0, 0);
-    font-family: 'Bebas Neue', cursive;
-}
-.producto_div img{
-    width: 130px;
-}
-.producto_div h4{
-    font-size: 1.3rem;
-}
-.producto_div h5{
-    font-size: 1.2rem;
-}
 #contacto_sect h1{
     font-family: 'Bebas Neue', cursive;
     font-size: 1.7rem;
