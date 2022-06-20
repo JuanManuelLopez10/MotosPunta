@@ -169,11 +169,13 @@ footer{
     font-family: 'Mukta', sans-serif;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: 30% 40% 20% 10%;
+    justify-content: center;
+    height: 370px;
 }
 footer ul{
     list-style-type: none;
-    font-size: 1rem;
+    font-size: .8rem;
     margin: 10px;
 }
 footer a{
@@ -181,16 +183,32 @@ footer a{
     color: white;
 }
 .lista_info_footer{
-    width: 100%;
+    width: 90%;
     grid-area: 2 / 1 / 3 / 3;
 }
 .titulo_de_lista{
     font-family: 'Bebas Neue', cursive;
-    font-size: 1.3rem;
+    font-size: 1rem;
     letter-spacing: 1px;
 }
 footer ul span{
     font-weight: 800;
+}
+.redes_footer{
+    grid-area: 3 / 1 / 4 / 3;
+    margin-left: 15px;
+    display: flex;
+    font-size: 2.3rem;
+    justify-content: space-around;
+    height: 50%;
+}
+.redes_footer i{
+    margin: 0px;
+}
+footer p{
+    grid-area: 4 / 1 / 5 / 3;
+    font-size: .8rem;
+    text-align: center;
 }
 .opciones{
     height: 150px;
@@ -349,6 +367,7 @@ footer ul span{
 }
 @media screen and (min-width: 480px) {
     body{
+        width: 100vw;
         overflow-x: hidden;
     }
     .menu_secundario{
@@ -368,6 +387,9 @@ footer ul span{
     }
     #marcas{
         height: 180px;
+    }
+    #ofertas_del_mes__div_2{
+        justify-content: center;
     }
     #caracteristicas div{
         display: flex;
@@ -416,6 +438,54 @@ footer ul span{
     }
     #productos h3{
         font-size: 2.1rem;
+    }
+    footer{
+        background-color: black;
+        color: white;
+        padding-top: 20px;
+        font-family: 'Mukta', sans-serif;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 30% 40% 20% 10%;
+        justify-content: center;
+        height: 370px;
+    }
+    footer ul{
+        list-style-type: none;
+        font-size: .9rem;
+        margin: 10px;
+    }
+    footer a{
+        text-decoration: none;
+        color: white;
+    }
+    .lista_info_footer{
+        width: 90%;
+        grid-area: 2 / 1 / 3 / 3;
+    }
+    .titulo_de_lista{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+    footer ul span{
+        font-weight: 800;
+    }
+    .redes_footer{
+        grid-area: 3 / 1 / 4 / 3;
+        margin-left: 15px;
+        display: flex;
+        font-size: 2.4rem;
+        justify-content: space-around;
+        height: 50%;
+    }
+    .redes_footer i{
+        margin: 0px;
+    }
+    footer p{
+        grid-area: 4 / 1 / 5 / 3;
+        font-size: .8rem;
+        text-align: center;
     }
 }
 @media screen and (min-width: 600px){
@@ -499,6 +569,54 @@ footer ul span{
     }
     .ubicacion h2{
         font-size: 1.5rem;
+    }
+    footer{
+        background-color: black;
+        color: white;
+        padding-top: 10px;
+        font-family: 'Mukta', sans-serif;
+        display: grid;
+        grid-template-columns: 30% 30% 40%;
+        grid-template-rows: 60% 30% 10%;
+        justify-content: center;
+        height: 250px;
+    }
+    footer ul{
+        list-style-type: none;
+        font-size: 1rem;
+        margin: 10px;
+    }
+    footer a{
+        text-decoration: none;
+        color: white;
+    }
+    .lista_info_footer{
+        width: 90%;
+        grid-area: 1 / 3 / 3 / 4;
+    }
+    .titulo_de_lista{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+    footer ul span{
+        font-weight: 800;
+    }
+    .redes_footer{
+        grid-area: 2 / 1 / 3 / 3;
+        margin-left: 15px;
+        display: flex;
+        font-size: 2.6rem;
+        justify-content: space-around;
+        height: 50%;
+    }
+    .redes_footer i{
+        margin: 0px;
+    }
+    footer p{
+        grid-area: 3 / 1 / 4 / 4;
+        font-size: .8rem;
+        text-align: center;
     }
 }
 @media screen and (min-width: 768px) {
@@ -667,5 +785,55 @@ footer ul span{
     }
     #productos h3{
         font-size: 3rem;
-    }   
+    }
+    footer{
+        background-color: black;
+        color: white;
+        padding-top: 5px;
+        font-family: 'Mukta', sans-serif;
+        display: grid;
+        grid-template-columns: 25% 25% 30% 20%;
+        grid-template-rows: 80% 20%;
+        height: 225px;
+        grid-template-areas: "lista1 lista2 lista3 redes"
+        "copyright copyright copyright copyright";
+    }
+    footer ul{
+        list-style-type: none;
+        font-size: 1rem;
+        margin: 10px;
+    }
+    footer a{
+        text-decoration: none;
+        color: white;
+    }
+    .lista_info_footer{
+        width: 90%;
+        grid-area: lista3;
+    }
+    .titulo_de_lista{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+    footer ul span{
+        font-weight: 800;
+    }
+    .redes_footer{
+        grid-area: redes;
+        margin-left: 15px;
+        display: flex;
+        font-size: 2.6rem;
+        justify-content: space-around;
+        height: 50%;
+        grid-area: redes;
+    }
+    .redes_footer i{
+        margin: 0px;
+    }
+    footer p{
+        grid-area: copyright;
+        font-size: .8rem;
+        text-align: center;
+    }
 }
