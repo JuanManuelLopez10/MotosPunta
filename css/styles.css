@@ -58,6 +58,7 @@ header li a{
 #marcas img{
     width: 30%;
     margin: 10px;
+    filter: grayscale(1);
 }
 #ofertas_del_mes{
     background-color: rgb(49, 49, 49);
