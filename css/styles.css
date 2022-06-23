@@ -59,6 +59,7 @@ header li a{
     width: 30%;
     margin: 10px;
     filter: grayscale(1);
+    transition: filter 0.5s;
 }
 #marcas img:hover{
     filter: grayscale(0);
@@ -159,6 +160,7 @@ header li a{
 #galeria img{
     width: 100%;
     border: 1px solid white;
+    transition: transform 1s;
 }
 #galeria img:hover{
     transform: scale(1.1,1.1);
