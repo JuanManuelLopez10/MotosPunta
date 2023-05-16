@@ -1,0 +1,20 @@
+.navbarLogo{
+    width: 100%;
+    background: none;
+}
+.navbarLogoDiv{
+    width: 20%;
+    background: none;
+}
+@media screen and (orientation: landscape) {
+    .navbarLogoDiv{
+        height: 10vh;
+        background: none;
+    }
+    .navbarLogo{
+        height: 100%;
+        width: auto;
+        background: none;
+    }
+
+}

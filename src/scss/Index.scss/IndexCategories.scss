@@ -1,0 +1,41 @@
+.IndexCategories{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+.itemCategory{
+    height: 30vh;
+    border: none;
+    width: 50vw;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+    z-index: 0;
+}
+.CategoryTitle{
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    margin: 5%;
+    width: 50%;
+    text-align: center;
+}
+.optionsDiv{
+    background-color: rgb(30, 30, 30, 0.7);
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: hidden;
+}
+.LinkCategoryIndex{
+    color: white;
+    text-decoration: none;
+}

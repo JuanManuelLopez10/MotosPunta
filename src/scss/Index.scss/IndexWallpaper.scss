@@ -1,0 +1,63 @@
+.IndexWallpaper{
+    width: 100%;
+    overflow-x: hidden;
+    height: 37vh;
+    background-blend-mode: darken;
+    display: flex;
+    justify-content: center;
+    align-items: end;   
+}
+.IndexWallpaperButton{
+    padding: 1% 7%;
+    background-color: rgb(7, 7, 7, 0.8);
+    border-radius: 100px;
+    border-color: white;
+    color: white;
+    margin-bottom: 10%;
+}
+.IndexWallpaperCredit{
+    margin-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+}
+.IndexWallpaperSubtitle{
+    color: white;
+    margin: 6px;
+    text-shadow: 2px 2px 5px black;
+}
+.IndexWallpaperTitle{
+    color: white;
+    width: 40vw;
+    margin: 0px;
+    text-shadow: 2px 2px 15px black;
+}
+@media screen and (orientation: landscape) {
+    .IndexWallpaper{
+        width: 100%;
+        overflow-x: hidden;
+        height: 80vh;
+        background-blend-mode: darken;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .IndexWallpaperCredit{
+        width: 50vw;
+        height: 50vh;
+        overflow: hidden;
+        margin-bottom: 3%;
+    }
+    .IndexWallpaperButton{
+        margin-top: 3%;
+        width: 50%;
+        margin-left: 5%;
+        padding: 1% 7%;
+        background-color: rgb(7, 7, 7, 0.8);
+        border-radius: 100px;
+        border-color: white;
+        color: white;
+    }
+    
+}
