@@ -7,7 +7,6 @@ import MenuOption from './MenuOption';
 const Navbar = () => {
   const [isVisible, setisVisible] = useState(false)
   const { Orientation, fontPixel, Width } = useContext(CartContext)
-  console.log(Width);
   const arrayOptions = ['Motos', 'Cascos', 'Indumentaria', 'Accesorios', 'Marcas', 'Contacto']
   const [MenuOptions, setMenuOptions] = useState()
 

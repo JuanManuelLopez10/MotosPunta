@@ -5,7 +5,7 @@ const IndexWallpaper = () => {
     const context = useContext(CartContext)
     if (context.Orientation==='Portrait') {
         return (
-            <div className='IndexWallpaper' style={{backgroundImage: "url(https://iili.io/HUF5rQt.jpg)", backgroundSize: 'cover'}}>
+            <div className='IndexWallpaper' style={{backgroundColor: context.DarkMode==='Dark' ?  'rgb(4, 4, 4)' : 'white'}} >
                 <button className='IndexWallpaperButton' style={{fontSize: context.fontPixel * 1.15}}>Solicitar crédito ahora</button>
             </div>
               )   

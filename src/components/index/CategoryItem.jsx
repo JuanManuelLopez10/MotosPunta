@@ -6,7 +6,6 @@ import { CartContext } from "../../context/CartContext";
 
 const ItemCategory = ({item, fontPixel, handleSelectedCategory, CategorySelected}) => {
     const contxt = useContext(CartContext)
-    console.log(contxt.Orientation);
     return (
         <button style={{
             backgroundImage: `url(${item.image})`,
