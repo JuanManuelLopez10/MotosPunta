@@ -1,48 +1,17 @@
-import { doc, setDoc, updateDoc, serverTimestamp, collection, increment, query, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from 'react'
-import { db } from "../data/FirestoreData";
-
-
+import { doc, setDoc, updateDoc, serverTimestamp, collection, increment, getDoc, getDocs } from "firebase/firestore"
+import db from '../data/FirestoreData'
 const CrearArticulo = () => {
-    const [datos, setDatos] = useState([])
-
-    useEffect(() => {
-        const fetchFirestore = async() => {
-            let q;
-                q = query(collection(db, "products"))
-            const querySnapshot = await getDocs(q);
-            const datosdeFirestore = querySnapshot.docs.map(item => ({
-                id: item.id,
-                ...item.data()
-            }))
-            return datosdeFirestore;
-        }
-        fetchFirestore()
-            .then(result => {setDatos(result)
-                console.log(datos);
-            })
-            .catch(err => console.log(err))
-  
-    }, []);
-
     const [product, setProduct] = useState({}) //benefits[{name, image}]
     const [optionsQuantity, setoptionsQuantity] = useState()
     const ClassOptions = ['Motos', 'Cascos', 'Indumentaria', 'Accesorios']
     const [BrandOptions, setBrandsOptions] = useState([])
+    const [CategoryOptions, setCategoryOptions] = useState([])
 
-    const seBrandsOptions = () => {
-        if (product.Clase === 'Cascos') {
-            setBrandsOptions(['AGV', 'MT', 'LS2', 'HJC', 'NOLAN', 'NENKI', 'HAWK', 'IXS'])
-        } else if (product.Clase === 'Indumentaria') {
-            setBrandsOptions(['Seventy', 'LS2', 'KORE', 'HEVIK', 'IXS', 'AGS', 'GIVI', 'TAICHI'])
-        } else if (product.Clase === 'Accesorios') {
-            setBrandsOptions(['GIVI', 'KAPA', 'MIDLAND', 'LUMA', 'TWIIN'])
-        } else {
-            setBrandsOptions(['HONDA', 'TVS', 'CFMOTO', 'SUZUKI', 'LIFAN', 'VITAL'])
-        }
-    }
 
-    const createProduct = () => {
+
+
+    const createOrder = () => {
         const generarorder = async () => {
             const newOrderRef = doc(collection(db, "products"))
             await setDoc(newOrderRef, product);
@@ -52,7 +21,44 @@ const CrearArticulo = () => {
             .then(result => console.log(product))
             .catch(err => console.log(err))
     }
+
+
+    const getProducts = async () => {
+        const productsCollection = collection(db, 'products');
+      
+        try {
+          const querySnapshot = await getDocs(productsCollection);
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id, '=>', doc.data());
+          });
+        } catch (error) {
+          console.error('Error al obtener los productos:', error);
+        }
+      };
+      
     
+    getProducts()
+
+
+
+
+
+
+    const seBrandsOptions = () => {
+        if (product.Clase === 'Cascos') {
+            setBrandsOptions(['AGV', 'MT', 'LS2', 'HJC', 'NOLAN', 'NENKI', 'HAWK', 'IXS'])
+            setCategoryOptions(['Integrales', 'Rebatibles', 'Abiertos', 'Off-Road', 'Accesorios'])
+        } else if (product.Clase === 'Indumentaria') {
+            setCategoryOptions(['Calzado', 'Camperas', 'Pantalones', 'Guantes', 'Antiparras', 'Cuellos/Balaclavas'])
+            setBrandsOptions(['Seventy', 'LS2', 'KORE', 'HEVIK', 'IXS', 'AGS', 'GIVI', 'TAICHI'])
+        } else if (product.Clase === 'Accesorios') {
+            setCategoryOptions(['Baules', 'Baules laterales/Alforjas', 'Mochilas', 'Bolsos de tanque', 'Protectores de tanque', 'Soportes para celular', 'Intercomunicadores', 'Trancas', 'Otros'])
+            setBrandsOptions(['GIVI', 'KAPA', 'MIDLAND', 'LUMA', 'TWIIN'])
+        } else {
+            setCategoryOptions(['Polleritas', 'Scooters', 'Calle', 'Naked', 'Enduro', 'Multipropósito', 'Deportiva', 'Cuatriciclos'])
+            setBrandsOptions(['HONDA', 'TVS', 'CFMOTO', 'SUZUKI', 'LIFAN', 'VITAL'])
+        }
+    }
 
     return (
         <div style={{ width: '100vw', height: '100vh', display: 'flex', marginTop: '30%', flexDirection: 'column', alignItems: 'center' }}>
@@ -71,9 +77,22 @@ const CrearArticulo = () => {
                     ClassOptions.map(item => <option value={item}>{item}</option>)
                 }
             </select>
-            <select name="" id="">
+            <select name="" id="" onChange={(e) => {
+                let NewProduct = product
+                NewProduct.brand = e.target.value
+                setProduct(NewProduct)
+            }}>
                 {
                     BrandOptions.map(item => <option value={item}>{item}</option>)
+                }
+            </select>
+            <select name="" id="" onChange={(e) => {
+                let NewProduct = product
+                NewProduct.category = e.target.value
+                setProduct(NewProduct)
+            }} >
+                {
+                    CategoryOptions.map(item => <option value={item}>{item}</option>)
                 }
             </select>
             <select onChange={(e) => {
@@ -391,7 +410,7 @@ const CrearArticulo = () => {
                     }
                 </>
             ))}
-            <button onClick={()=>{createProduct()}}>AA</button>
+            <button onClick={()=>{createOrder()}}>AA</button>
         </div>
     )
 }

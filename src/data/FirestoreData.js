@@ -12,10 +12,10 @@ const firebaseConfig = {
   projectId: "ecomm-motos-punta",
   storageBucket: "ecomm-motos-punta.appspot.com",
   messagingSenderId: "145661701250",
-  appId: "1:145661701250:web:d55a763a8a99d19a77d89b",
-  databaseURL: "https://ecomm-motos-punta-default-rtdb.firebaseio.com",
+  appId: "1:145661701250:web:d55a763a8a99d19a77d89b"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
+export default db 
