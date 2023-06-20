@@ -4,6 +4,7 @@ import Navbar from './components/navbar/Navbar';
 import { CartContext } from './context/CartContext';
 import Index from './screens/Index';
 import CrearArticulo from './screens/CrearArticulo';
+import ClassScreen from './screens/ClassScreen';
 
 const Ap = () => {
     const { handleOrientation, handleFontPixel, handleMode } = useContext(CartContext)
@@ -42,8 +43,9 @@ const Ap = () => {
     <Navbar/>
     <Routes>
       <Route path='/' element={<Index/>}/>
+      <Route path='/clase/:idClase' element={<ClassScreen/>}/>
       <Route path='/atr' element={<CrearArticulo/>}/>
-      <Route path='/class' element={<CrearArticulo/>}/>
+      <Route path='/product/:idProduct' element={<CrearArticulo/>}/>
       <Route path='/category' element={<CrearArticulo/>}/>
       <Route path='/brand' element={<CrearArticulo/>}/>
       <Route path='/product' element={<CrearArticulo/>}/>

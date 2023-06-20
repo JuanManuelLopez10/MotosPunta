@@ -18,7 +18,7 @@ const CrearArticulo = () => {
             return newOrderRef
         }
         generarorder()
-            .then(result => console.log(product))
+            .then(result => '')
             .catch(err => console.log(err))
     }
 
@@ -29,7 +29,6 @@ const CrearArticulo = () => {
         try {
           const querySnapshot = await getDocs(productsCollection);
           querySnapshot.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
           });
         } catch (error) {
           console.error('Error al obtener los productos:', error);
@@ -67,7 +66,6 @@ const CrearArticulo = () => {
                 NewProduct.Clase = e.target.value
                 const Hoy = new Date
                 NewProduct.id = Hoy.getDate().toString() + Hoy.getDay().toString() + Hoy.getMilliseconds().toString() + Hoy.getMonth().toString() + Hoy.getFullYear().toString()
-                console.log(NewProduct.id);
                 setProduct(NewProduct)
                 seBrandsOptions()
 
@@ -206,7 +204,6 @@ const CrearArticulo = () => {
 
 
                         setProduct(NewProduct)
-                        console.log(product);
                     }} />
                     : ''
                     }
@@ -223,7 +220,6 @@ const CrearArticulo = () => {
 
 
                         setProduct(NewProduct)
-                        console.log(product);
                     }} />
                     <input type="color" placeholder='Segundo Color' onChange={(e) => {
                         let NewProduct = product
@@ -237,7 +233,6 @@ const CrearArticulo = () => {
 
 
                         setProduct(NewProduct)
-                        console.log(product);
                     }} />
                     <input type="color" placeholder='Tercer Color' onChange={(e) => {
                         let NewProduct = product
@@ -251,7 +246,6 @@ const CrearArticulo = () => {
 
 
                         setProduct(NewProduct)
-                        console.log(product);
                     }} />
                     <input type="text" placeholder='colorName' onChange={(e) => {
                         let NewProduct = product
@@ -265,7 +259,7 @@ const CrearArticulo = () => {
 
 
                         setProduct(NewProduct)
-                        console.log(product);
+                        (product);
                     }} />
                     <input type="text" placeholder='Image' onChange={(e) => {
                         let NewProduct = product
@@ -279,7 +273,6 @@ const CrearArticulo = () => {
 
 
                         setProduct(NewProduct)
-                        console.log(product);
                     }} />
                     {
                         product.Clase === 'Cascos' || product.Clase === 'Indumentaria'
@@ -297,7 +290,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
                                 <input type="number" id='S' placeholder='S' onChange={(e) => {
@@ -312,7 +304,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
                                 <input type="number" id='M' placeholder='M' onChange={(e) => {
@@ -327,7 +318,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
                                 <input type="number" id='S' placeholder='L' onChange={(e) => {
@@ -342,7 +332,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
                                 <input type="number" id='XL' placeholder='XL' onChange={(e) => {
@@ -357,7 +346,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
                                 <input type="number" id='XXL' placeholder='XXL' onChange={(e) => {
@@ -372,7 +360,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
                                 <input type="number" id='3XL' placeholder='3XL' onChange={(e) => {
@@ -387,7 +374,6 @@ const CrearArticulo = () => {
 
 
                                     setProduct(NewProduct)
-                                    console.log(product);
                                 }
                                 } />
 
@@ -403,8 +389,7 @@ const CrearArticulo = () => {
                                             : NewProduct.options[index] = { stock: e.target.value }
 
                                         : NewProduct.options = [{ stock: e.target.value }]
-                                    setProduct(NewProduct)
-                                    console.log(product);
+                                    setProduct(NewProduct);
                                 }} />
                             </>
                     }

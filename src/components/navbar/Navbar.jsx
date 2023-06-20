@@ -41,13 +41,13 @@ const Navbar = () => {
           {
             isVisible === false
               ? <button className='openOptionsButton' onClick={() => setisVisible(true)}>
-                <i class="bi-list openOptions" style={{ fontSize: fontPixel * 1.5 }}></i>
+                <i className="bi-list openOptions" style={{ fontSize: fontPixel * 1.5 }}></i>
               </button>
               : <button className='openOptionsButton' onClick={() => {
                 setisVisible(false)
                 setMenuOptions()
               }}>
-                <i class="bi-x-lg openOptions" style={{ fontSize: fontPixel }}></i>
+                <i className="bi-x-lg openOptions" style={{ fontSize: fontPixel }}></i>
               </button>
           }
         </div>
@@ -80,13 +80,13 @@ const Navbar = () => {
         {
                 isVisible === false
               ? <button className='openOptionsButton' onClick={() => setisVisible(true)}>
-                <i class="bi-list openOptions" style={{fontSize: Width<=700 ? fontPixel * 0.7 :  fontPixel * 0.4 , alignSelf: 'center'}}></i>
+                <i className="bi-list openOptions" style={{fontSize: Width<=700 ? fontPixel * 0.7 :  fontPixel * 0.4 , alignSelf: 'center'}}></i>
               </button>
               : <button className='openOptionsButton' onClick={() => {
                 setisVisible(false)
                 setMenuOptions()
               }}>
-                <i class="bi-x-lg openOptions" style={{fontSize: Width<=700 ? fontPixel * 0.7 :  fontPixel * 0.4 , alignSelf: 'center'}}></i>
+                <i className="bi-x-lg openOptions" style={{fontSize: Width<=700 ? fontPixel * 0.7 :  fontPixel * 0.4 , alignSelf: 'center'}}></i>
               </button>
             }
           <Link to={`/`} className='navbarLogoDiv'>

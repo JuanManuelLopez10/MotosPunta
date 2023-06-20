@@ -20,11 +20,14 @@ const CartContextProvider = ({children}) => {
     const [DarkMode, setDarkMode] = useState(false)
     const handleMode = (Mode) => {
         setDarkMode(Mode)
-        console.log(DarkMode);
     }
 
+    const [Datos, setDatos] = useState([])
+    const handleDatos = (datos) => {
+        setDatos(datos)
+    }
     return(
-    <CartContext.Provider value={{Orientation, Width, Heigth, handleOrientation, handleFontPixel, fontPixel, DarkMode, handleMode}}>
+    <CartContext.Provider value={{Orientation, Width, Heigth, handleOrientation, handleFontPixel, fontPixel, DarkMode, handleMode, Datos, handleDatos}}>
         {children}
     </CartContext.Provider>
     )
