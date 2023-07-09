@@ -35,7 +35,7 @@ const Navbar = () => {
 
         <div className='Navbar'>
           <Link to={`/`} className='navbarLogoDiv'>
-            <img src="./assets/logos/LOGO-sf.png" alt="Motos Punta" className='navbarLogo' />
+            <img src="https://iili.io/HiYS5WQ.png" alt="Motos Punta" className='navbarLogo' />
           </Link>
 
           {
@@ -57,13 +57,11 @@ const Navbar = () => {
             ? <div className='menu animate__animated animate__fadeInLeft'>
                 <div className='menuOptions'>
                   {
-                    MenuOptions
-                    ?
-                    MenuOptions.map(item =>
-                      <MenuOption item={item} key={item} fontPixel={fontPixel * 3} onSelect={handleSelectOption}/>
-                  )
-                  : arrayOptions.map(item =>
-                    <MenuOption item={item} key={item} fontPixel={fontPixel * 3} onSelect={handleSelectOption}/>
+                    arrayOptions.map(item => {
+                      console.log(item);
+                    return(
+                    <Link to={`/clase/${item}`} onClick={()=>{setisVisible(false)}}  style={{fontSize: Orientation==='Portrait' ? fontPixel*1.1 : fontPixel*0.4}}>{item}</Link>
+                    )}
                     )
                     
                   }
@@ -90,7 +88,7 @@ const Navbar = () => {
               </button>
             }
           <Link to={`/`} className='navbarLogoDiv'>
-            <img src="./assets/logos/LOGO-sf.png" alt="Motos Punta" className='navbarLogo' style={{width: Width<=700 ? '10vw' :  '5vw' , height: 'auto'}} />
+            <img src="https://iili.io/HiYS5WQ.png" alt="Motos Punta" className='navbarLogo' style={{width: Width<=700 ? '10vw' :  '5vw' , height: 'auto'}} />
         </Link>
         </div>
 

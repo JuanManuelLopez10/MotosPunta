@@ -6,6 +6,13 @@ const CartContextProvider = ({children}) => {
     const [Orientation, setOrientation] = useState('')
     const [Width, setWidth] = useState('')
     const [Heigth, setHeigth] = useState('')
+    const [SelectedMoto, setSelectedMoto] = useState({})
+
+    const selectMoto = (moto) => {
+        setSelectedMoto(moto)
+        console.log(moto);
+    }
+
     const handleOrientation = (text, width, heigth) => {
         setOrientation(text)
         setWidth(width)
@@ -27,7 +34,7 @@ const CartContextProvider = ({children}) => {
         setDatos(datos)
     }
     return(
-    <CartContext.Provider value={{Orientation, Width, Heigth, handleOrientation, handleFontPixel, fontPixel, DarkMode, handleMode, Datos, handleDatos}}>
+    <CartContext.Provider value={{selectMoto, SelectedMoto, Orientation, Width, Heigth, handleOrientation, handleFontPixel, fontPixel, DarkMode, handleMode, Datos, handleDatos}}>
         {children}
     </CartContext.Provider>
     )

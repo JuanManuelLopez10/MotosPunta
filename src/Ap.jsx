@@ -5,6 +5,8 @@ import { CartContext } from './context/CartContext';
 import Index from './screens/Index';
 import CrearArticulo from './screens/CrearArticulo';
 import ClassScreen from './screens/ClassScreen';
+import ProductScreen from './screens/ProductScreen';
+import GetCreditScreen from './screens/GetCreditScreen';
 
 const Ap = () => {
     const { handleOrientation, handleFontPixel, handleMode } = useContext(CartContext)
@@ -45,8 +47,8 @@ const Ap = () => {
       <Route path='/' element={<Index/>}/>
       <Route path='/clase/:idClase' element={<ClassScreen/>}/>
       <Route path='/atr' element={<CrearArticulo/>}/>
-      <Route path='/product/:idProduct' element={<CrearArticulo/>}/>
-      <Route path='/category' element={<CrearArticulo/>}/>
+      <Route path='/product/:idProduct' element={<ProductScreen/>}/>
+      <Route path='/getCredit' element={<GetCreditScreen/>}/>
       <Route path='/brand' element={<CrearArticulo/>}/>
       <Route path='/product' element={<CrearArticulo/>}/>
       <Route path='/atr' element={<CrearArticulo/>}/>

@@ -1,5 +1,11 @@
 body{
     width: 100vw;
     overflow-x: hidden;
-    background-image: linear-gradient( rgb(16, 16, 16),  rgb(105, 105, 105));
+    // backgroundImage: linear-gradient(217deg, ${item.options[0].color}, rgba(255,0,0,0) 70.71%), linear-gradient(127deg, ${item.options[0].color}, rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,0), ${item.options[0].secondaryColor}
+    background-image: linear-gradient(150deg, rgb(51, 51, 51),  rgb(205, 205, 205));
+}
+#root{
+    height: 100vh;
+    width: 100vw;
+    overflow: scroll;
 }

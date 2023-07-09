@@ -1,0 +1,68 @@
+.ProductWallpaper{
+    height: 90vh;
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 30% 55% 20%;
+    grid-template-areas: 
+    'headerpr headerpr'
+    'lefSide rightSide'
+    'benefits benefits'
+    ;
+}
+.ProductWallpaperTitle{
+    display: flex;
+    align-items: start;
+    grid-area: headerpr;
+    position: relative;
+    top: 5vh;
+    justify-content: center;
+    font-weight: 800;
+}
+.ProductWallpaperImage{
+    grid-area: lefSide;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    right: -20vw;
+    height: 70vh;
+}
+.ProductWallpaperImageNoMoto{
+    grid-area: rightSide;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: relative;
+    right: 10vw;
+    height: 70vh;
+}
+.ProductWallpaperOpt{
+    display: flex;
+    grid-area: rightSide;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50%;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+}
+.ProductWallpaperOptNoMoto{
+    display: flex;
+    grid-area: lefSide;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50%;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+}
+.ProductWallpaperBenefits{
+    grid-area: benefits;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}

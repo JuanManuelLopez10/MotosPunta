@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { CartContext } from '../../context/CartContext';
 
 const BrandRow = (props) => {
-    console.log(props.data);
     const context = useContext(CartContext)
     const clase = `carouselExampleIndicators${props.data[0]}`
     return (
