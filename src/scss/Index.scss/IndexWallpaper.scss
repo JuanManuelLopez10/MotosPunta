@@ -1,110 +1,39 @@
-.IndexWallpaper{
-    width: 100vw;
-    overflow-x: hidden;
-    height: 85vh;
-    justify-content: center;
+#WallpaperIndex{
+    text-decoration: none;
+    width: 90%;
+    height: 50vh;
+    border-radius: 5vw;
+    background-image: url(https://iili.io/HtJBMCl.png);
     background-size: cover;
-}
-#WallpaperImage{
-      -webkit-filter: drop-shadow(5px 5px 15px #222);
-        filter: drop-shadow(1px 1px 5px grey);
-}
-
-
-@media screen and (orientation: landscape) {
-    .IndexWallpaper{
-        height: 80vh;
-        display: grid;
-        grid-template-columns: 25vw 50vw 25vw;
-        grid-template-rows: 10% 50% 35%;
-        grid-template-areas: 
-        'header header header'
-        'lefSide center rightSide'
-        'benefits benefits Insta'
-        ;
-    }
-
-    #WallpaperImage{
-        grid-area: center;
-        height: 140%;
-        justify-self: center;
-        align-self: center;
-        z-index: 2;
-        width: auto;
-    }
-    .IndexWallpaperTitle{
-        text-align: center;
-        font-weight: 500;
-        width: 100%;
-        margin-bottom: 10%;
-        left: 0%;
-        bottom: 20%;
-        z-index: 5;
-        -webkit-text-stroke: 1px rgb(193, 193, 193);
-    }
-    .divBenefits{
-        grid-area: benefits;
-    }
-    .BenefitImage{
+    box-shadow: 0px 0px 10px black;
+    margin-top: 3vh;
+    div{
+        width: 50%;
         height: 100%;
-    }
-    .InstaButton{
-        grid-area: Insta;
-        height: 35%;
-        justify-self: center;
-        align-self: flex-end;
-        align-items: flex-end;
-    }
-}
-@media screen and (orientation: portrait) {
-    .IndexWallpaper{
-        height: 80vh;
-        display: grid;
-        width: 100vw;
-        grid-template-columns: 60vw 40vw;
-        grid-template-rows: 30% 50% 20%;
-        grid-template-areas: 
-        'headerd headerd'
-        'lefSide rightSide'
-        'benefits Insta'
-        ;
-    }
-    .WallpaperTitle{
-        grid-area: headerd;
-        color: white;
-        margin-top: 20%;
         margin-left: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p{
+            color: white;
+            text-shadow: 0px 0px 5px black;
+            font-size: 1.1rem;
+        }
+        .titulo{
+            font-weight: 600;
+        }
     }
-    #WallpaperImage{
-        grid-area: lefSide;
-        // height: 140%;
-        // justify-self: lefSide;
-        // align-self: center;
-        // z-index: 2;
-        // width: auto;
-        height: 130%;
+}
+@media screen and (orientation: landscape) {
+    #WallpaperIndex{
+        grid-area: Wallpaper;
+        height: 90%;
         justify-self: center;
-        margin-right: 50%;
         align-self: center;
-    }
-    .IndexWallpaperTitle{
-        text-align: center;
-        font-weight: 500;
-        width: 100%;
-        margin-bottom: 10%;
-        left: 0%;
-        bottom: 20%;
-        z-index: 5;
-        -webkit-text-stroke: 1px rgb(193, 193, 193);
-    }
-    .divBenefits{
-        grid-area: benefits;
-    }
-    .BenefitImage{
-        height: 100%;
-    }
-    .InstaButton{
-        grid-area: Insta;
-        justify-self: center;
+        &:hover{
+            transform: scale(1.02);
+            transition: all 0.5s;
+        }
     }
 }

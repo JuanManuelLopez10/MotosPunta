@@ -1,0 +1,49 @@
+#ProductCaract{
+    background-color: rgb(175, 175, 175);
+    width: 100vw;
+    padding-top: 3vh;
+    h2{
+        margin-left: 4vw;
+    }
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
+#BenefitsContainer{
+    display: flex;
+    height: 30vh;
+    width: 100%;
+    overflow-x: scroll;
+    justify-content: start;
+}
+.Beneficio{
+    width: 60%;
+    height: 25vh;
+    margin: 2%;
+    background-image: linear-gradient(150deg, rgb(145, 145, 145), rgb(37, 37, 37));
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px black;
+    img{
+        width: 100%;
+    }
+    p{
+        position: absolute;
+        text-align: center;
+        width: 90%;
+        top: 70%;
+        margin-left: 5%;
+        color: white;
+        font-size: 1.1rem;
+    }
+}
+@media screen and (orientation: landscape){
+#ProductCaract{
+    width: 80vw;
+
+}
+    #BenefitsContainer{
+    justify-content: space-around;
+    height: 50vh;
+    }
+}

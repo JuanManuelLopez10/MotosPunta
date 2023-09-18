@@ -1,7 +1,8 @@
-@import './Product/ProductWallpaper.scss';
-@import './Product/ProductBenefits.scss';
+@import 'Product/ProductImage.scss';
+@import 'Product/ProductCaract.scss';
+@import 'Product/PhoneButtonsProduct.scss';
 
-.ProductScreen{
+#ProductScreen{
     width: 100vw;
-    overflow-x: hidden;
+    overflow-x: hidden;    
 }

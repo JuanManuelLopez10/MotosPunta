@@ -1,11 +1,60 @@
+@import './Menu/Menu';
+@import './constants/Constants';
+
 body{
-    width: 100vw;
     overflow-x: hidden;
-    // backgroundImage: linear-gradient(217deg, ${item.options[0].color}, rgba(255,0,0,0) 70.71%), linear-gradient(127deg, ${item.options[0].color}, rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,0), ${item.options[0].secondaryColor}
-    background-image: linear-gradient(150deg, rgb(51, 51, 51),  rgb(205, 205, 205));
+    background-color: #4f4545;
 }
 #root{
+    position: relative;
     height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: start;
+}
+#roote{
+    background-color: $background-color-page;
+        position: absolute;
+        width: 80vw;
+    z-index: 2;
+}
+
+
+@media screen and (orientation: portrait) {
+    #roote{
     width: 100vw;
-    overflow: scroll;
+}
+}
+@media screen and (orientation: landscape) {
+#roote{
+    right: 0;
+}
+}
+
+
+.openmenu{
+    margin-left: 80vw;
+    animation: apareceMenu 1s ;
+}
+.closedmenu{
+    margin-left: 0vw;
+    animation: desapareceMenu 1s ;
+}
+@keyframes apareceMenu {
+    0%{
+        margin-left: 0vw;
+    }
+    100%{
+        margin-left: 80vw;
+    }
+    
+}
+@keyframes desapareceMenu {
+    0%{
+        margin-left: 80vw;
+    }
+    100%{
+        margin-left: 0vw;
+    }
+    
 }

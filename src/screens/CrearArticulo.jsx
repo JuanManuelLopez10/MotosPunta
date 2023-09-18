@@ -14,7 +14,14 @@ const CrearArticulo = () => {
     const createOrder = () => {
         const generarorder = async () => {
             const newOrderRef = doc(collection(db, "products"))
+            if (product.money) {
             await setDoc(newOrderRef, product);
+            }else{
+                const nuevoproducto = product
+                nuevoproducto.money='USD'
+                await setDoc(newOrderRef, product);
+            }
+
             return newOrderRef
         }
         generarorder()

@@ -3,7 +3,19 @@
     align-self: center;
     border: none;
 }
+#CarritoButton{
+    p{
+        position: absolute;
+        top: 1vh;
+        right: 10vw;
+        padding: 1vw;
+        border-radius: 8px;
+        background-color: black;
+        color: white;
+    }
+}
 .openOptions{
     color: white;
     background: none;
+
 }

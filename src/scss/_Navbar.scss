@@ -1,17 +1,16 @@
 
 @import './Navbar/NavbarLogo';
 @import './Navbar/NavbarButtons';
-@import './Navbar/NavbarMenu';
 
 .Navbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    background-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.0));
-    position: absolute;
+    justify-content: space-between;
+    width: 100vw;
+    padding-inline: 3vw;
+    height: 10vh;
     top: 0;
-    z-index: 10;
+    z-index: 9;
 }
 
 

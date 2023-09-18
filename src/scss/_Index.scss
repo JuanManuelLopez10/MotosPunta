@@ -1,3 +1,28 @@
 @import './Index.scss/IndexWallpaper.scss';
-@import './Index.scss/IndexCategories.scss';
-@import './Index.scss/IndexBrands.scss';
+@import './Index.scss/CategoriesIndex.scss';
+@import './Index.scss/EspecialesIndex.scss';
+
+#Index{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (orientation: landscape) {
+    #Index{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 4fr 2fr;
+        grid-template-areas: 
+        "Wallpaper Especiales"
+        "Categorias Especiales"
+        ;
+        height: 100vh
+    }
+}
+@media screen and (orientation: portrait) {
+    #Index{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

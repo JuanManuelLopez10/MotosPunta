@@ -1,15 +1,20 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import db from '../data/FirestoreData';
-import CategoryRow from '../components/categories/categoryRow';
+import ClassCategories from '../components/ClassScreen/ClassCategories';
+import ClassMainCategory from '../components/ClassScreen/ClassMainCategory';
+import ClassStore from '../components/ClassScreen/ClassStore';
+import { CartContext } from '../context/CartContext';
+// import CategoryRow from '../components/categories/categoryRow';
 
 const ClassScreen = () => {
   const { idClase } = useParams();
   const [datos, setDatos] = useState([])
   const [brands, setBrands] = useState([])
   const [categories, setCategories] = useState([])
-  const [SelectedCategory, setSelectedCategory] = useState('')
+  const context = useContext(CartContext)
+
 
   useEffect(() => {
     const fetchFirestore = async() => {
@@ -47,10 +52,34 @@ const ClassScreen = () => {
         .catch(err => console.log(err))
 
       }, [idClase]);
+      
+      // context.changeScreen(idClase)
 
-  return (
+      let Categorias = []
+      datos.map(item=>{
+        const ClassReady = Categorias.includes(item.category)
+        if (ClassReady==false) {
+          Categorias.push(item.category)
+        }
+      })
+
+      if (context.SelectedCategory===null || Categorias.includes(context.SelectedCategory)===false){
+        if (context.Orientation==='Portrait') {
+          context.changeCategory(Categorias[0])                  
+        }else{
+          context.changeCategory(false)
+        }
+      }
+      
+      return (
     <>
-    <div>
+    <div id='Clase'>
+      <ClassCategories Categorias={Categorias} datos={datos} />
+      <ClassMainCategory datos={datos}/>
+      <ClassStore datos={datos}/>
+    </div>
+
+    {/* <div>
     <div className='categoryContainer'>
       {
         categories.map(item=>{
@@ -66,7 +95,7 @@ const ClassScreen = () => {
           <CategoryRow SelectedCategory={SelectedCategory} title={item} datos={datos} />
         )})
       }
-    </div>
+    </div> */}
     </>
   )
 }

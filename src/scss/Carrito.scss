@@ -1,0 +1,104 @@
+#Carrito {
+    height: 100vh;
+    width: 100vw;
+
+    h1 {
+        margin-right: 5vw;
+    }
+
+    #ContenedorCarritoProductos {
+        width: 100%;
+        height: 60vh;
+        border-bottom: 2px solid red;
+        overflow-y: scroll;
+        padding-top: 2vh;
+        &2{
+            height: auto;        
+            display: flex;
+            flex-direction: column;
+    
+        }
+        .CarritoProducto {
+            margin-bottom: 20px;
+            background-image: linear-gradient(130deg, rgb(104, 104, 104), rgb(16, 16, 16));
+            width: 90%;
+            border-radius: 5px;
+            display: flex;
+            overflow-x: hidden;
+            box-shadow: 0px 0px 10px black;
+            align-self: center;
+            img{
+                height: fit-content;
+            }
+            button{
+                grid-area: Boton;
+                width: 80%;
+                height: 80%;
+                background-color: red;
+                i{
+                    color: white;
+                }
+            }
+            &texto {
+                width: 60%;
+                display: grid;
+                grid-template-columns: 70% 30%;
+                grid-template-rows: 50% 50%;
+                grid-template-areas: 'Titulo Titulo' 'Texto Boton';
+
+                h4 {
+                    font-size: 1.3rem;
+                    margin-top: 10%;
+                    color: white;
+                    display: flex;
+                    height: 100%;
+                    align-content: end;
+                }
+
+                div {
+                    color: grey;
+                    display: flex;
+                    height: 80%;
+                    align-content: end;
+                    grid-area: Texto;
+                    p{
+                        align-self: flex-end;
+                        height: 30%;
+                        margin-bottom: 5%;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (orientation: landscape) {
+    #Carrito {
+        padding-left: 5vw;
+        padding-top: 5vh;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        grid-template-rows: 20% 80%;
+        grid-template-areas: 'Titulo Titulo' 'Articulos Total';
+        #divTotalyBotones{
+            grid-area: Total;
+            width: 55%;
+            height: 80%;
+            div{
+                display: flex;
+                flex-direction: column;
+                height: 40%;
+                justify-content: space-around;
+            }
+            .BotonesProductoWallpaper{
+                width: 90%;
+            }
+        }
+        #ContenedorCarritoProductos{
+            grid-area: Articulos;
+            height: 100%;
+            overflow-y: hidden;
+        }
+    }
+}
