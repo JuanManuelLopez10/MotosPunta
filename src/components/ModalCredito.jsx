@@ -62,7 +62,7 @@ const ModalCredito = (props) => {
                 }                            
         </div>
         {
-                Puede===falsewq
+                Puede===false
                 ?
                 <div id='AlertNoPuede'>
                     <button onClick={()=>{setPuede(undefined)}}>X</button>
