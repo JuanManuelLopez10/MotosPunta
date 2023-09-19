@@ -15,7 +15,7 @@ const ClassScreen = () => {
   const [categories, setCategories] = useState([])
   const context = useContext(CartContext)
 
-''
+
   useEffect(() => {
     const fetchFirestore = async() => {
         let q;
