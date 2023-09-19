@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/CartContext'
 import ModalTextArea from './Modal/ModalTextArea'
-import { Alert } from 'bootstrap'
 
 const ModalCredito = (props) => {
     const context = useContext(CartContext)
