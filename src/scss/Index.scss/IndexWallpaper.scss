@@ -1,39 +1,43 @@
-#WallpaperIndex{
-    text-decoration: none;
-    width: 90%;
-    height: 50vh;
-    border-radius: 5vw;
-    background-image: url(https://iili.io/HtJBMCl.png);
-    background-size: cover;
-    box-shadow: 0px 0px 10px black;
-    margin-top: 3vh;
-    div{
-        width: 50%;
-        height: 100%;
-        margin-left: 5%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        p{
-            color: white;
-            text-shadow: 0px 0px 5px black;
-            font-size: 1.1rem;
-        }
-        .titulo{
-            font-weight: 600;
-        }
+@import '../constants/Constants';
+
+#IndexWallpaperPC{
+    height: 100vh;
+    video{
+        width: 100vw;
     }
-}
-@media screen and (orientation: landscape) {
-    #WallpaperIndex{
-        grid-area: Wallpaper;
-        height: 90%;
-        justify-self: center;
-        align-self: center;
-        &:hover{
-            transform: scale(1.02);
-            transition: all 0.5s;
+    width: 100vw;
+    display: grid;
+    &IMG{
+        position: absolute;
+        z-index: 10;
+        width: 100vw;
+        height: 100vh;
+        padding-left: 5vw;
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-template-areas: 'left right' ;
+        &-h2{
+            color: white;
+            width: 50%;
+            font-weight: 400;
+            font-family: $font-family-1;
+        }
+        &-p{
+            width: 40vw;
+            color: white;
+            text-shadow: 0px 0px 10px black;
+        }
+        &-Logo{
+            width: 5vw;
+            height: auto;
+            margin-top: 10%;
+        }
+        &-ViewMore{
+            z-index: 3500;
+            color: white;
+            &:hover{
+                color: red;
+            }
         }
     }
 }

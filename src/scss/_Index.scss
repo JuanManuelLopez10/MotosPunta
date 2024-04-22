@@ -1,6 +1,7 @@
 @import './Index.scss/IndexWallpaper.scss';
 @import './Index.scss/CategoriesIndex.scss';
 @import './Index.scss/EspecialesIndex.scss';
+@import './Index.scss/IndexHotProducts.scss';
 
 #Index{
     width: 100%;
@@ -9,14 +10,7 @@
 
 @media screen and (orientation: landscape) {
     #Index{
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows: 4fr 2fr;
-        grid-template-areas: 
-        "Wallpaper Especiales"
-        "Categorias Especiales"
-        ;
-        height: 100vh
+        width: 100vw;
     }
 }
 @media screen and (orientation: portrait) {

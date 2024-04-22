@@ -1,8 +1,10 @@
 @import 'Product/ProductImage.scss';
 @import 'Product/ProductCaract.scss';
 @import 'Product/PhoneButtonsProduct.scss';
+@import 'Product/ProductFirstView.scss';
 
 #ProductScreen{
     width: 100vw;
-    overflow-x: hidden;    
+    overflow-x: hidden;  
+    background-color: white;  
 }

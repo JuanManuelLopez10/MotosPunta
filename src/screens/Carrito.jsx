@@ -2,13 +2,11 @@ import React, { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext'
 import CarritoProductos from '../components/Carrito/CarritoProductos'
 import CarritoBotones from '../components/Carrito/CarritoBotones'
-import ModalCredito from '../components/ModalCredito'
 
 const Carrito = () => {
     const contexto = useContext(CartContext)
     const [OpenCredit, setOpenCredit] = useState(false)
 
-    console.log(contexto.Carrito);
     const deleteProduct = (pro) => {
         contexto.restarPrecio(pro)
         contexto.removeFromCart(pro)
@@ -29,13 +27,6 @@ const Carrito = () => {
             </div>
             <CarritoProductos contexto={contexto} deleteProduct={deleteProduct} />
             <CarritoBotones  HandleModal={HandleModal} contexto={contexto} />
-            {
-                OpenCredit===true
-                ?
-                <ModalCredito MontoAFinanciar={contexto.TotalCash}  HandleModal={HandleModal} />
-                :
-                ''
-            }
             </div>
             )
     }
