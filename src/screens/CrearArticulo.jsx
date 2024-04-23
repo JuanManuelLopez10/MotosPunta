@@ -184,7 +184,7 @@ const CrearArticulo = () => {
                     <div className='ProductosCreateDiv'>
                         {
                             context.Datos.map(producto => {
-                                <EditArticulo producto={producto} />
+                                <EditArticulo producto={producto}/>
                             })
                         }
                     </div>
