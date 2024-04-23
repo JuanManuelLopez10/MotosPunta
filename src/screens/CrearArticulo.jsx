@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { doc, setDoc, updateDoc, serverTimestamp, collection, increment, getDoc, getDocs } from "firebase/firestore"
 import db from '../data/FirestoreData'
 import { CartContext } from '../context/CartContext'
+import EditArticulo from './EditArticulo'
 const CrearArticulo = () => {
     const context = useContext(CartContext)
     const [product, setProduct] = useState({}) //benefits[{name, image}]
@@ -179,6 +180,14 @@ const CrearArticulo = () => {
                     <button onClick={()=>{AddBenefit()}} >Agregar beneficio</button>                    
                     <button onClick={()=>{AgregarProducto()}}>Agregar producto</button>
                     
+
+                    <div className='ProductosCreateDiv'>
+                        {
+                            context.Datos.map(producto => {
+                                <EditArticulo producto={producto} />
+                            })
+                        }
+                    </div>
             </div>
 
         )
