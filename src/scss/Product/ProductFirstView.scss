@@ -1,6 +1,7 @@
 #ProductFirstView{
+
     width: 100vw;
-    height: 90vh;
+    height: 80vh;
     background-image: linear-gradient(rgb(195, 195, 195), white);
     display: grid;
     grid-template-columns: 50% 50%;
@@ -8,6 +9,13 @@
     grid-template-areas: 
     "TopLeft TopRight" 
     "BottomLeft BottomRight";
+    #ViewDisponibility{
+        grid-area: BottomRight;
+        height: 20%;
+        width: 50%;
+        justify-self: center;
+        margin-top: 5%;
+    }
     &NameAndInfo{
         grid-area: TopRight;
         display: flex;
@@ -15,7 +23,7 @@
         justify-content: flex-end;
         align-items: center;
         width: 100%;
-        height: 100%;
+        height: 150%;
         align-self: flex-end;
     }
     h3{
@@ -27,6 +35,7 @@
         align-self: flex-end;
         width: 100%;
         text-align: center;
+        margin-bottom: 3vh;
     }
     p{
         grid-area: TopLeft ;
@@ -42,7 +51,7 @@
         filter: opacity(.2) grayscale(1);
     }
     .Front{
-        height: 160%;
+        height: 190%;
         grid-area: BottomLeft;
         margin-left: 3vw;
         align-self: flex-end;

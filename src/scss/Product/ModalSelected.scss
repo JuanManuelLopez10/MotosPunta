@@ -1,0 +1,79 @@
+#ModalBack{
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(23, 23, 23, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #Modal{
+    z-index: 51;
+    width: 60%;
+        background-color: white;
+        &Header{
+            display: flex;
+            justify-content: space-between;
+
+            align-items: center;
+            width: 100%;
+            padding-inline: 5%;
+            button{
+                height: 100%;
+                border: none;
+                background: none;
+                font-size: 2rem;
+            }
+            h2{
+                padding-left: 1vw;
+                font-size: 3.5rem;
+            }
+        }
+        &Body{
+
+            img{
+                width: 50%;
+            }
+            #Information{
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                justify-content: space-around;
+                padding-bottom: 15%;
+                align-items: center;
+                p{
+                    width: 100%;
+                    text-align: center;
+                    color: black;
+                }
+                &-Price{
+                    font-size: 2rem;
+                }
+                &-Type{
+                    font-size: 1rem;
+                }                
+                &-Opinions{
+                    button{
+                        border: none;
+                        background: none;
+                    }
+                    &Count{
+                        font-size: 0.75rem;
+                    }
+                }                
+                &-Price{
+                    font-size: 2rem;
+                }
+                #AddToCartButton{
+                    width: 75%;
+                    border: none;
+                    padding: 3%;
+                    border-radius: 15px;
+                    box-shadow: 0px 0px 5px black;
+                }
+            }
+        }
+    }
+}

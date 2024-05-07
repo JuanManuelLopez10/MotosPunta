@@ -15,9 +15,6 @@ const IndexWallpaperPC = () => {
     
     return (
             <div id='IndexWallpaperPC'>
-                {
-                    loaded===false
-                    ?
                     <div id='IndexWallpaperPCIMG' style={{backgroundImage: `url(/assets/WallpaperIndexPc.jpg)`, backgroundSize:'cover'}} >
                         
                         <div>
@@ -30,13 +27,10 @@ const IndexWallpaperPC = () => {
                         </div>
 
                     </div>
-                    :''
-                }
 
 
 
-                <video onLoad={playVideo} autoPlay src="/assets/wallpaperIndex.mp4"></video>
-                <source src="/assets/wallpaperIndex.mp4" type="video/mp4" />
+
             </div>
           )
 }

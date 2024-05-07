@@ -1,13 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { doc, setDoc, updateDoc, serverTimestamp, collection, increment, getDoc, getDocs } from "firebase/firestore"
-import db from '../data/FirestoreData'
 import { CartContext } from '../context/CartContext'
-import EditArticulo from './EditArticulo'
+import EditArticulo from '../components/CreateArticle/EditArticulo'
+
 const CrearArticulo = () => {
     const context = useContext(CartContext)
-    const [product, setProduct] = useState({}) //benefits[{name, image}]
-    const [optionsQuantity, setoptionsQuantity] = useState()
-
     const ClassOptions = ['motos', 'cascos', 'indumentaria', 'accesorios']
     const BrandOptions = [
         {Tipo:'motos', Options: ['Honda', 'TVS', 'CFMoto', 'Lifan', 'Vital', 'Suzuki'],    Types: ['Naked', 'Scooter', 'Sport', 'Polleritas', 'Enduro', 'Calle', 'Multipropósito', 'Cuatri']
@@ -18,7 +14,6 @@ const CrearArticulo = () => {
     const [BrandSelected, setBrandSelected] = useState('Honda')
     const [Model, setModel] = useState('')
     const [Cilind, setCilind] = useState('')
-    const [Design, setDesign] = useState('')
     const [Price, setPrice] = useState()
     const [Coin, setCoin] = useState('U$S')
     const [Type, setType] = useState('')
@@ -77,9 +72,7 @@ const CrearArticulo = () => {
     const handleClase = (event) => {
         setClass(event.target.value);
       };
-      const handleOptQuant = (event) => {
-        setoptionsQuantity(event.target.value);
-      };
+      
       const handleBrand = (event) => {
         setBrandSelected(event.target.value);
       };
@@ -114,7 +107,11 @@ const CrearArticulo = () => {
             Type: Type,
             Class: Class,
             Options: Options,
-            Benefits: Benefits
+            Benefits: Benefits,
+            Opinion:{
+                Number: 0,
+                Count:0
+            }
         }
         context.PostProductOnFirestore(producto)
         setOptions([])
@@ -181,10 +178,23 @@ const CrearArticulo = () => {
                     <button onClick={()=>{AgregarProducto()}}>Agregar producto</button>
                     
 
-                    <div className='ProductosCreateDiv'>
+                    <div id='ProductosCreateDiv'>
+                    <div id='ProductosCreateDivHeader'>
+                        <p>Marca</p>
+                        <p>Modelo</p>
+                        <p>Cilindrada</p>
+                        <p>Precio</p>
+                        <p>Moneda</p>
+                        <p>Tipo</p>
+                        <p>Clase</p>
+                        
+                    </div>
                         {
                             context.Datos.map(producto => {
-                                <EditArticulo producto={producto}/>
+                                return(
+                                    <EditArticulo producto={producto}/>
+                                    
+                                )
                             })
                         }
                     </div>

@@ -3,10 +3,11 @@ import { CartContext } from '../context/CartContext'
 
 const LoadingScreen = () => {
     const context = useContext(CartContext)
-    context.AddImages()
 
     return (
-    <div>LOADING</div>
+    <div id='LoadingBack'>
+      a
+    </div>
   )
 }
 

@@ -1,0 +1,13 @@
+.EditArticulo{
+    color: black;
+}
+#ProductosCreateDiv{
+    
+    width: 100vw;
+    background-color: white;
+    &Header{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+}

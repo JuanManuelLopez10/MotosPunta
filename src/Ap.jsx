@@ -9,9 +9,38 @@ import db, { firebaseConfig, st } from './data/FirestoreData'
 import CrearArticulo from './screens/CrearArticulo'
 import Carrito from './screens/Carrito';
 import NavbarPC from './components/navbar/NavbarPC';
+import LoadingScreen from './components/LOADING.JSX';
 const Ap = () => {
     const { setOrientation, AddImages, setWidth, setHeigth, ImageStorage, handleDatos } = useContext(CartContext)
-    
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      const images = document.querySelectorAll('img');
+      const totalImages = images.length;
+      let loadedImages = 0;
+  
+      const handleImageLoad = () => {
+        loadedImages++;
+        if (loadedImages === totalImages) {
+          setIsLoading(false);
+        }
+      };
+  
+      images.forEach(image => {
+        if (image.complete) {
+          handleImageLoad();
+        } else {
+          image.addEventListener('load', handleImageLoad);
+        }
+      });
+  
+      return () => {
+        images.forEach(image => {
+          image.removeEventListener('load', handleImageLoad);
+        });
+      };
+    }, []);
+
     useEffect(() => {
       const handleResize = () => {
         const windowWidth = window.innerWidth;
@@ -49,6 +78,7 @@ const Ap = () => {
           products.push(producto)
         });
         handleDatos(products)
+        console.log(products);
       } catch (error) {
         console.error('Error al obtener los productos:', error);
       }
@@ -68,7 +98,9 @@ const Ap = () => {
   return (
     <BrowserRouter>
     <NavbarPC/>
-
+    {isLoading===undefined && (
+      <LoadingScreen/>
+      )}
       <Routes>
       <Route path='/' element={<Index/>}/>
       <Route path='/product/:idProduct' element={<ProductScreen/>}/>

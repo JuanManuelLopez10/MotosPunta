@@ -19,7 +19,6 @@ const NavbarPC = () => {
                     image: producto.Options[0].Image
                 }
                 arrayTypes.push(objeto)
-                console.log(arrayTypes);
             }
             if(arrayClases.findIndex(clase => clase === producto.Class)===-1){
                 arrayClases.push(producto.Class)
@@ -35,7 +34,6 @@ const NavbarPC = () => {
         setSelected(null)
         :
         setSelected(a)
-        console.log(Selected)
 
     }
     
@@ -55,7 +53,6 @@ const NavbarPC = () => {
                     arrayClases.length>0
                     ?
                     arrayClases.map(clase => {
-                        console.log(clase);
                         return (
                             <button className='NavbarOption' onClick={()=>{HandleSelect(clase)}}>
                                 {clase.toUpperCase()}
@@ -63,7 +60,7 @@ const NavbarPC = () => {
                             </button>
                         )
                     })
-                    :console.log('hasta acá llega')
+                    :''
                 }
             </div>
           )
