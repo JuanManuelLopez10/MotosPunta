@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 const Benefits = (props) => {
     const producto = props.producto
-    console.log(producto.Benefits);
     const [BenefitSelected, setBenefitSelected] = useState(0)
   
    return (

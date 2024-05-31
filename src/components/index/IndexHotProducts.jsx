@@ -40,7 +40,6 @@ const IndexHotProducts = () => {
     }
 
     if(Selected){
-        console.log(arrayDestacados);
         return (
             <section id='IndexHotProductsPC' >
                 <button onClick={()=>{ToPreviousHotProduct(Selected)}} className='Button'>{'<'}</button>

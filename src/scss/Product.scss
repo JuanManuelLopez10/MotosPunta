@@ -2,12 +2,395 @@
 @import 'Product/ProductCaract.scss';
 @import 'Product/PhoneButtonsProduct.scss';
 @import 'Product/ProductFirstView.scss';
-@import 'Product/ProductBenefits.scss';
-@import 'Product/ProductOptions.scss';
+// @import 'Product/ProductBenefits.scss';
+// @import 'Product/ProductOptions.scss';
 @import 'Product/ModalSelected.scss';
+
+#Product{
+
+    &1{
+        @keyframes ApearProductScreen {
+            0%{
+                left: 100vw;
+            }
+            100%{
+                left: 0;
+            }
+        }
+        animation: ApearProductScreen 1s;
+        width: 100vw;
+        height: 100vh;
+        z-index: 3;
+        overflow-x: hidden;  
+        background-color: rgb(236, 236, 236);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &Closed{
+        @keyframes DisapearProductScreen {
+            0%{
+                left: 0vw;
+                width: 100vw;
+                height: 100vh;
+            }
+            100%{
+                left: 100vw;
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+        animation: DisapearProductScreen 1s;
+        width: 0vw;
+        height: 0vh;
+        z-index: 3;
+        overflow-x: hidden;  
+        background-color: rgb(236, 236, 236);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
 
 #ProductScreen{
     width: 100vw;
+    height: 100vh;
+    z-index: 3;
     overflow-x: hidden;  
-    background-color: white;  
+    background-color: rgb(236, 236, 236);
+    position: absolute;
+    top: 0;
+    left: 0;
+    &Price{
+        position: absolute;
+        z-index: 4;
+        bottom: 17vh;
+        left: 5vw;
+        color: rgb(236, 236, 236);
+        font-weight: 700;
+        text-shadow: 0px 0px 10px black;
+    }
+    &Gradient{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        background-image: linear-gradient(transparent, transparent,transparent, transparent, rgb(68, 68, 68, .8),rgb(68, 68, 68));
+        &Next{
+            @keyframes DisapearGradient {
+                0%{
+                    bottom: 0;
+                }
+                100%{
+                    bottom: 100vh;
+                }
+            }
+            animation: DisapearGradient 1s;
+            position: absolute;
+            bottom: 100vh;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            background-image: linear-gradient(transparent, transparent,transparent, rgb(68, 68, 68));
+        
+        }
+    }
+    &ViewMore{
+        width: 75vw;
+        height: 7vh;
+        background: none;
+        color: black;
+        border: none;
+    }
+    &AddToCart{
+        width: 75vw;
+        height: 7vh;
+        align-self: center;
+        background-color: rgb(25, 25, 25);
+        color: white;
+        // background-color: rgb(236, 236, 236);
+        // color: rgb(25,25,25);
+        // border: solid 2px rgb(25,25,25);
+        box-shadow: 0px 0px 2px black;
+        border-radius: 10vw;
+        margin-bottom: 3vh;
+    }
+    &Model{
+        position: absolute;
+        top: 5vh;
+        left: 0;
+        width: 100vw;
+        font-weight: 800;
+        color: rgb(236, 236, 236);
+        text-shadow: 0px 0px 10px rgb(181, 181, 181);
+        z-index: 1;
+    }
+    &Brand{
+        transform: rotate(-90deg);
+        position: absolute;
+        bottom: 40vh;
+        font-weight: 800;
+        right: -45vw;
+        margin: 0px;
+        padding: 0;
+        &2{
+            transform: rotate(-90deg);
+            position: absolute;
+            bottom: 40vh;
+            font-weight: 800;
+            right: -45vw;
+            margin: 0px;
+            padding: 0;
+            z-index: 4;
+            color: transparent;
+                        -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: white;
+        }
+    }
+    &IMG{
+        &Moto{
+            width: 200vw;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+        }
+    }
+    &Closed{
+        @keyframes DisapearProductScreen {
+            0%{
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+            }
+            100%{
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 100vw;
+            }
+        }
+        animation: DisapearProductScreen 1s;
+        &Gradient{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            background-image: linear-gradient(transparent, transparent,transparent, transparent, rgb(68, 68, 68, .8),rgb(68, 68, 68));
+            &Next{
+                @keyframes DisapearGradient {
+                    0%{
+                        bottom: 0;
+                    }
+                    100%{
+                        bottom: 100vh;
+                    }
+                }
+                animation: DisapearGradient 1s;
+                position: absolute;
+                bottom: 100vh;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 4;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: center;
+                background-image: linear-gradient(transparent, transparent,transparent, rgb(68, 68, 68));
+            
+            }
+        }
+        &ViewMore{
+            width: 75vw;
+            height: 7vh;
+            background: none;
+            color: black;
+            border: none;
+        }
+        &AddToCart{
+            width: 75vw;
+            height: 7vh;
+            align-self: center;
+            background-color: rgb(25, 25, 25);
+            color: white;
+            // background-color: rgb(236, 236, 236);
+            // color: rgb(25,25,25);
+            // border: solid 2px rgb(25,25,25);
+            box-shadow: 0px 0px 2px black;
+            border-radius: 10vw;
+            margin-bottom: 3vh;
+        }
+        &Model{
+            position: absolute;
+            top: 5vh;
+            left: 0;
+            width: 100vw;
+            font-weight: 800;
+            color: rgb(236, 236, 236);
+            text-shadow: 0px 0px 10px rgb(181, 181, 181);
+            z-index: 1;
+        }
+        &Brand{
+            transform: rotate(-90deg);
+            position: absolute;
+            bottom: 40vh;
+            font-weight: 800;
+            right: -45vw;
+            margin: 0px;
+            padding: 0;
+            &2{
+                transform: rotate(-90deg);
+                position: absolute;
+                bottom: 40vh;
+                font-weight: 800;
+                right: -45vw;
+                margin: 0px;
+                padding: 0;
+                z-index: 4;
+                color: transparent;
+                            -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: white;
+            }
+        }
+        &IMG{
+            &Moto{
+                width: 200vw;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+            }
+        }   
+    }
+}
+#ProductOptions{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &Row{
+        height: 32vh;
+        display: flex;
+        overflow-x: scroll;
+        width: 100vw;
+    }
+    h3{
+        width: 90%;
+        margin-top: 3vh;
+        text-align: start;
+        color: white;
+    }
+    .ProductOption{
+        height: 25vh;
+        width: 25vh;
+        margin-left: 5vw;
+        border-radius: 5vw;
+        box-shadow: 5px 0px 10px black;
+        margin-block: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        background-image: linear-gradient(rgb(236, 236, 236), rgb(118, 118, 118));
+        img{
+            height: 25vh;
+            width: 25vh;
+        }
+            p{
+                color: white;
+                width: 25vh;
+                text-shadow: 1px 0px 3px black;
+                margin-left: 2vw;
+                text-align: center;
+            }
+        }
+}
+#ProductBenefits{
+    @keyframes ApearOptions {
+        0%{
+            top: 100vh;
+        }
+        100%{
+            top: 0;
+        }
+    }
+    animation: ApearOptions 1s;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &Row{
+        height: 32vh;
+        display: flex;
+        overflow-x: scroll;
+        width: 100vw;
+    }
+    h3{
+        width: 90%;
+        margin-top: 3vh;
+        text-align: start;
+        color: white;
+    }
+    .ProductBenefit{
+        height: 25vh;
+        width: 25vh;
+        margin-left: 5vw;
+        border-radius: 5vw;
+        box-shadow: 5px 0px 10px black;
+        margin-block: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        background-size: cover;
+            p{
+                color: white;
+                width: 25vh;
+                text-shadow: 1px 0px 3px black;
+                margin-left: 2vw;
+                text-align: center;
+            }
+        }
+}
+#ProductViewMore{
+    @keyframes ApearViewMore {
+        0%{
+            bottom: -100vh;
+        }
+        100%{
+            bottom: 0;
+        }
+    }
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(68, 68, 68);
+    z-index: 5;
+    animation: ApearViewMore 1s;
+    border-top-left-radius: 10vw;
+    border-top-right-radius: 10vw;
+    box-shadow: 0px 0px 10px black;
 }

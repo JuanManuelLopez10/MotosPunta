@@ -7,7 +7,7 @@ const NavbarPC = () => {
     const context = useContext(CartContext)
     const arrayTypes = []
     const arrayClases = []
-
+    console.log(context.Orientation);
     if (context.Datos.length > 0) {
         context.Datos.map(product => {
             const producto = product.product
@@ -40,6 +40,7 @@ const NavbarPC = () => {
     const handleCloseMenu = () => {
         setSelected(null)
     }
+
         return (
             <div id='Navbar' >
                 {

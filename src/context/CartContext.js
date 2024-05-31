@@ -1,5 +1,5 @@
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import db, { firebaseConfig, st } from "../data/FirestoreData";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 
@@ -12,8 +12,48 @@ const CartContextProvider = ({ children }) => {
     const [Carrito, setCarrito] = useState([])
     const [TotalCash, setTotalCash] = useState(0)
     const [Orientation, setOrientation] = useState('Landscape')
+    const [Section, setSection] = useState('Wallpaper')
+    const [Presection, setPresection] = useState(undefined)
+    const [Screen, setScreen] = useState('Index')
+    const [PreScreen, setPreScreen] = useState(undefined)
+    const [MenuSelectedClass, setMenuSelectedClass] = useState(undefined)
+    const startY = useRef(null);
+    const [ProductShown, setProductShown] = useState(undefined)
 
-    
+    const handleTouchStart = (event) => {
+      startY.current = event.touches[0].clientY;
+    };
+  
+    const handleTouchMove = (event, a, b, actual) => {
+      if (startY.current !== null) {
+        const currentY = event.touches[0].clientY;
+        const deltaY = startY.current - currentY;
+  
+        if (deltaY > 100) {
+          setSection(a);
+          setPresection(actual)
+          startY.current = null;
+          setPresection(actual)
+        }else if((deltaY < -100)){
+          setSection(b);
+          setPresection(actual)
+          startY.current = null;
+          setPresection(actual)
+
+        }else{
+            console.log('d');
+        }
+      }
+    };
+
+    const MoveToScreen = (actual, next) =>{
+        
+        setPreScreen(actual)
+        setScreen(next)
+        setPresection(undefined)
+        setSection('Wallpaper')
+    }
+
     const PostProductOnFirestore = async (product) => {
             const productsCollection = collection(db, 'products');
             try {
@@ -145,7 +185,7 @@ const CartContextProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, restarPrecio, Carrito, TotalCash, removeFromCart, addToCart, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
+        <CartContext.Provider value={{ ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, restarPrecio, Carrito, TotalCash, removeFromCart, addToCart, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
             {children}
         </CartContext.Provider>
     )

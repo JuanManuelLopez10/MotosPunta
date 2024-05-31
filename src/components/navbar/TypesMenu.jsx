@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const TypesMenu = (props) => {
-    console.log(props.Selected);
     return (
         <div id='TypesMenu'>
             {

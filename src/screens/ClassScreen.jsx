@@ -1,33 +1,44 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import db from '../data/FirestoreData';
-import ClassCategories from '../components/ClassScreen/ClassCategories';
-import ClassMainCategory from '../components/ClassScreen/ClassMainCategory';
-import ClassStore from '../components/ClassScreen/ClassStore';
+import { useLocation, useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import ClassScreenCategoriesPC from '../components/ClassScreen/ClassScreenCategoriesPC';
-import ClassWallpaper from '../components/ClassScreen/ClassWallpaper';
-import ClassBrands from '../components/ClassScreen/ClassBrands';
-import ClassEComm from '../components/ClassScreen/ClassEComm';
-// import CategoryRow from '../components/categories/categoryRow';
+import ClassProducts from '../components/ClassScreen/ClassProducts';
 
 const ClassScreen = () => {
-  const { idClase } = useParams()
   const context = useContext(CartContext)
-  const FilteredDatos = context.Datos.filter(datos => datos.product.Type === idClase)
-      
-  
-  
-      return (
-    <>
-    <div id='Clase'>
-    <ClassWallpaper FilteredDatos={FilteredDatos} idClase={idClase}/>
-    <ClassBrands FilteredDatos={FilteredDatos}/>
-    <ClassEComm FilteredDatos={FilteredDatos}/>
-    </div>
-    </>
-  )
+  const location = useLocation().pathname.split("/clase/")[1];
+  const productId = useLocation().pathname.split('/product/')[1]
+  const [ClaseSelected, setClaseSelected] = useState('Naked') 
+  useEffect(()=>{
+    setClaseSelected(location)
+
+    },[])
+  if (productId!==undefined) {
+    console.log(productId);
+  }
+
+  if (context.Screen==='Clase') {
+    return (
+      <>
+      <div onLoad={()=>{
+        setClaseSelected(location)
+      }} id='Clase'>
+        <h2>{location}</h2>
+        <ClassProducts productId={productId} Clase={location ? location : ClaseSelected} />
+        {/* <ClassWallpaper FilteredDatos={FilteredDatos} idClase={idClase}/>
+        <ClassBrands FilteredDatos={FilteredDatos}/>
+        <ClassEComm FilteredDatos={FilteredDatos}/> */}
+      </div>
+      </>
+    )
+  }else{
+    return(
+    <div id='ClaseClosed'>
+        <h2>{ClaseSelected}</h2>
+        <ClassProducts Clase={ClaseSelected} />
+    </div>)
+  }
+
+
 }
 
 export default ClassScreen

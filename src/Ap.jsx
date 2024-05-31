@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CartContext } from './context/CartContext';
 import Index from './screens/Index';
@@ -6,19 +6,22 @@ import ClassCreen from './screens/ClassScreen'
 import ProductScreen from './screens/ProductScreen';
 import { doc, setDoc, updateDoc, serverTimestamp, collection, increment, getDoc, getDocs } from "firebase/firestore"
 import db, { firebaseConfig, st } from './data/FirestoreData'
-import CrearArticulo from './screens/CrearArticulo'
-import Carrito from './screens/Carrito';
-import NavbarPC from './components/navbar/NavbarPC';
+
 import LoadingScreen from './components/LOADING.JSX';
+import Navbar from './components/navbar/Navbar';
+import NavbarMenuMobile from './components/navbar/NavbarMenuMobile';
+import ClassScreen from './screens/ClassScreen';
+import Product from './screens/Product';
 const Ap = () => {
     const { setOrientation, AddImages, setWidth, setHeigth, ImageStorage, handleDatos } = useContext(CartContext)
     const [isLoading, setIsLoading] = useState(true);
+    const [OpenMenu, setOpenMenu] = useState(false)  
 
     useEffect(() => {
       const images = document.querySelectorAll('img');
       const totalImages = images.length;
       let loadedImages = 0;
-  
+      
       const handleImageLoad = () => {
         loadedImages++;
         if (loadedImages === totalImages) {
@@ -78,7 +81,6 @@ const Ap = () => {
           products.push(producto)
         });
         handleDatos(products)
-        console.log(products);
       } catch (error) {
         console.error('Error al obtener los productos:', error);
       }
@@ -97,11 +99,17 @@ const Ap = () => {
     
   return (
     <BrowserRouter>
-    <NavbarPC/>
+    <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
+    <NavbarMenuMobile OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
+    {/* <NavbarPC/> */}
     {isLoading===undefined && (
       <LoadingScreen/>
       )}
-      <Routes>
+      
+      <Index/>
+      <ClassScreen/>
+      <Product/>
+      {/* <Routes>
       <Route path='/' element={<Index/>}/>
       <Route path='/product/:idProduct' element={<ProductScreen/>}/>
       <Route path='/clase/:idClase' element={<ClassCreen/>}/>
@@ -111,7 +119,7 @@ const Ap = () => {
       <Route path='/getCredit' element={<GetCreditScreen/>}/>
       <Route path='/brand' element={<CrearArticulo/>}/>
       <Route path='/product' element={<CrearArticulo/>}/> */}
-    </Routes>
+    {/* </Routes> */}
 
     {/* <Footer/> */}
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import FirstView from '../components/Product/FirstView';
 import Benefits from '../components/Product/Benefits';
@@ -7,11 +7,12 @@ import ProductOptions from '../components/Product/ProductOptions';
 import ModalSelected from '../components/Product/ModalSelected';
 
 const ProductScreen = () => {
-    const { idProduct } = useParams();
     const context = useContext(CartContext)
     let producto 
-    if (context.Datos[context.Datos.findIndex(product=>product.id===idProduct)]) {
-      producto = context.Datos[context.Datos.findIndex(product=>product.id===idProduct)].product
+    const productId = useLocation().pathname.split('/product/')[1]
+    
+    if (context.Datos[context.Datos.findIndex(product=>product.id===productId)]) {
+      producto = context.Datos[context.Datos.findIndex(product=>product.id===productId)].product
     }
     const [SelectedOption, setSelectedOption] = useState(undefined)
     if (producto) {

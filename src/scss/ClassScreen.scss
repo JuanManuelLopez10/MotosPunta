@@ -6,5 +6,305 @@
 @import './Class/ClassEcom.scss';
 
 #Clase{
+    @keyframes ApearClaseScreen {
+        0%{
+            background-color: transparent;
+        }
+        100%{
+    background-color: rgb(236, 236, 236);
+
+        }
+    }
+    @keyframes ApearProducts {
+        0%{
+            opacity: 0;
+            transform: scale(0);
+        }
+        100%{
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
     width: 100vw;
+    height: 100vh;
+    background-color: rgb(236, 236, 236);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    padding-top: 10vh;
+    animation: ApearClaseScreen .8s;
+
+    &Closed{
+
+        @keyframes DisapearClassScreen {
+            0%{
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+        visibility: visible;
+
+            }
+            100%{
+        visibility: visible;
+        width: 100vw;
+                height: 100vh;
+                top: -100vh;
+            }
+        }
+        position: absolute;
+        width: 0vw;
+        height: 0vh;
+        background-color: rgb(236, 236, 236);
+        top: 0;
+        padding-top: 10vh;
+        z-index: 4;
+        left: 0;
+        animation: DisapearClassScreen 1s;
+        visibility: hidden;
+    }
+    &ExitTo{
+        &Index{
+            @keyframes DisapearClase {
+                0%{
+            background-color: rgb(236, 236, 236);
+                    width: 100vw;
+                    top: 0;
+                    left: 0;
+            z-index: 4;
+            height: 100vh;
+                }
+                100%{
+                    top: 0;
+                    left: 100vw;
+            background-color: rgb(236, 236, 236);
+            z-index: 4;
+            width: 100vw;
+                    height: 100vh;
+                }
+            }
+
+            position: absolute;
+            top: 0;
+            left: 100vw;
+            z-index: 1;
+            padding-top: 10vh;
+            h2{
+                opacity: 0;
+            }
+            animation: DisapearClase .8s;
+            #ClassProducts{
+                @keyframes DisApearDiv {
+                    0%{
+                        width: 100%;
+                        height: 100%;        
+                        opacity: 1;        
+                    }
+                    100%{
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;                
+                    }
+                }
+                animation: DisApearDiv 0.5s;
+                z-index: 1;
+                width: 0%;
+                height: 0%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                overflow-y: scroll;
+                padding-bottom: 2vh;
+                .ProductCard{
+                    width: 90%;
+                    height: 25vh;
+                    margin-top: 1.5vh;
+                    margin-bottom: 1.5vh;
+                    border-radius: 5vw;
+                    box-shadow: 0px 0px 10px rgb(77, 77, 77);
+                    overflow: hidden;
+                    max-height: 50vh;
+                    animation: ApearProducts 1.5s;
+                    .ProductoNameDiv{
+                        width: 45%;
+                        border-radius: 4vw;
+                        padding-left: 3%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: .5% 3%;
+                        margin-left: 5%;
+                        margin-top: 5%;
+                        z-index: 6;
+                        box-shadow: 0px 0px 5px black;
+                        background-color: rgba(61, 61, 61, 0.5);
+                        p{
+                            color: white;
+                        }
+                    }
+                    &ImgMoto{
+                        width: 100%;
+                        margin-top: -25%;
+                        align-self: flex-end;
+        
+                    }
+                    &ImgOtro{
+                        height: 45%;
+                        width: max-content;
+                        align-self: center;
+                    }
+                }
+            }
+
+        }
+        &Product{
+            
+            @keyframes DisapearClase {
+                0%{
+                    background-color: rgb(236, 236, 236);
+                            width: 100vw;
+                            left: 0;
+                    z-index: 4;
+                    height: 100vh;
+                    top: 0vh;
+    
+                        }
+                        100%{
+                            top: -100vh;
+                            background-color: rgb(236, 236, 236);
+                            left: 0;
+                            z-index: 4;
+                    width: 100vw;
+                            height: 100vh;
+                        }
+    
+            }
+
+            position: absolute;
+            top: 0;
+            left: 100vw;
+            z-index: 1;
+            padding-top: 10vh;
+            h2{
+                opacity: 0;
+            }
+            animation: DisapearClase .8s;
+            #ClassProducts{
+                @keyframes DisApearDiv {
+                    0%{
+                        width: 100%;
+                        height: 100%;        
+                        opacity: 1;        
+                    }
+                    100%{
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;                
+                    }
+                }
+                animation: DisApearDiv 0.5s;
+                z-index: 1;
+                width: 0%;
+                height: 0%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                overflow-y: scroll;
+                padding-bottom: 2vh;
+                .ProductCard{
+                    width: 90%;
+                    height: 25vh;
+                    margin-top: 1.5vh;
+                    margin-bottom: 1.5vh;
+                    border-radius: 5vw;
+                    box-shadow: 0px 0px 10px rgb(77, 77, 77);
+                    overflow: hidden;
+                    max-height: 50vh;
+                    animation: ApearProducts 1.5s;
+                    .ProductoNameDiv{
+                        width: 45%;
+                        border-radius: 4vw;
+                        padding-left: 3%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: .5% 3%;
+                        margin-left: 5%;
+                        margin-top: 5%;
+                        z-index: 6;
+                        box-shadow: 0px 0px 5px black;
+                        background-color: rgba(61, 61, 61, 0.5);
+                        p{
+                            color: white;
+                        }
+                    }
+                    &ImgMoto{
+                        width: 100%;
+                        margin-top: -25%;
+                        align-self: flex-end;
+        
+                    }
+                    &ImgOtro{
+                        height: 45%;
+                        width: max-content;
+                        align-self: center;
+                    }
+                }
+            }
+
+        
+    
+        }
+    }
+}
+#ClassProducts{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow-y: scroll;
+    padding-bottom: 2vh;
+    .ProductCard{
+        width: 90%;
+        height: 25vh;
+        margin-top: 1.5vh;
+        margin-bottom: 1.5vh;
+        border-radius: 5vw;
+        box-shadow: 0px 0px 10px rgb(77, 77, 77);
+        overflow: hidden;
+        max-height: 50vh;
+        animation: ApearProducts 1.5s;
+        .ProductoNameDiv{
+            width: 45%;
+            border-radius: 4vw;
+            padding-left: 3%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: .5% 3%;
+            margin-left: 5%;
+            margin-top: 5%;
+            z-index: 6;
+            box-shadow: 0px 0px 5px black;
+            background-color: rgba(61, 61, 61, 0.5);
+            p{
+                color: white;
+            }
+        }
+        &ImgMoto{
+            width: 130%;
+            margin-left: -15%;
+            margin-top: -45%;
+            align-self: flex-end;
+
+        }
+        &ImgOtro{
+            height: 120%;
+            margin-top: -25%;
+            margin-left: 40%;
+            align-self: center;
+            z-index: 5;
+        }
+    }
 }

@@ -7,11 +7,737 @@
     width: 100%;
     height: 100%;
 }
+#whiteBack{
+    &Close{
+        background-color: rgba(217, 217, 217);
+        position: absolute;
+        bottom: 0;
+        left: 0;  
+        border-top-left-radius: 12vw;
+        border-top-right-radius: 12vw;
+        width: 100vw;
+        @keyframes DisApearHotProducts {
+            0%{
+                height: 85vh;
+                padding-top: 4vh;
+            }
+            100%{
+                height: 0vh;
+                padding-top: 4vh;
+                
+            }
+        }
+        animation: DisApearHotProducts 1s;
+    }
+    @keyframes ApearHotProducts {
+        0%{
+            bottom: -100vh;
+            background-color: rgba(217, 217, 217, 0.1);
+         box-shadow: 0px 0px 0px rgb(70, 70, 70);
+}
+        100%{
+         box-shadow: 0px 0px 0px rgb(70, 70, 70);
+         background-color: rgba(217, 217, 217);
+        }
+    }
+    background-color: rgba(217, 217, 217);
+    position: absolute;
+    z-index: 2;
+    border-top-left-radius: 12vw;
+    border-top-right-radius: 12vw;
+    width: 100vw;
+    position: absolute;
+    height: 85vh;
+    animation: ApearHotProducts 1s;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0px 0px 10px rgb(70, 70, 70);
+    &Brands{
+        @keyframes ApearSection {
+            0%{
+                height: 85vh;
+                border-top-left-radius: 12vw;
+                border-top-right-radius: 12vw;
+            
+            }
+            100%{
+                height: 100vh;
+                border-top-left-radius: 0vw;
+                border-top-right-radius: 0vw;        
+            }
+        }
+        position: absolute;
+        width: 100vw;
+        background-color: rgba(217, 217, 217);
+        bottom: 0px;
+        height: 100vh;
+        z-index: 2;
+        animation: ApearSection 1s;
+    }
+    &HotProducts{
+        @keyframes ApearSectionHot {
+            0%{
+                height: 100vh;
+                border-top-left-radius: 0vw;
+                border-top-right-radius: 0vw; 
+            }
+            100%{
+                height: 85vh;
+                border-top-left-radius: 12vw;
+                border-top-right-radius: 12vw;
+            }
+        }
+        position: absolute;
+        width: 100vw;
+        background-color: rgba(217, 217, 217);
+        bottom: 0px;
+        height: 85vh;
+        border-top-left-radius: 12vw;
+        border-top-right-radius: 12vw;
+        z-index: 2;
+        animation: ApearSectionHot 1s;
+    }
+}
+#IndexWallpaper{
+    @keyframes ApearTitle {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    @keyframes ApearTitle {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    width: 100vw;
+    height: 110vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3{
+        animation: ApearTitle 1s;
+        width: 100%;
+        text-align: center;
+        margin-top: 10vh;
+        color: white;
+        font-weight: 600;
+        text-shadow: 0px 0px 10px black;
+    }
+    &-ViewMore{
+        animation: ApearTitle 1s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgb(9, 9, 9);
+        color: white;
+        width: 50vw;
+        height: 6vh;
+        margin-top: 3vh;
+        border-radius: 3vw;
+        border: solid 2px white ;
+        z-index: 4;
+    }
+    &-ProductImage{
+        @keyframes apearImg {
+            0%{
+                margin-right: 50vw;
+                opacity: 0;            }
+            100%{
+            opacity: 1;
+            margin-right: 0vw;
+            }
+        }
+        width: 170vw;
+        animation: apearImg 1s;
+        align-self: flex-end;
+        height: auto;
+        position: absolute;
+        bottom: 0px;
+        filter: brightness(.8);
+        z-index:2
+        
+    }
+
+    &After{
+        @keyframes disapearTitle {
+            0%{
+                opacity: 1;
+            margin-top: 10vh;
+            }
+            100%{
+                opacity: 0;
+            margin-top: -10vh;
+            }
+        }
+        @keyframes disapearButton {
+            0%{
+                opacity: 1;
+                transform: scale(1);
+            }
+            100%{
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+        @keyframes disapearImg {
+            0%{
+                opacity: 1;
+                margin-right: 0vw;
+            }
+            100%{
+            margin-right: 100vw;
+            opacity: 0;
+            }
+        }
+        width: 100vw;
+        height: 110vh;
+        background-image: url('../../public/assets/R.jpeg');
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3{
+            width: 100%;
+            text-align: center;
+            margin-top: -10vh;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0px 0px 10px black;    
+            opacity: 0;
+            animation: disapearTitle 1s;
+        }
+        &-ViewMore{
+            background-color: rgb(9, 9, 9);
+            color: white;
+            width: 50vw;
+            height: 6vh;
+            margin-top: 3vh;
+            border-color: white;
+            opacity: 0;
+            
+            transform: scale(0);
+            animation: disapearButton 1s;
+        }
+        &-ProductImage{
+            width: 170vw;
+            align-self: flex-end;
+            height: auto;
+            position: absolute;
+            bottom: 0px;
+            filter: brightness(.8);
+            margin-right: 100vw;
+            z-index:2;
+            animation: disapearImg 1s;
+        }
+        &ToTop{
+            @keyframes disapearTitle {
+                0%{
+                    opacity: 1;
+                margin-top: 10vh;
+                }
+                100%{
+                    opacity: 0;
+                margin-top: -10vh;
+                }
+            }
+            @keyframes disapearButton {
+                0%{
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                100%{
+                    opacity: 0;
+                    transform: scale(0.2);
+                }
+            }
+            @keyframes disapearImg {
+                0%{
+                    opacity: 1;
+                    margin-right: 0vw;
+                }
+                100%{
+                margin-right: 100vw;
+                opacity: 0;
+                }
+            }
+            width: 100vw;
+            height: 110vh;
+            background-image: url('../../public/assets/R.jpeg');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h3{
+                width: 100%;
+                text-align: center;
+                margin-top: -10vh;
+                color: white;
+                font-weight: 600;
+                text-shadow: 0px 0px 10px black;    
+                opacity: 0;
+                animation: disapearTitle 1s;
+            }
+            &-ViewMore{
+                background-color: rgb(9, 9, 9);
+                color: white;
+                width: 50vw;
+                height: 6vh;
+                margin-top: 3vh;
+                border-color: white;
+                opacity: 0;
+                transform: scale(0);
+                animation: disapearButton 1s;
+            }
+            &-ProductImage{
+                width: 170vw;
+                align-self: flex-end;
+                height: auto;
+                position: absolute;
+                bottom: 0px;
+                filter: brightness(.8);
+                margin-right: 100vw;
+                z-index:2;
+                animation: disapearImg 1s;
+            }   
+        }
+    }
+}
+
+#IndexHotProducts{
+    @keyframes ApearProductsCard {
+        0%{
+            transform: scale(0.1);
+            opacity: 0;
+        }
+        50%{
+            transform: scale(0.1);
+            opacity: 0;
+        }
+        100%{
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    @keyframes ApearTexts {
+        0%{
+            margin-left: 100vw;
+        }
+        50%{
+            margin-left: 100vw;
+        }
+        100%{
+            margin-left: 5vw;
+        }
+    }
+    h2{
+        animation: ApearTexts .7s;
+        width: 100vw;
+        margin-left: 5vw;
+        margin-bottom: 5vh;
+    }
+    h3{
+        animation: ApearTexts .7s;
+        margin-left: 5vw;
+    }
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    .ClassRow{
+        width: 100vw;
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        .ProductCard{
+            animation: ApearProductsCard 1s;
+            width: 42vw;
+            height: 30vh;
+            background-color: rgb(226, 226, 226);
+            margin-left: 5vw;
+            border-radius: 5vw;
+            border: solid 2px rgb(50, 50, 50);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+
+            .cardHeader{
+                display: flex;
+                width: 100%;
+                margin-bottom: -10%;
+                padding-inline: 5%;
+                justify-content: space-between;
+                i{
+                    color: red;
+                }
+                .Stars{
+                    width: 60%;
+                    display: flex;
+                    i{
+                        color: rgb(233, 0, 0);
+                    }
+                }
+            }
+            img{
+                width: 90%;
+            }
+            h4{
+                text-align: center;
+            }
+            .ProductType{
+                width: 100%;
+                color: grey;
+                padding: 5%;
+                margin-top: -10%;
+            }
+            .ProductPrice{
+                width: 100%;
+                color: black;
+                font-weight: 700;
+                margin-top: -5%;
+                padding-inline: 5%;
+            }
+            .LikeButton{
+                height: 15%;
+                width: 20%;
+                margin-top: -30%;
+                margin-right: 5%;
+                background-color: rgb(251, 251, 251, 0.5);
+                margin-bottom: 5%;
+                border-radius: 2vw;
+                align-self: flex-end;
+            }
+        }
+    }
+
+    &After{
+        @keyframes DisApearHotProducts {
+            0%{
+                height: 85vh;
+                padding-top: 4vh;
+            }
+            100%{
+                height: 0vh;
+                padding-top: 4vh;
+                
+            }
+        }
+        @keyframes DisApearProducts {
+            0%{
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            100%{
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes DisApearTexts {
+            0%{
+                margin-left: 5vw;
+            }
+            100%{
+                margin-left: -115vw;
+            }
+        }
+    z-index: 3;
+
+        h2{
+            animation: DisApearTexts .7s;
+            width: 100vw;
+            margin-left: -115vw;
+            margin-bottom: 5vh;
+        }
+        h3{
+            animation: DisApearTexts .7s;
+            margin-left: -115vw;
+        }
+        width: 100vw;
+        height: 0vh;
+        box-shadow: 0px 0px 10px rgb(70, 70, 70);
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        border-top-left-radius: 12vw;
+        border-top-right-radius: 12vw;
+        bottom: 0;
+        left: 0;
+        animation: DisApearHotProducts 1s;
+        .ClassRow{
+            width: 100vw;
+            display: flex;
+            overflow-x: scroll;
+            align-items: center;
+            .ProductCard{
+                animation: ApearProducts 1s;
+                width: 42vw;
+                background-color: rgb(226, 226, 226);
+                margin-left: 5vw;
+                border-radius: 5vw;
+                border: solid 2px rgb(50, 50, 50);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+    
+                .cardHeader{
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: -10%;
+                    padding-inline: 5%;
+                    justify-content: space-between;
+                    i{
+                        color: red;
+                    }
+                    .Stars{
+                        width: 60%;
+                        display: flex;
+                        i{
+                            color: rgb(233, 0, 0);
+                        }
+                    }
+                }
+                img{
+                    width: 90%;
+                }
+                h4{
+                    text-align: center;
+                }
+                .ProductType{
+                    width: 100%;
+                    color: grey;
+                    padding: 5%;
+                    margin-top: -10%;
+                }
+                .ProductPrice{
+                    width: 100%;
+                    color: black;
+                    font-weight: 700;
+                    margin-top: -5%;
+                    padding-inline: 5%;
+                }
+                .LikeButton{
+                    height: 15%;
+                    width: 20%;
+                    margin-top: -30%;
+                    margin-right: 5%;
+                    background-color: rgb(251, 251, 251, 0.5);
+                    margin-bottom: 5%;
+                    border-radius: 2vw;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+    &Next{
+
+        @keyframes DisApearHotProductsNext {
+            0%{
+                height: 85vh;
+                padding-top: 4vh;
+            }
+            100%{
+                padding-top: 4vh;
+                height: 85vh;
+            }
+        }
+        @keyframes DisApearProductsNext {
+            0%{
+                transform: scale(1);
+                opacity: 1;
+            }
+            100%{
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+        @keyframes DisApearTexts {
+            0%{
+                margin-left: 5vw;
+            }
+            100%{
+                margin-left: -115vw;
+            }
+        }
+        z-index: 3;
+
+        h2{
+            animation: DisApearTexts .7s;
+            width: 100vw;
+            margin-left: -115vw;
+            margin-bottom: 5vh;
+        }
+        h3{
+            animation: DisApearTexts .7s;
+            margin-left: -115vw;
+        }
+        width: 100vw;
+        height: 0vh;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        animation: DisApearHotProductsNext 1s;
+        .ClassRow{
+            width: 100vw;
+            display: flex;
+            overflow-x: scroll;
+            align-items: center;
+            .ProductCard{
+                animation: DisApearProductsNext 1s;
+                width: 42vw;
+                background-color: rgb(226, 226, 226);
+                margin-left: 5vw;
+                border-radius: 5vw;
+                border: solid 2px rgb(50, 50, 50);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+    
+                .cardHeader{
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: -10%;
+                    padding-inline: 5%;
+                    justify-content: space-between;
+                    i{
+                        color: red;
+                    }
+                    .Stars{
+                        width: 60%;
+                        display: flex;
+                        i{
+                            color: rgb(233, 0, 0);
+                        }
+                    }
+                }
+                img{
+                    width: 90%;
+                }
+                h4{
+                    text-align: center;
+                }
+                .ProductType{
+                    width: 100%;
+                    color: grey;
+                    padding: 5%;
+                    margin-top: -10%;
+                }
+                .ProductPrice{
+                    width: 100%;
+                    color: black;
+                    font-weight: 700;
+                    margin-top: -5%;
+                    padding-inline: 5%;
+                }
+                .LikeButton{
+                    height: 15%;
+                    width: 20%;
+                    margin-top: -30%;
+                    margin-right: 5%;
+                    background-color: rgb(251, 251, 251, 0.5);
+                    margin-bottom: 5%;
+                    border-radius: 2vw;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+}
+#IndexBrands{
+    @keyframes ApearTitles {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    width: 100vw;
+    padding-left: 2vw;
+    height: 100vh;
+    display: flex;
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+    bottom: 0px;
+    animation: ApearTitles 1.3s;
+    #BrandsRow{
+        display: flex;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+        flex-direction: row;
+        width: 100vw;
+        overflow-x: scroll;
+    }
+    .BrandOption{
+        height: 20vh;
+        margin-left: 10vw;
+        border-radius: 5vw;
+    }
+    &ToTop{
+        @keyframes DisApearSection {
+            0%{
+                height: 100vh;
+                opacity: 1;
+            }
+            100%{
+                height: 85vh;
+                opacity: 0;            
+            }
+        }
+        animation: DisApearSection 0.8s;
+        width: 100vw;
+        padding-left: 2vw;
+        height: 0px;
+        display: flex;
+        padding-top: 10vh;
+        padding-bottom: 5vh;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        z-index: 3;
+        bottom: 0px;
+        opacity: 0;
+        #BrandsRow{
+            display: flex;
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+            flex-direction: row;
+            width: 100vw;
+            overflow-x: scroll;
+        }
+        .BrandOption{
+            height: 20vh;
+            margin-left: 10vw;
+            border-radius: 5vw;
+        }
+    }
+}
+
 #LoadingBack{
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(23, 23, 23, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
