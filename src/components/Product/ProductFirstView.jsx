@@ -5,7 +5,6 @@ import { CartContext } from '../../context/CartContext'
 const ProductFirstView = (props) => {
     const context = useContext(CartContext)
     const producto = context.Datos.find(prod => prod.id===props.producto)
-    console.log(producto);
     const ViewMore = () => {
         context.setSection('ProductViewMore')
         context.setPresection('FirstView')
@@ -25,7 +24,7 @@ const ProductFirstView = (props) => {
                             </div>
                         <div id="ProductScreenGradient">
                             <button id="ProductScreenViewMore" onClick={()=>{ViewMore('ProductOptions')}} style={{fontSize:context.fontPixel*1.2}}>Ver más</button>
-                            <button id="ProductScreenAddToCart" style={{fontSize:context.fontPixel*1.2}}>Agregar al carrito</button>
+                            <button id="ProductScreenAddToCart" onClick={()=>{context.AddToCart({productId: producto.id, Price:producto.product.Price, Class: producto.product.Class, Option: producto.product.Options.length>1 ? props.OptionSelected : 0})}} style={{fontSize:context.fontPixel*1.2}}>Agregar al carrito</button>
                         </div>
                     </div>
               )      
@@ -43,7 +42,7 @@ const ProductFirstView = (props) => {
                             </div>
                         <div id="ProductScreenGradient">
                             <button id="ProductScreenViewMore" onClick={()=>{ViewMore('ProductOptions')}} style={{fontSize:context.fontPixel*1.2}}>Ver más</button>
-                            <button id="ProductScreenAddToCart" style={{fontSize:context.fontPixel*1.2}}>Agregar al carrito</button>
+                            <button id="ProductScreenAddToCart" onClick={()=>{context.AddToCart({productId: producto.id, Price:producto.product.Price, Class: producto.product.Class, Option: producto.product.Options.length>1 ? props.OptionSelected : 0})}} style={{fontSize:context.fontPixel*1.2}}>Agregar al carrito</button>
                         </div>
     
                     </div>

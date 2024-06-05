@@ -110,3 +110,15 @@
     height: 100vh;
     animation: CloseMenu 1s;
 }
+#NavbarCartLength{
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    border-radius: 100px;
+    padding: 2px;
+    height: 25%;
+    margin-left: -20%;
+}
+#NavbarMobileCartButton{
+    display: flex;
+}

@@ -9,8 +9,8 @@ const CartContextProvider = ({ children }) => {
     const [ImageStorage, setImageStorage] = useState([])
     const [Width, setWidth] = useState(1)
     const [Heigth, setHeigth] = useState(1)
-    const [Carrito, setCarrito] = useState([])
-    const [TotalCash, setTotalCash] = useState(0)
+    const [Cart, setCart] = useState([])
+    const [TotalQuantity, setTotalQuantity] = useState(0)
     const [Orientation, setOrientation] = useState('Landscape')
     const [Section, setSection] = useState('Wallpaper')
     const [Presection, setPresection] = useState(undefined)
@@ -19,7 +19,7 @@ const CartContextProvider = ({ children }) => {
     const [MenuSelectedClass, setMenuSelectedClass] = useState(undefined)
     const startY = useRef(null);
     const [ProductShown, setProductShown] = useState(undefined)
-
+    const [CartTotal, setCartTotal] = useState(0)
     const handleTouchStart = (event) => {
       startY.current = event.touches[0].clientY;
     };
@@ -92,55 +92,51 @@ const CartContextProvider = ({ children }) => {
 
     }
 
-    const addToCart = (product, opcionseleccionada) => {
-        const newCart = Carrito
-        console.log(Carrito);
-        if (newCart.findIndex(item => item.id === product.id) !== -1) {
-            const indexDelProducto = newCart.findIndex(item => item.id === product.id)
-            const producto = newCart[indexDelProducto]
+    const AddToCart= (productId) => {
+        const carrito = Cart
+        setCartTotal(CartTotal + productId.Price)
+        if(carrito.findIndex(producto => producto.productId===productId.productId)>-1 && carrito.findIndex(producto => producto.Option===productId.Option)>-1){
+            const indexDelProducto = carrito.findIndex(producto => producto.productId===productId.productId && producto.Option===productId.Option)
+            const producto = carrito[indexDelProducto]
             producto.cantidad = producto.cantidad + 1
-            console.log(producto);
-            newCart.splice(indexDelProducto)
-            newCart.push(producto)
-            setCarrito(newCart)
-        } else {
-            const producto = {
-                id: product.id,
-                Clase: product.Clase,
-                brand: product.brand,
-                model: product.model,
-                model: product.model,
-                cantidad: 1,
-                color: opcionseleccionada.colorName,
-                image: opcionseleccionada.image,
-                price: product.price
-            }
-            if (product.Clase === 'Cascos') {
-                producto.design = opcionseleccionada.design
-            }
-            newCart.push(producto)
-            setCarrito(newCart)
+            setCart(carrito)
+        }else{
+            const producto = productId
+            producto.cantidad=1
+            carrito.push(producto)
+            setCart(carrito)
+            setTotalQuantity(TotalQuantity + 1)
 
         }
-        const precio = parseInt(product.price)
-        const precionuevo = TotalCash + precio
-        setTotalCash(precionuevo)
     }
-    const removeFromCart = (product) => {
-        const newCart = Carrito
-        const indexDelProducto = newCart.findIndex(item => item.id === product)
-        newCart.splice(indexDelProducto, 1)
-        console.log(Carrito);
-        setCarrito(newCart)
+    const RemoveFromCart = (productId) => {
+        const carrito = Cart
+        const indexDelProducto = carrito.findIndex(producto => producto.productId===productId.productId && producto.Option===productId.Option)
+        setCartTotal(CartTotal-carrito[indexDelProducto].Price*carrito[indexDelProducto].cantidad)
+        carrito.splice(indexDelProducto, 1)
+        setCart(carrito)
+        setTotalQuantity(TotalQuantity-1)
     }
-    const restarPrecio = (product) => {
-        const indexDelProducto = Carrito.findIndex(item => item.id === product)
-        const preciototal = Carrito[indexDelProducto].price * Carrito[indexDelProducto].cantidad
-        console.log(TotalCash);
-        const nuevoprecio = TotalCash - preciototal
-        setTotalCash(nuevoprecio)
-    }
+    const handleQuantity = (productId, evento) => {
+        const carrito = Cart
+        const producto = Cart.findIndex(producto => producto.productId === productId)
+        if(evento==='Plus'){
+            carrito[producto].cantidad += 1
+            setCartTotal(CartTotal + carrito[producto].Price)
+        }else if(evento==='Minus'){
+            if(carrito[producto].cantidad===1){
+                setCartTotal(CartTotal - carrito[producto].Price)
 
+                carrito.splice(producto, 1)
+
+                setTotalQuantity(TotalQuantity - 1)
+            }else{
+                setCartTotal(CartTotal - carrito[producto].Price)
+                carrito[producto].cantidad -= 1
+            }
+        }
+        setCart(carrito)
+    }
 
     const [OpenMenu, setOperMenu] = useState(false)
     const handleOpenMenu = () => {
@@ -185,7 +181,7 @@ const CartContextProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, restarPrecio, Carrito, TotalCash, removeFromCart, addToCart, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
+        <CartContext.Provider value={{ CartTotal, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
             {children}
         </CartContext.Provider>
     )

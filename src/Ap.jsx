@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { CartContext } from './context/CartContext';
 import Index from './screens/Index';
 import ClassCreen from './screens/ClassScreen'
@@ -12,6 +12,7 @@ import Navbar from './components/navbar/Navbar';
 import NavbarMenuMobile from './components/navbar/NavbarMenuMobile';
 import ClassScreen from './screens/ClassScreen';
 import Product from './screens/Product';
+import CartScreen from './screens/CartScreen';
 const Ap = () => {
     const { setOrientation, AddImages, setWidth, setHeigth, ImageStorage, handleDatos } = useContext(CartContext)
     const [isLoading, setIsLoading] = useState(true);
@@ -96,7 +97,7 @@ const Ap = () => {
       };
 
     },[])
-    
+
   return (
     <BrowserRouter>
     <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
@@ -109,6 +110,7 @@ const Ap = () => {
       <Index/>
       <ClassScreen/>
       <Product/>
+      <CartScreen/>
       {/* <Routes>
       <Route path='/' element={<Index/>}/>
       <Route path='/product/:idProduct' element={<ProductScreen/>}/>

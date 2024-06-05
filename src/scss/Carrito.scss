@@ -1,104 +1,147 @@
-#Carrito {
-    height: 100vh;
+#CartScreen{
+    @keyframes OpenCart {
+        0%{
+            top:100vh
+        }
+        100%{
+            top:0vh
+        }
+    }
+    animation: OpenCart 1s;
     width: 100vw;
-
-    h1 {
-        margin-right: 5vw;
-    }
-
-    #ContenedorCarritoProductos {
-        width: 100%;
-        height: 60vh;
-        border-bottom: 2px solid red;
-        overflow-y: scroll;
-        padding-top: 2vh;
-        &2{
-            height: auto;        
-            display: flex;
-            flex-direction: column;
-    
+    height: 100vh;
+    background-color: rgb(68, 68, 68);
+    position: absolute;
+    z-index: 40;
+    top: 0;
+    left: 0;
+}
+#CartScreenClosed{
+    @keyframes CloseCart {
+        0%{
+            top:0vh;    
+            width: 100vw;
+            height: 100vh;
+        
         }
-        .CarritoProducto {
-            margin-bottom: 20px;
-            background-image: linear-gradient(130deg, rgb(104, 104, 104), rgb(16, 16, 16));
-            width: 90%;
-            border-radius: 5px;
-            display: flex;
-            overflow-x: hidden;
-            box-shadow: 0px 0px 10px black;
-            align-self: center;
-            img{
-                height: fit-content;
-            }
-            button{
-                grid-area: Boton;
-                width: 80%;
-                height: 80%;
-                background-color: red;
-                i{
-                    color: white;
-                }
-            }
-            &texto {
-                width: 60%;
-                display: grid;
-                grid-template-columns: 70% 30%;
-                grid-template-rows: 50% 50%;
-                grid-template-areas: 'Titulo Titulo' 'Texto Boton';
-
-                h4 {
-                    font-size: 1.3rem;
-                    margin-top: 10%;
-                    color: white;
-                    display: flex;
-                    height: 100%;
-                    align-content: end;
-                }
-
-                div {
-                    color: grey;
-                    display: flex;
-                    height: 80%;
-                    align-content: end;
-                    grid-area: Texto;
-                    p{
-                        align-self: flex-end;
-                        height: 30%;
-                        margin-bottom: 5%;
-                    }
-                }
-            }
+        100%{
+            top:100vh;
+            width: 100vw;
+            height: 100vh;        
         }
     }
+    animation: CloseCart 1s;
+    width: 0vw;
+    height: 0vh;
+    background-color: rgb(68, 68, 68);
+    position: absolute;
+    z-index: 40;
+    top: 100vh;
+    left: 0;
 
 }
-
-@media screen and (orientation: landscape) {
-    #Carrito {
-        padding-left: 5vw;
-        padding-top: 5vh;
-        display: grid;
-        grid-template-columns: 45% 55%;
-        grid-template-rows: 20% 80%;
-        grid-template-areas: 'Titulo Titulo' 'Articulos Total';
-        #divTotalyBotones{
-            grid-area: Total;
-            width: 55%;
-            height: 80%;
-            div{
-                display: flex;
-                flex-direction: column;
-                height: 40%;
-                justify-content: space-around;
-            }
-            .BotonesProductoWallpaper{
-                width: 90%;
-            }
+#CartHeader{
+    width: 100vw;
+    margin-top: 4vh;
+    height: 10vh;
+    h2{
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    p{
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+}
+#CartProductsSection{
+    width: 100vw;
+    display: flex;
+    height: 50vh;
+    overflow-y: scroll;
+    flex-direction: column;
+    align-items: center;
+}
+.CartProductCard{
+    width: 90vw;
+    padding-inline: 5%;
+    margin-bottom: 3vh;
+    display: grid;
+    background-color: rgb(110, 110, 110);
+    border-radius: 5vw;
+    grid-template-columns: 20% 35% 15% 30%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 'Header Header Header Image'
+    'Delete Quantity Nothing Image';
+    .CardTitle{
+        grid-area: Header;
+        width: 100%;
+        font-weight: 400;
+        color: white;
+        align-self: center;
+    }
+    .DeleteButton{
+        background: none;
+        border: none;
+        grid-area: Delete;
+    }
+    .ImageAndPrice{
+        grid-area: Image;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        img{
+            width: 100%;
         }
-        #ContenedorCarritoProductos{
-            grid-area: Articulos;
-            height: 100%;
-            overflow-y: hidden;
+        p{
+            width: 100%;
+            text-align: center;
+            color: white;
         }
     }
+    .QuantityDiv{
+        grid-area: Quantity;
+        background-color: grey;
+        border-radius: 10vw;
+        align-self: center;
+        button{
+            border: none;
+            background: none;
+        }
+        width: 100%;
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        p{
+            margin-bottom: 0px;
+        }
+    }
+}
+#CartBottom{
+    width: 100vw;
+    padding-top: 2vh;
+    height: 20vh;
+    .CartBottomDiv{
+        display: flex;
+        width: 90vw;
+        margin-left: 5vw;
+        justify-content: space-between;
+        color: white;
+    }
+    #Precio{
+        border-top: solid 2px white;
+    }
+}
+#CartButton{
+    width: 80vw;
+    margin-left: 10vw;
+    background-image: linear-gradient(rgb(46, 46, 46), rgb(26, 26, 26));
+    color: white;
+    height: 8vh;
+    border-radius: 10vw;
+    border: solid 2px rgb(155, 0, 0);
+    margin-top: 5vh;
 }
