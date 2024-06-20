@@ -15,6 +15,7 @@ const ClassScreen = () => {
   if (productId!==undefined) {
     console.log(productId);
   }
+  if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
 
   if (context.Screen==='Clase') {
     return (
@@ -37,7 +38,9 @@ const ClassScreen = () => {
         <ClassProducts Clase={ClaseSelected} />
     </div>)
   }
-
+  }else{
+    
+  }
 
 }
 

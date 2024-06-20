@@ -14,10 +14,9 @@ import ClassScreen from './screens/ClassScreen';
 import Product from './screens/Product';
 import CartScreen from './screens/CartScreen';
 const Ap = () => {
-    const { setOrientation, AddImages, setWidth, setHeigth, ImageStorage, handleDatos } = useContext(CartContext)
+    const { setOrientation, AddImages, setWidth, setHeigth, handleDatos, Orientation } = useContext(CartContext)
     const [isLoading, setIsLoading] = useState(true);
     const [OpenMenu, setOpenMenu] = useState(false)  
-
     useEffect(() => {
       const images = document.querySelectorAll('img');
       const totalImages = images.length;
@@ -97,6 +96,7 @@ const Ap = () => {
       };
 
     },[])
+    console.log(Orientation);
 
   return (
     <BrowserRouter>

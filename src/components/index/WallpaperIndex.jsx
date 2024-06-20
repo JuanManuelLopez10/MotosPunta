@@ -16,8 +16,8 @@ const WallpaperIndex = () => {
         }
       }
     })
-    
-    if (productShown!==undefined && context.Section==='Wallpaper') {
+    if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
+      if (productShown!==undefined && context.Section==='Wallpaper') {
         return(
       <section onTouchMove={(event) => {context.handleTouchMove(event, 'HotProducts', 'Wallpaper', 'Wallpaper')}} onTouchStart={context.handleTouchStart} id='IndexWallpaper' >
         <h3 style={{fontSize: context.fontPixel*2.5}} >{productShown.product.Brand.toUpperCase()} {productShown.product.Model.toUpperCase()} {productShown.product.Cilind}</h3>
@@ -40,6 +40,43 @@ const WallpaperIndex = () => {
         <img id='IndexWallpaperAfter-ProductImage' src={productShown.product.Options[0].Image} alt="" />
     </section>
   )
+}
+}else{
+  if(productShown!==undefined && context.Screen=='Index'){
+    const texto = `${productShown.product.Cilind} ${productShown.product.Model}`
+    const cantidadDeLetras = texto.length
+    return(
+      <section id="WallpaperPC">
+        <div id="backtop">
+          <div id='Textos'>
+          <h3 id='Title' style={{letterSpacing: `calc(80vw / ${cantidadDeLetras} - 1ch)`,fontSize:context.fontPixel*2.4}} >{productShown.product.Cilind} <span style={{color:productShown.product.Options[0]}} >{productShown.product.Model.toUpperCase()}</span> </h3>
+          <div id="LittleTexts">
+            <p style={{fontSize:context.fontPixel*0.5}} >{productShown.product.Brand.toUpperCase()}</p>
+            <Link id='ViewMoreButton' style={{fontSize: context.fontPixel*.3}} to={`/product/${productShown.id}`}>Ver más</Link>
+          </div>
+          </div>
+          <img id='WallpaperImg' src={`${productShown.product.Options[0].Image}`} alt="" />
+        </div>
+      </section>
+    )
+  }else if(productShown!==undefined && context.Screen!=='Index'){
+    const texto = `${productShown.product.Cilind} ${productShown.product.Model}`
+    const cantidadDeLetras = texto.length
+    return(
+      <section id="WallpaperPCClosed">
+        <div id="backtop">
+          <div id='Textos'>
+          <h3 id='Title' style={{letterSpacing: `calc(80vw / ${cantidadDeLetras} - 1ch)`,fontSize:context.fontPixel*2.4}} >{productShown.product.Cilind} <span style={{color:productShown.product.Options[0]}} >{productShown.product.Model.toUpperCase()}</span> </h3>
+          <div id="LittleTexts">
+            <p style={{fontSize:context.fontPixel*0.5}} >{productShown.product.Brand.toUpperCase()}</p>
+            <Link id='ViewMoreButton' style={{fontSize: context.fontPixel*.3}} to={`/product/${productShown.id}`}>Ver más</Link>
+          </div>
+          </div>
+          <img id='WallpaperImg' src={`${productShown.product.Options[0].Image}`} alt="" />
+        </div>
+      </section>
+    )
+  }
 }
 }
 

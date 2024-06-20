@@ -14,7 +14,7 @@ const Index = (props) => {
   console.log('Location: ' + location);
   if(location!==undefined){
     context.setScreen('Clase')
-  }else if(productId!==undefined){
+  }else if(productId!==undefined && context.Section==='Wallpaper'){
   context.setScreen('Product')
   context.setSection('FirstView')
 }  

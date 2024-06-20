@@ -394,3 +394,74 @@
     border-top-right-radius: 10vw;
     box-shadow: 0px 0px 10px black;
 }
+#BackProductBenefitModal{
+    @keyframes ApearBack {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    animation: ApearBack .5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(136, 136, 136, 0.7);
+    z-index: 8;
+}
+#ProductBenefitModal{
+    @keyframes ApearBenefitModal {
+        0%{
+            top: -50vh;
+        }
+        100%{
+            top: 20vh;
+
+        }
+    }
+    animation: ApearBenefitModal .5s;
+    position: absolute;
+    top: 20vh;
+    left: 6vw;
+    width: 88vw;
+    height: 47vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 9;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 5vw;
+    background-color: rgb(68, 68, 68);
+    overflow: hidden;
+    #ImageAndExit{
+        width: 88vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    #ExitButton{
+        height: 5vh;
+        width: 5vh;
+        align-self: flex-end;
+        z-index: 10;
+        background: none;
+        border: none;
+    }
+    #BenefitTitle{
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    #BenefitDescription{
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    img{
+        margin-top: -5vh;
+        width: 88vw;
+    }
+}

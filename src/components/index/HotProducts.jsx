@@ -1,148 +1,192 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 
 const HotProducts = () => {
     const context = useContext(CartContext)
+    const [SelectedOption, setSelectedOption] = useState(0)
     const arrayOfHotProducts = context.Datos.filter(producto => producto.product.featured)
     const prearrayOfCategories = arrayOfHotProducts.map(producto => producto.product.Class)
     const arrayOfCategories = prearrayOfCategories.filter((category, index) => prearrayOfCategories.indexOf(category) === index)
-    if (context.Section==='HotProducts') {
-        return (
-            <section onTouchMove={(event) => {context.handleTouchMove(event, 'IndexBrands', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProducts' >
-                <h2>Productos destacados</h2>
-                {
-                    arrayOfCategories.map(clase => {
-                        return(
-                            <>
-                                <h3>{clase.toUpperCase()}</h3>
-                                <div className='ClassRow'>
-                                    {
-                                        arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
-                                            return(
-                                                <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
-                                                context.setPresection('Wallpaper')
-                                                context.setScreen('Product')
-                                              }}className='ProductCard' key={producto.id}>
-                                                    <div className="cardHeader">
-                                                        <div className="Stars">
-                                                        <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+    const [ButtonPressed, setButtonPressed] = useState('Next')
+
+    if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
+        if (context.Section==='HotProducts') {
+            return (
+                <section onTouchMove={(event) => {context.handleTouchMove(event, 'IndexBrands', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProducts' >
+                    <h2>Productos destacados</h2>
+                    {
+                        arrayOfCategories.map(clase => {
+                            return(
+                                <>
+                                    <h3>{clase.toUpperCase()}</h3>
+                                    <div className='ClassRow'>
+                                        {
+                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
+                                                return(
+                                                    <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
+                                                    context.setPresection('Wallpaper')
+                                                    context.setScreen('Product')
+                                                  }}className='ProductCard' key={producto.id}>
+                                                        <div className="cardHeader">
+                                                            <div className="Stars">
+                                                            <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            </div>
+                                                            <i className="bi bi-fire"></i>
                                                         </div>
-                                                        <i className="bi bi-fire"></i>
-                                                    </div>
-                                                    <img src={producto.product.Options[0].Image} alt="" />
-                                                    <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
-                                                    <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
-                                                    <p className='ProductPrice' style={{fontSize:context.fontPixel*1.1}}>{producto.product.Coin} {producto.product.Price}</p>
-                                                    <button className="LikeButton">
-                                                    <i className="bi bi-heart"></i>                                                    
-                                                    </button>
-                                                </Link>
-                                            )
-                                        })
-                                    }
-                                </div>    
-                            </>
-                        )
-                    })
-                }
-            </section>
-          )
-    }else if(context.Section==='Wallpaper' && context.Presection==='HotProducts'){
-        return (
-            <section onTouchMove={(event) => {context.handleTouchMove(event, 'Segundo', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProductsAfter' >
-                <h2>Productos destacados</h2>
-                {
-                    arrayOfCategories.map(clase => {
-                        return(
-                            <>
-                                <h3>{clase.toUpperCase()}</h3>
-                                <div className='ClassRow'>
-                                    {
-                                        arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
-                                            return(
-                                                <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
-                                                context.setPresection('Wallpaper')
-                                                context.setScreen('Product')
-                                              }}className='ProductCard' key={producto.id}>                                                    <div className="cardHeader">
-                                                        <div className="Stars">
-                                                        <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                        <img src={producto.product.Options[0].Image} alt="" />
+                                                        <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
+                                                        <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
+                                                        <p className='ProductPrice' style={{fontSize:context.fontPixel*1.1}}>{producto.product.Coin} {producto.product.Price}</p>
+                                                        <button className="LikeButton">
+                                                        <i className="bi bi-heart"></i>                                                    
+                                                        </button>
+                                                    </Link>
+                                                )
+                                            })
+                                        }
+                                    </div>    
+                                </>
+                            )
+                        })
+                    }
+                </section>
+              )
+        }else if(context.Section==='Wallpaper' && context.Presection==='HotProducts'){
+            return (
+                <section onTouchMove={(event) => {context.handleTouchMove(event, 'Segundo', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProductsAfter' >
+                    <h2>Productos destacados</h2>
+                    {
+                        arrayOfCategories.map(clase => {
+                            return(
+                                <>
+                                    <h3>{clase.toUpperCase()}</h3>
+                                    <div className='ClassRow'>
+                                        {
+                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
+                                                return(
+                                                    <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
+                                                    context.setPresection('Wallpaper')
+                                                    context.setScreen('Product')
+                                                  }}className='ProductCard' key={producto.id}>                                                    <div className="cardHeader">
+                                                            <div className="Stars">
+                                                            <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            </div>
+                                                            <i className="bi bi-fire"></i>
                                                         </div>
-                                                        <i className="bi bi-fire"></i>
-                                                    </div>
-                                                    <img src={producto.product.Options[0].Image} alt="" />
-                                                    <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
-                                                    <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
-                                                    <p className='ProductPrice' style={{fontSize:context.fontPixel*1.1}}>{producto.product.Coin} {producto.product.Price}</p>
-                                                    <button className="LikeButton">
-                                                    <i className="bi bi-heart"></i>                                                    
-                                                    </button>
-                                                </Link>
-                                            )
-                                        })
-                                    }
-                                </div>    
-                            </>
-                        )
-                    })
-                }
-            </section>
-          )
+                                                        <img src={producto.product.Options[0].Image} alt="" />
+                                                        <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
+                                                        <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
+                                                        <p className='ProductPrice' style={{fontSize:context.fontPixel*1.1}}>{producto.product.Coin} {producto.product.Price}</p>
+                                                        <button className="LikeButton">
+                                                        <i className="bi bi-heart"></i>                                                    
+                                                        </button>
+                                                    </Link>
+                                                )
+                                            })
+                                        }
+                                    </div>    
+                                </>
+                            )
+                        })
+                    }
+                </section>
+              )
+        }else{
+            return (
+                <section onTouchMove={(event) => {context.handleTouchMove(event, 'Segundo', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProductsNext' >
+                    <h2>Productos destacados</h2>
+                    {
+                        arrayOfCategories.map(clase => {
+                            return(
+                                <>
+                                    <h3>{clase.toUpperCase()}</h3>
+                                    <div className='ClassRow'>
+                                        {
+                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
+                                                return(
+                                                    <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
+                                                    context.setPresection('Wallpaper')
+                                                    context.setScreen('Product')
+                                                  }} className='ProductCard' key={producto.id}>
+                                                        <div className="cardHeader">
+                                                            <div className="Stars">
+                                                            <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
+                                                            </div>
+                                                            <i className="bi bi-fire"></i>
+                                                        </div>
+                                                        <img src={producto.product.Options[0].Image} alt="" />
+                                                        <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
+                                                        <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
+                                                        <p className='ProductPrice' style={{fontSize:context.fontPixel*1.1}}>{producto.product.Coin} {producto.product.Price}</p>
+                                                        <button className="LikeButton">
+                                                        <i className="bi bi-heart"></i>                                                    
+                                                        </button>
+                                                    </Link>
+                                                )
+                                            })
+                                        }
+                                    </div>    
+                                </>
+                            )
+                        })
+                    }
+                </section>
+              )
+    
+        }
     }else{
-        return (
-            <section onTouchMove={(event) => {context.handleTouchMove(event, 'Segundo', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProductsNext' >
-                <h2>Productos destacados</h2>
-                {
-                    arrayOfCategories.map(clase => {
-                        return(
-                            <>
-                                <h3>{clase.toUpperCase()}</h3>
-                                <div className='ClassRow'>
-                                    {
-                                        arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
-                                            return(
-                                                <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
-                                                context.setPresection('Wallpaper')
-                                                context.setScreen('Product')
-                                              }} className='ProductCard' key={producto.id}>
-                                                    <div className="cardHeader">
-                                                        <div className="Stars">
-                                                        <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                        </div>
-                                                        <i className="bi bi-fire"></i>
-                                                    </div>
-                                                    <img src={producto.product.Options[0].Image} alt="" />
-                                                    <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
-                                                    <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
-                                                    <p className='ProductPrice' style={{fontSize:context.fontPixel*1.1}}>{producto.product.Coin} {producto.product.Price}</p>
-                                                    <button className="LikeButton">
-                                                    <i className="bi bi-heart"></i>                                                    
-                                                    </button>
-                                                </Link>
-                                            )
-                                        })
-                                    }
-                                </div>    
-                            </>
-                        )
-                    })
-                }
-            </section>
-          )
+        console.log(arrayOfHotProducts);
+        if(arrayOfHotProducts.length>0){
+            const texto = `${arrayOfHotProducts[SelectedOption].product.Model} ${arrayOfHotProducts[SelectedOption].product.Cilind?arrayOfHotProducts[SelectedOption].product.Cilind:''}`
+            const cantidad = texto.length
+              return(
+                <section id="PCHotProducts">
+                    <div id="HPSectionTitle">
+                        <h2 style={{fontSize:context.fontPixel*4, letterSpacing: `calc(100vw / 7 - 1ch)`}} >DESTACADOS</h2>
+                        <h3 style={{fontSize:context.fontPixel*1.8, letterSpacing: `calc(100vw / 15 - 1ch)`}} >DESTACADOS</h3>
+                    </div>
+                    <div id="ProductDiv">
+                        <img src={arrayOfHotProducts[SelectedOption].product.Options[0].Image} alt="" />
+                        <div id="Informacion">
+                            <h4 style={{fontSize:context.fontPixel*.8, letterSpacing: `calc(20vw / ${cantidad} - 1ch)`}}>{arrayOfHotProducts[SelectedOption].product.Model} {arrayOfHotProducts[SelectedOption].product.Cilind}</h4>
+                            <div id="Buttons">
+                                <button onClick={()=>{
+                                    setSelectedOption(SelectedOption===0?arrayOfHotProducts.length-1:SelectedOption-1)
+                                    setButtonPressed('Prev')
+                                }} style={{fontSize: ButtonPressed==='Prev'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Prev'?'red':'black', height: ButtonPressed==='Prev'?'100%':'60%', border: ButtonPressed==='Prev'?'solid red 1px':'solid black 1px'}}>
+                                    {'<'}
+                                </button>
+                                <button onClick={()=>{
+                                    setSelectedOption(SelectedOption===arrayOfHotProducts.length-1?0:SelectedOption+1)
+                                    setButtonPressed('Next')
+                                }} style={{fontSize: ButtonPressed==='Next'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Next'?'red':'black', height: ButtonPressed==='Next'?'100%':'60%', border: ButtonPressed==='Next'?'solid red 1px':'solid black 1px'}}>
+                                {'>'}
+                                </button>
+                            </div>
+                            <p>{arrayOfHotProducts[SelectedOption].product.Brand}</p>
+                            <p style={{fontSize:context.fontPixel*.35}}>{arrayOfHotProducts[SelectedOption].product.Benefits[0].Description}. {arrayOfHotProducts[SelectedOption].product.Benefits[1].Description}.</p>
+                            <Link id='HotProductsViewMore' style={{fontSize:context.fontPixel*.2}} to={`/product/${arrayOfHotProducts[SelectedOption].id}`}> VER MÁS </Link>
+                        </div>
+                    </div>
+                </section>
+            )
+        }
 
     }
+
 
 
 }

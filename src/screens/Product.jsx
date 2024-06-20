@@ -5,20 +5,27 @@ import ProductFirstView from '../components/Product/ProductFirstView'
 import ProductOptions from '../components/Product/ProductOptions'
 import ProductBenefits from '../components/Product/ProductBenefits'
 import ProductViewMore from '../components/Product/ProductViewMore'
+import ProductBenefitModal from '../components/Product/ProductBenefitModal'
 
 const Product = () => {
     const context = useContext(CartContext)
     const productId = useLocation().pathname.split('/product/')[1]
     const producto = context.Datos.find(producto=>producto.id===productId)
     const [OptionSelected, setOptionSelected] = useState(0)
+    const [BenefitSelected, setBenefitSelected] = useState(undefined)
+
+
     if (productId!==undefined) {
         context.setProductShown(productId)
     }
+    if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
+
         if(context.Screen==='Product' || context.Screen==='Clase'){
             return (
                 <div id="Product1" >
                     <ProductFirstView producto={context.ProductShown} OptionSelected={OptionSelected}/>
-                    <ProductViewMore setOptionSelected={setOptionSelected} OptionSelected={OptionSelected} producto={producto}/>
+                    <ProductViewMore setBenefitSelected={setBenefitSelected} setOptionSelected={setOptionSelected} OptionSelected={OptionSelected} producto={producto}/>
+                    <ProductBenefitModal setBenefitSelected={setBenefitSelected} BenefitSelected={BenefitSelected}/>
                 </div>
           )
     
@@ -31,7 +38,7 @@ const Product = () => {
           )
     
         }
-    
+    }
 
 }
 
