@@ -42,7 +42,6 @@ const Brands = () => {
           )
     }
     }else{
-        
         return(
             <section id="PCBrands">
                 <div id="PCBrandsTitle">
@@ -52,7 +51,7 @@ const Brands = () => {
                 {
                     OpnenedBrands===false
                     ?
-                                    <div id="ContainerOfBrands">
+                <div id="ContainerOfBrands">
                     <div id='LeftSide'>
                         {arrayOfMainBrands.map((item, index)=>{
                             return(

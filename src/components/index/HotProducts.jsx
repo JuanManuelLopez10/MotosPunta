@@ -152,37 +152,72 @@ const HotProducts = () => {
         if(arrayOfHotProducts.length>0){
             const texto = `${arrayOfHotProducts[SelectedOption].product.Model} ${arrayOfHotProducts[SelectedOption].product.Cilind?arrayOfHotProducts[SelectedOption].product.Cilind:''}`
             const cantidad = texto.length
-              return(
-                <section id="PCHotProducts">
-                    <div id="HPSectionTitle">
-                        <h2 style={{fontSize:context.fontPixel*4, letterSpacing: `calc(100vw / 7 - 1ch)`}} >DESTACADOS</h2>
-                        <h3 style={{fontSize:context.fontPixel*1.8, letterSpacing: `calc(100vw / 15 - 1ch)`}} >DESTACADOS</h3>
-                    </div>
-                    <div id="ProductDiv">
-                        <img src={arrayOfHotProducts[SelectedOption].product.Options[0].Image} alt="" />
-                        <div id="Informacion">
-                            <h4 style={{fontSize:context.fontPixel*.8, letterSpacing: `calc(20vw / ${cantidad} - 1ch)`}}>{arrayOfHotProducts[SelectedOption].product.Model} {arrayOfHotProducts[SelectedOption].product.Cilind}</h4>
-                            <div id="Buttons">
-                                <button onClick={()=>{
-                                    setSelectedOption(SelectedOption===0?arrayOfHotProducts.length-1:SelectedOption-1)
-                                    setButtonPressed('Prev')
-                                }} style={{fontSize: ButtonPressed==='Prev'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Prev'?'red':'black', height: ButtonPressed==='Prev'?'100%':'60%', border: ButtonPressed==='Prev'?'solid red 1px':'solid black 1px'}}>
-                                    {'<'}
-                                </button>
-                                <button onClick={()=>{
-                                    setSelectedOption(SelectedOption===arrayOfHotProducts.length-1?0:SelectedOption+1)
-                                    setButtonPressed('Next')
-                                }} style={{fontSize: ButtonPressed==='Next'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Next'?'red':'black', height: ButtonPressed==='Next'?'100%':'60%', border: ButtonPressed==='Next'?'solid red 1px':'solid black 1px'}}>
-                                {'>'}
-                                </button>
-                            </div>
-                            <p>{arrayOfHotProducts[SelectedOption].product.Brand}</p>
-                            <p style={{fontSize:context.fontPixel*.35}}>{arrayOfHotProducts[SelectedOption].product.Benefits[0].Description}. {arrayOfHotProducts[SelectedOption].product.Benefits[1].Description}.</p>
-                            <Link id='HotProductsViewMore' style={{fontSize:context.fontPixel*.2}} to={`/product/${arrayOfHotProducts[SelectedOption].id}`}> VER MÁS </Link>
+            if (context.Screen==='Index') {
+                return(
+                    <section id="PCHotProducts">
+                        <div id="HPSectionTitle">
+                            <h2 style={{fontSize:context.fontPixel*4, letterSpacing: `calc(100vw / 7 - 1ch)`}} >DESTACADOS</h2>
+                            <h3 style={{fontSize:context.fontPixel*1.8, letterSpacing: `calc(100vw / 15 - 1ch)`}} >DESTACADOS</h3>
                         </div>
-                    </div>
-                </section>
-            )
+                        <div id="ProductDiv">
+                            <img src={arrayOfHotProducts[SelectedOption].product.Options[0].Image} alt="" />
+                            <div id="Informacion">
+                                <h4 style={{fontSize:context.fontPixel*.8, letterSpacing: `calc(20vw / ${cantidad} - 1ch)`}}>{arrayOfHotProducts[SelectedOption].product.Model} {arrayOfHotProducts[SelectedOption].product.Cilind}</h4>
+                                <div id="Buttons">
+                                    <button onClick={()=>{
+                                        setSelectedOption(SelectedOption===0?arrayOfHotProducts.length-1:SelectedOption-1)
+                                        setButtonPressed('Prev')
+                                    }} style={{fontSize: ButtonPressed==='Prev'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Prev'?'red':'black', height: ButtonPressed==='Prev'?'100%':'60%', border: ButtonPressed==='Prev'?'solid red 1px':'solid black 1px'}}>
+                                        {'<'}
+                                    </button>
+                                    <button onClick={()=>{
+                                        setSelectedOption(SelectedOption===arrayOfHotProducts.length-1?0:SelectedOption+1)
+                                        setButtonPressed('Next')
+                                    }} style={{fontSize: ButtonPressed==='Next'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Next'?'red':'black', height: ButtonPressed==='Next'?'100%':'60%', border: ButtonPressed==='Next'?'solid red 1px':'solid black 1px'}}>
+                                    {'>'}
+                                    </button>
+                                </div>
+                                <p>{arrayOfHotProducts[SelectedOption].product.Brand}</p>
+                                <p style={{fontSize:context.fontPixel*.35}}>{arrayOfHotProducts[SelectedOption].product.Benefits[0].Description}. {arrayOfHotProducts[SelectedOption].product.Benefits[1].Description}.</p>
+                                <Link id='HotProductsViewMore' style={{fontSize:context.fontPixel*.2}} to={`/product/${arrayOfHotProducts[SelectedOption].id}`}> VER MÁS </Link>
+                            </div>
+                        </div>
+                    </section>
+                )                
+            }else{
+                return(
+                    <section id="PCHotProductsClosed">
+                        <div id="HPSectionTitle">
+                            <h2 style={{fontSize:context.fontPixel*4, letterSpacing: `calc(100vw / 7 - 1ch)`}} >DESTACADOS</h2>
+                            <h3 style={{fontSize:context.fontPixel*1.8, letterSpacing: `calc(100vw / 15 - 1ch)`}} >DESTACADOS</h3>
+                        </div>
+                        <div id="ProductDiv">
+                            <img src={arrayOfHotProducts[SelectedOption].product.Options[0].Image} alt="" />
+                            <div id="Informacion">
+                                <h4 style={{fontSize:context.fontPixel*.8, letterSpacing: `calc(20vw / ${cantidad} - 1ch)`}}>{arrayOfHotProducts[SelectedOption].product.Model} {arrayOfHotProducts[SelectedOption].product.Cilind}</h4>
+                                <div id="Buttons">
+                                    <button onClick={()=>{
+                                        setSelectedOption(SelectedOption===0?arrayOfHotProducts.length-1:SelectedOption-1)
+                                        setButtonPressed('Prev')
+                                    }} style={{fontSize: ButtonPressed==='Prev'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Prev'?'red':'black', height: ButtonPressed==='Prev'?'100%':'60%', border: ButtonPressed==='Prev'?'solid red 1px':'solid black 1px'}}>
+                                        {'<'}
+                                    </button>
+                                    <button onClick={()=>{
+                                        setSelectedOption(SelectedOption===arrayOfHotProducts.length-1?0:SelectedOption+1)
+                                        setButtonPressed('Next')
+                                    }} style={{fontSize: ButtonPressed==='Next'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Next'?'red':'black', height: ButtonPressed==='Next'?'100%':'60%', border: ButtonPressed==='Next'?'solid red 1px':'solid black 1px'}}>
+                                    {'>'}
+                                    </button>
+                                </div>
+                                <p>{arrayOfHotProducts[SelectedOption].product.Brand}</p>
+                                <p style={{fontSize:context.fontPixel*.35}}>{arrayOfHotProducts[SelectedOption].product.Benefits[0].Description}. {arrayOfHotProducts[SelectedOption].product.Benefits[1].Description}.</p>
+                                <Link id='HotProductsViewMore' style={{fontSize:context.fontPixel*.2}} to={`/product/${arrayOfHotProducts[SelectedOption].id}`}> VER MÁS </Link>
+                            </div>
+                        </div>
+                    </section>
+                )                
+            }
+
         }
 
     }
