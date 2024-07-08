@@ -28,16 +28,7 @@ const HotProducts = () => {
                                                     context.setPresection('Wallpaper')
                                                     context.setScreen('Product')
                                                   }}className='ProductCard' key={producto.id}>
-                                                        <div className="cardHeader">
-                                                            <div className="Stars">
-                                                            <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            </div>
-                                                            <i className="bi bi-fire"></i>
-                                                        </div>
+
                                                         <img src={producto.product.Options[0].Image} alt="" />
                                                         <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
                                                         <p className='ProductType' style={{fontSize:context.fontPixel*.7}}>{producto.product.Type}</p>
@@ -73,13 +64,7 @@ const HotProducts = () => {
                                                     context.setPresection('Wallpaper')
                                                     context.setScreen('Product')
                                                   }}className='ProductCard' key={producto.id}>                                                    <div className="cardHeader">
-                                                            <div className="Stars">
-                                                            <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            </div>
+
                                                             <i className="bi bi-fire"></i>
                                                         </div>
                                                         <img src={producto.product.Options[0].Image} alt="" />
@@ -118,13 +103,7 @@ const HotProducts = () => {
                                                     context.setScreen('Product')
                                                   }} className='ProductCard' key={producto.id}>
                                                         <div className="cardHeader">
-                                                            <div className="Stars">
-                                                            <i className={producto.product.Opinion.Number<0.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<1.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<2.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<3.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            <i className={producto.product.Opinion.Number<4.5 ? "bi bi-star" : "bi bi-star-fill" }></i>
-                                                            </div>
+
                                                             <i className="bi bi-fire"></i>
                                                         </div>
                                                         <img src={producto.product.Options[0].Image} alt="" />

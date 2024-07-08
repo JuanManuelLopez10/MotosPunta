@@ -19,9 +19,14 @@ body{
     }    
 }
 @media (orientation: portrait) {
+    body{
+        height: 100vh;
+        overflow-y: hidden;
+    }
     #root{
         position: relative;
         height: 100vh;
+        top: 0px;
         background-size: cover;
         overflow-x: hidden;
         overflow-y: hidden;
@@ -53,7 +58,6 @@ body{
 }
 #root{
     background-size: cover;
-    overflow-y: scroll;
 }
 }
 
