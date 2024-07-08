@@ -3,6 +3,7 @@
 button:focus {
     outline: none;
   }
+
 body{
     overflow-x: hidden;
     overflow-y: hidden;
@@ -42,6 +43,11 @@ body{
     
 }
 @media screen and (orientation: portrait) {
+    
+    #root{
+    background-color: rgba(222, 222, 222);
+
+    }
     #roote{
     width: 100vw;
 }
@@ -54,6 +60,7 @@ body{
 @media screen and (orientation: landscape) {
 #roote{
     right: 0;
+    background-color: rgba(222, 222, 222);
 }
 }
 

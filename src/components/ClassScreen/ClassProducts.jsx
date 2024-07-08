@@ -31,29 +31,89 @@ const ClassProducts = (props) => {
   };
 
   const productosConNumero2 = generateArrayWithGradients(ProductsArray, maxNumero2, minNumero2);
-  
+  if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
     return (
-    <section id="ClassProducts">
+      <section id="ClassProducts">
+          {
+              productosConNumero2.map((producto, key) => {
+                  if(producto.numero2===240){
+                      producto.numero2-=40
+                  }
+                  return(
+                      <Link onClick={()=>{context.setSection('FirstView')
+                        context.setScreen('Product')
+                      }} style={{backgroundColor:`rgb(${producto.numero2+30}, ${producto.numero2+30}, ${producto.numero2+30})`}} key={key} id={producto.id} to={`product/${producto.id}`} className={"ProductCard"}>
+                          <div className='ProductoNameDiv' >
+                              <p style={{fontSize:context.fontPixel*.5, marginBottom:'-2%'}} >{producto.product.Brand}</p>
+                              <p style={{fontSize:context.fontPixel*1.1}} >{producto.product.Model} {producto.product.Cilind}</p>
+                          </div>
+                          <img className={producto.product.Class==='motos' ? 'ProductCardImgMoto' : 'ProductCardImgOtro'} src={producto.product.Options[0].Image} alt="" />
+                      </Link>
+                  )
+              })
+          }
+      </section>
+      )
+    }else{
+
+      return(
+        <section id="ClassProducts">
         {
-            productosConNumero2.map((producto, key) => {
-                if(producto.numero2===240){
-                    producto.numero2-=40
-                }
-                return(
-                    <Link onClick={()=>{context.setSection('FirstView')
-                      context.setScreen('Product')
-                    }} style={{backgroundColor:`rgb(${producto.numero2+30}, ${producto.numero2+30}, ${producto.numero2+30})`}} key={key} id={producto.id} to={`product/${producto.id}`} className={"ProductCard"}>
-                        <div className='ProductoNameDiv' >
-                            <p style={{fontSize:context.fontPixel*.5, marginBottom:'-2%'}} >{producto.product.Brand}</p>
-                            <p style={{fontSize:context.fontPixel*1.1}} >{producto.product.Model} {producto.product.Cilind}</p>
+            ProductsArray.map((producto, key) => {
+              if (producto.product.Type===props.Clase) {
+                if (producto.product.Price>=context.MinPriceFilters && producto.product.Price<=context.MaxPriceFilters) {
+                  if (context.BrandFilters===undefined && context.CilindFilters===undefined) {
+                    return(
+                      <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
+                        <div className='ImageContainer'>
+                        <img src={producto.product.Options[0].Image} alt=""/>
                         </div>
-                        <img className={producto.product.Class==='motos' ? 'ProductCardImgMoto' : 'ProductCardImgOtro'} src={producto.product.Options[0].Image} alt="" />
-                    </Link>
-                )
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
+                      </Link>
+                    )
+                  }else if(context.BrandFilters===undefined && context.CilindFilters===producto.product.Cilind){
+                    return(
+                      <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
+                        <div className='ImageContainer'>
+                        <img src={producto.product.Options[0].Image} alt=""/>
+                        </div>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
+                      </Link>
+                    )
+                  }else if(context.CilindFilters===undefined && context.BrandFilters===producto.product.Brand){
+                    return(
+                      <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
+                        <div className='ImageContainer'>
+                        <img src={producto.product.Options[0].Image} alt=""/>
+                        </div>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
+                      </Link>
+                    )
+                  }else if(context.BrandFilters===producto.product.Brand && context.CilindFilters===producto.product.Cilind){
+                    return(
+                      <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
+                        <div className='ImageContainer'>
+                        <img src={producto.product.Options[0].Image} alt=""/>
+                        </div>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
+                      </Link>
+                    )
+                  }
+                }
+
+              }
+
+
             })
         }
     </section>
-    )
+      )
+    }
+
 }
 
 export default ClassProducts

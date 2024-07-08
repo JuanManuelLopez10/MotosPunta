@@ -761,13 +761,16 @@
         @keyframes DesapareceWPC {
             0%{
                 height: 100vh;
+                visibility: visible;
             }
             100%{
+                visibility: visible;
                 height: 100vh;
             }
         }
         animation: DesapareceWPC 1s;
-        width: 100vw;
+                visibility: hidden;
+                width: 100vw;
         height: 0vh;
         background-color: rgba(222, 222, 222);    
         display: flex;
@@ -837,12 +840,16 @@
                     0%{
                         margin-right: 0vw;
                         opacity: 1;
+                        visibility: visible;
                     }
                     100%{
                         margin-right: 100vw;
+                        visibility: visible;
                         opacity: 0;
                     }
                 }
+                visibility: hidden;
+
                         opacity: 0;
                         margin-right: 100vw;
                 animation: DesapareceBackTopTextosImg 1s;
@@ -950,6 +957,17 @@
     }
 }
 #PCHotProducts{
+    @keyframes ApareceHotProducts {
+        0%{
+            margin-left: 100vw;
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+            margin-left: 0vw;
+        }
+    }
+    animation: ApareceHotProducts 1s;
     width: 100vw;
     background-color: rgba(222, 222, 222);
     h2{
@@ -965,9 +983,38 @@
     #ProductDiv{
         width: 100vw;
         display: flex;
-        img{
+        #DivOfImages{
             width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .Seleccionada{
+                @keyframes SeleccionadaImagen {
+                    0%{
+                        width: 0%;
+                    }
+                    100%{
+                        width: 100%;
+                    }
+                }
+                animation: SeleccionadaImagen 1s;
+                width: 100%;
+            }
+            .NoSeleccionada{
+                @keyframes NoSeleccionadaImagen {
+                    0%{
+                        width: 100%;
+                    }
+                    100%{
+                        width: 0%;
+                    }
+                    
+                }
+                animation: NoSeleccionadaImagen 1s;
+                width: 0%;
+            }
         }
+
         #Informacion{
             width: 50%;
             display: flex;
@@ -985,6 +1032,42 @@
                 height: 10vh;
                     display: flex;
                     width: 40%;
+                .BotonSelected{
+                    @keyframes AgrandarBoton {
+                        0%{
+                            transform: scale(1);
+                            border-color: black;                        
+                        }
+                        100%{
+                            transform: scale(1.5);
+                            border-color: red;
+                        }
+                    }
+                    animation: AgrandarBoton 0.5s;
+                    color: red;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: red;
+                    transform: scale(1.5);
+                }
+                .BotonNoSelected{
+                    @keyframes AchicarBoton {
+                        0%{
+                            transform: scale(1.5);
+                            border-color: red;
+                        }
+                        100%{
+                            transform: scale(1);
+                            border-color: black; 
+                        }
+                    }
+                    animation: AchicarBoton 0.5s;
+                    color: black;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: blackred;
+                    transform: scale(1);
+                }
                 button{
                     background: none;
                     display: flex;
@@ -1127,6 +1210,7 @@
 }
 #PCBrands{
     width: 100vw;
+    margin-top: -2vh;
     background-color: rgba(222, 222, 222);
     h2{
         font-weight: 900;
@@ -1139,6 +1223,133 @@
         font-weight: 800;
     }
     #ContainerOfBrands{
+        &Opened{
+            display: flex;
+            flex-direction: column;
+            @keyframes AgrandarBrands {
+             0%{
+                margin-top: 10vh;
+                height: 60vh;
+                width: 95vw;
+                margin-left: 5vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 1vw;
+                border-bottom-left-radius: 1vw;
+             }
+             100%{
+                margin-top: 10vh;
+                height: auto;
+                width: 100vw;
+                margin-left: 0vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 0vw;
+                border-bottom-left-radius: 0vw;
+             }   
+            }
+            animation: AgrandarBrands 0.5s;
+            margin-top: 10vh;
+            width: 100vw;
+            margin-left: 0vw;
+            background-color: rgb(36, 37, 41);
+            #BeforeContainer{
+                @keyframes DesapareceLoBefore {
+                    0%{
+                        height: 60vh;
+                        overflow: visible;
+
+                    }
+                    100%{
+                        height: 60vh;
+                        overflow: visible;
+                    }
+                }
+                animation: DesapareceLoBefore 0.5s;
+                width: 100vw;
+                height: 0vh;
+                display: flex;
+                overflow: hidden;
+            }
+            #LeftSide{
+                @keyframes DesapareceLeftSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceLeftSide 0.5s;
+                width: 60%;
+                padding: 2%;
+                display: flex;
+                .BrandMainOption{
+                    margin-inline: 0.5vw;
+                    height: 60vh;
+                    width: 32%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    overflow: hidden;
+                    img{
+                    border-radius: .5vw;
+                    height: 85%;
+                    }
+                    p{
+                        color: white;
+                    }
+                }
+            }
+            #RightSide{
+                @keyframes DesapareceRightSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceRightSide 0.5s;
+                width: 40%;
+                padding: 2%;
+                height: 60vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                #TopSide{
+                    display: flex;
+                    align-items: flex-end;
+                    flex-wrap: wrap;
+                    p{
+                        color: white;
+                        padding-inline: 3vw;
+                        padding-block: 1vh;
+                        margin-right: 1vw;
+                        border-radius: 3vw;
+                        background-color: rgb(58, 59, 63);
+    
+                    }
+                }
+                #BottomSide{
+                    width: 100%;
+                    button{
+                        color: white;
+                        width: 100%;
+                        text-align: start;
+                        background: none;
+                        border: none;
+                    }
+                }
+    
+            }
+    
+        }
+
         margin-top: 10vh;
         height: 60vh;
         width: 95vw;
@@ -1193,11 +1404,12 @@
             }
             #BottomSide{
                 width: 100%;
-                p{
+                button{
                     color: white;
                     width: 100%;
                     text-align: start;
-                
+                    background: none;
+                    border: none;
                 }
             }
         }
@@ -1207,7 +1419,17 @@
         width: 100vw;
         background-color: rgb(36, 37, 41);
         #ContainerOptions{
-            height: 10vh;
+            padding-block: 5vh;
+            display: flex;
+            width: 100vw;
+            justify-content: space-around;
+            button{
+                padding-block: 1vh;
+                padding-inline: 3vw;
+                color: white;
+                border: none;
+                border-radius: 5vw;
+            }
         }
         #BrandsOptionsDiv{
 
@@ -1215,8 +1437,18 @@
             height: auto;
             display: flex;
             flex-wrap: wrap;
-            div{
-                
+            .BrandMainOption{
+                @keyframes ReapareceLaOpcion {
+                    0%{
+                        margin-inline: 0vw;
+                        width: 0vw;
+                    }
+                    100%{
+                        margin-inline: 2vw;
+                        width: 16vw;
+                    }
+                }
+                animation: ReapareceLaOpcion 1s;
                 height: 45vh;
                 width: 16vw;
                 margin-inline: 2vw;
@@ -1224,11 +1456,368 @@
                 margin-bottom: 2vh;
                 img{
                     height: 85%;
+                    &:hover{
+                        @keyframes AgrandaImagen {
+                            0%{
+                                transform: scale(1);
+                            }
+                            100%{
+                                transform: scale(1.1);
+                            }
+                        }
+                        animation: AgrandaImagen 1s;
+                        transform: scale(1.1);
+                    }
                 }
                 p{
                     color:white;
                     width: 100%;
-                    text-align: centerF;
+                    text-align: center;
+                }
+                &Not{
+                    @keyframes DesapareceLaOpcion {
+                        0%{
+                            width: 16vw;
+                            margin-inline: 2vw;
+                        
+                        }
+                        100%{
+                            width: 0vw;
+                            margin-inline: 0vw;
+                        }
+                    }
+                    animation: DesapareceLaOpcion 1s;
+                    height: 45vh;
+                    width: 0vw;
+                    margin-inline: 0vw;
+                    overflow: hidden;
+                    margin-bottom: 2vh;
+                    img{
+                        height: 85%;
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                    p{
+                        color:white;
+                        width: 100%;
+                        text-align: center;
+                    }
+    
+                }
+            }
+        }
+    }
+}
+#PCBrandsOut{
+    @keyframes DesaparecePCBrands {
+        0%{
+    width: 100vw;
+    opacity: 1;
+        }
+        100%{
+    opacity: 0;
+    width: 100vw;
+                }
+    }
+    opacity: 0;
+    animation: DesaparecePCBrands 1s;
+    width: 0vw;
+    margin-top: -2vh;
+    background-color: rgba(222, 222, 222);
+    h2{
+        font-weight: 900;
+        color: rgb(206, 206, 206);
+    }
+    h3{
+        margin-top: -15%;
+        width: 100vw;
+        padding-left: 5vw;
+        font-weight: 800;
+    }
+    #ContainerOfBrands{
+        &Opened{
+            display: flex;
+            flex-direction: column;
+            @keyframes AgrandarBrands {
+             0%{
+                margin-top: 10vh;
+                height: 60vh;
+                width: 95vw;
+                margin-left: 5vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 1vw;
+                border-bottom-left-radius: 1vw;
+             }
+             100%{
+                margin-top: 10vh;
+                height: auto;
+                width: 100vw;
+                margin-left: 0vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 0vw;
+                border-bottom-left-radius: 0vw;
+             }   
+            }
+            animation: AgrandarBrands 0.5s;
+            margin-top: 10vh;
+            width: 100vw;
+            margin-left: 0vw;
+            background-color: rgb(36, 37, 41);
+            #BeforeContainer{
+                @keyframes DesapareceLoBefore {
+                    0%{
+                        height: 60vh;
+                        overflow: visible;
+
+                    }
+                    100%{
+                        height: 60vh;
+                        overflow: visible;
+                    }
+                }
+                animation: DesapareceLoBefore 0.5s;
+                width: 100vw;
+                height: 0vh;
+                display: flex;
+                overflow: hidden;
+            }
+            #LeftSide{
+                @keyframes DesapareceLeftSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceLeftSide 0.5s;
+                width: 60%;
+                padding: 2%;
+                display: flex;
+                .BrandMainOption{
+                    margin-inline: 0.5vw;
+                    height: 60vh;
+                    width: 32%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    overflow: hidden;
+                    img{
+                    border-radius: .5vw;
+                    height: 85%;
+                    }
+                    p{
+                        color: white;
+                    }
+                }
+            }
+            #RightSide{
+                @keyframes DesapareceRightSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceRightSide 0.5s;
+                width: 40%;
+                padding: 2%;
+                height: 60vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                #TopSide{
+                    display: flex;
+                    align-items: flex-end;
+                    flex-wrap: wrap;
+                    p{
+                        color: white;
+                        padding-inline: 3vw;
+                        padding-block: 1vh;
+                        margin-right: 1vw;
+                        border-radius: 3vw;
+                        background-color: rgb(58, 59, 63);
+    
+                    }
+                }
+                #BottomSide{
+                    width: 100%;
+                    button{
+                        color: white;
+                        width: 100%;
+                        text-align: start;
+                        background: none;
+                        border: none;
+                    }
+                }
+    
+            }
+    
+        }
+
+        margin-top: 10vh;
+        height: 60vh;
+        width: 95vw;
+        margin-left: 5vw;
+        display: flex;
+        background-color: rgb(36, 37, 41);
+        border-top-left-radius: 1vw;
+        border-bottom-left-radius: 1vw;
+        #LeftSide{
+            width: 60%;
+            padding: 2%;
+            display: flex;
+            .BrandMainOption{
+                margin-inline: 0.5vw;
+                height: 100%;
+                width: 32%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                overflow: hidden;
+                img{
+                border-radius: .5vw;
+                height: 85%;
+                }
+                p{
+                    color: white;
+                }
+            }
+        }
+        #RightSide{
+            width: 40%;
+            padding: 2%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            #TopSide{
+                display: flex;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                p{
+                    color: white;
+                    padding-inline: 3vw;
+                    padding-block: 1vh;
+                    margin-right: 1vw;
+                    border-radius: 3vw;
+                    background-color: rgb(58, 59, 63);
+
+                }
+            }
+            #BottomSide{
+                width: 100%;
+                button{
+                    color: white;
+                    width: 100%;
+                    text-align: start;
+                    background: none;
+                    border: none;
+                }
+            }
+
+        }
+    }
+    #ContainerOfBrandsOpened{
+        margin-top: 10vh;
+        width: 100vw;
+        background-color: rgb(36, 37, 41);
+        #ContainerOptions{
+            padding-block: 5vh;
+            display: flex;
+            width: 100vw;
+            justify-content: space-around;
+            button{
+                padding-block: 1vh;
+                padding-inline: 3vw;
+                color: white;
+                border: none;
+                border-radius: 5vw;
+            }
+        }
+        #BrandsOptionsDiv{
+
+            width: 100vw;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            .BrandMainOption{
+                @keyframes ReapareceLaOpcion {
+                    0%{
+                        margin-inline: 0vw;
+                        width: 0vw;
+                    }
+                    100%{
+                        margin-inline: 2vw;
+                        width: 16vw;
+                    }
+                }
+                animation: ReapareceLaOpcion 1s;
+                height: 45vh;
+                width: 16vw;
+                margin-inline: 2vw;
+                overflow: hidden;
+                margin-bottom: 2vh;
+                img{
+                    height: 85%;
+                    &:hover{
+                        @keyframes AgrandaImagen {
+                            0%{
+                                transform: scale(1);
+                            }
+                            100%{
+                                transform: scale(1.1);
+                            }
+                        }
+                        animation: AgrandaImagen 1s;
+                        transform: scale(1.1);
+                    }
+                }
+                p{
+                    color:white;
+                    width: 100%;
+                    text-align: center;
+                }
+                &Not{
+                    @keyframes DesapareceLaOpcion {
+                        0%{
+                            width: 16vw;
+                            margin-inline: 2vw;
+                        
+                        }
+                        100%{
+                            width: 0vw;
+                            margin-inline: 0vw;
+                        }
+                    }
+                    animation: DesapareceLaOpcion 1s;
+                    height: 45vh;
+                    width: 0vw;
+                    margin-inline: 0vw;
+                    overflow: hidden;
+                    margin-bottom: 2vh;
+                    img{
+                        height: 85%;
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                    p{
+                        color:white;
+                        width: 100%;
+                        text-align: center;
+                    }
+    
                 }
             }
         }

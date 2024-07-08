@@ -11,7 +11,6 @@ const Index = (props) => {
   const context = useContext(CartContext)
   const location = useLocation().pathname.split("/clase/")[1];
   const productId = useLocation().pathname.split('/product/')[1]
-  console.log('Location: ' + location);
   if(location!==undefined){
     context.setScreen('Clase')
   }else if(productId!==undefined && context.Section==='Wallpaper'){

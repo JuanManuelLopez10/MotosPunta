@@ -2,18 +2,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
+import ClassFilters from '../components/ClassScreen/ClassFilters';
 
 const ClassScreen = () => {
   const context = useContext(CartContext)
   const location = useLocation().pathname.split("/clase/")[1];
   const productId = useLocation().pathname.split('/product/')[1]
   const [ClaseSelected, setClaseSelected] = useState('Naked') 
-  useEffect(()=>{
+  const [ProductClassSelected, setProductClassSelected] = useState('Motos') 
+  const ArrayOfMotosTypes = ['Naked', 'Sport', 'Scooter', 'Polleritas', 'Calle', 'Multiprop.', ]
+  if (ClaseSelected!==location) {
     setClaseSelected(location)
+  }
 
-    },[])
+  
   if (productId!==undefined) {
-    console.log(productId);
   }
   if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
 
@@ -39,7 +42,22 @@ const ClassScreen = () => {
     </div>)
   }
   }else{
-    
+    if (context.Screen==='Clase') {
+      return(
+        <div id="ClassScreen">
+          <ClassFilters ArrayOfMotosTypes={ArrayOfMotosTypes} Clase={ClaseSelected} />
+          <ClassProducts Clase={ClaseSelected}/>
+        </div>
+      )
+    }else{
+      return(
+        <div id="ClassScreenHidden">
+          <ClassFilters ArrayOfMotosTypes={ArrayOfMotosTypes} Clase={ClaseSelected} />
+          <ClassProducts Clase={ClaseSelected}/>
+        </div>
+      )
+    }
+
   }
 
 }

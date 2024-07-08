@@ -23,7 +23,8 @@ const CartContextProvider = ({ children }) => {
     const handleTouchStart = (event) => {
       startY.current = event.touches[0].clientY;
     };
-  
+
+
     const handleTouchMove = (event, a, b, actual) => {
       if (startY.current !== null) {
         const currentY = event.touches[0].clientY;
@@ -40,8 +41,6 @@ const CartContextProvider = ({ children }) => {
           startY.current = null;
           setPresection(actual)
 
-        }else{
-            console.log('d');
         }
       }
     };
@@ -58,7 +57,6 @@ const CartContextProvider = ({ children }) => {
             const productsCollection = collection(db, 'products');
             try {
         const docRef = await addDoc(productsCollection, product);
-        console.log('ID del producto: ' + docRef.id);
     } catch (error) {
         console.error('Error al agregar el producto:', error);
     }
@@ -141,7 +139,6 @@ const CartContextProvider = ({ children }) => {
     const [OpenMenu, setOperMenu] = useState(false)
     const handleOpenMenu = () => {
         if (OpenMenu === false) {
-            console.log(OpenMenu);
             setOperMenu(true)
         } else {
             setOperMenu(false)
@@ -169,19 +166,126 @@ const CartContextProvider = ({ children }) => {
 
     const fontPixel = Width/20
 
-
+    const [Datas, setData] = useState([])
     const [Datos, setDatos] = useState([])
-    const handleDatos = (datos) => {
-        setDatos(datos)
-    }
+    const [FilteredOptions, setFilteredOptions] = useState(Datos)
 
+    const handleDatos = async () => {
+        const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
+        const apiKey = 'AIzaSyABqba1Q5R3aDyMVePc7DcBFzzqGCk04ic'; // Reemplaza con tu clave de API
+        const range = 'Hoja10!A1:AJ20'; // Ajusta el rango según tu hoja de cálculo
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+  
+        try {
+          const response = await fetch(url);
+          const result = await response.json();
+          const resultado = []
+            setData(result.values);
+            Datas.map(productto => {
+                if (resultado.findIndex(prod => prod===productto)!=0) {
+                  const Benefits=[]
+                  const Benefits1 = {
+                    Title:productto[16],
+                    Description:productto[17],
+                    Image:productto[18],
+                  }
+                  Benefits.push(Benefits1)
+                  const Benefits2 = {
+                    Title:productto[19],
+                    Description:productto[20],
+                    Image:productto[21],
+                  }
+                  Benefits.push(Benefits2)
+                  const Benefits3 = {
+                    Title:productto[22],
+                    Description:productto[23],
+                    Image:productto[24],
+                  }
+                  Benefits.push(Benefits3)
+                  const Benefits4 = productto[25]!=='' ?{
+                    Title:productto[25],
+                    Description:productto[26],
+                    Image:productto[27],
+                  }:undefined
+                  Benefits4!==undefined && Benefits.push(Benefits4)
+                  const Benefits5 = productto[28]!=='' ?{
+                    Title:productto[28],
+                    Description:productto[29],
+                    Image:productto[30],
+                  }:undefined
+                  Benefits5!==undefined && Benefits.push(Benefits5)
+                  const Benefits6 = productto[31]!=='' ?{
+                    Title:productto[31],
+                    Description:productto[32],
+                    Image:productto[33],
+                  }:undefined
+                  Benefits6!==undefined && Benefits.push(Benefits6)
+                  const indexDelProducto = resultado.findIndex(pro => pro.id===productto[9])
+                  if (Datas.findIndex(p=>p===productto)!==0) {
+                    if (indexDelProducto===-1) {
+                        const producto = {
+                          id:productto[9],
+                          product:{
+                            Description:productto[4],
+                            Benefits:Benefits,
+                            Brand:productto[7],
+                            Cilind:productto[15],
+                            Class:productto[11],
+                            Model: productto[14],
+                            Title: productto[1],
+                            Price:parseFloat(productto[6].replace(' USD', '')),
+                            Type:productto[13],
+                            Options:[{
+                              Color:productto[10],
+                              Design:productto[12],
+                              Image:productto[3]
+                            }],
+                            featured: productto[35]==='SI'?true:false,
+                            Wallpaper: productto[34]==='SI'?true:false,
+                          }
+                        }
+                        resultado.push(producto)
+                      }else{
+                        resultado[indexDelProducto].product.Options.push({
+                          Color:productto[10],
+                          Design:productto[12],
+                          Image:productto[3]
+                        }) 
+                      }
+                  }
+
+                  setDatos(resultado)
+                }
+              })
+
+
+            }          
+         catch (error) {
+          console.error('Error al obtener los datos de la hoja de cálculo', error);
+        }
+      };
+    const [BrandFilters, setBrandFilters] = useState(undefined)
+    const HandleChangeBrand = (a) =>{
+      setBrandFilters(a)
+    }
+    const [CilindFilters, setCilindFilters] = useState(undefined)
+    const HandleChangeCilind = (a) =>{
+      setCilindFilters(a)
+    }
+    const [MaxPriceFilters, setMaxPrice] = useState(1000000)
+    const [MinPriceFilters, setMinPrice] = useState(0)
+    const filterPrice = (a, b) =>{
+      setMaxPrice(a)
+      setMinPrice(b)
+    }
     const [Ofertas, setOfertas] = useState([])
+
     const handleOfertas = (datos) => {
         setOfertas(datos)
     }
 
     return (
-        <CartContext.Provider value={{ CartTotal, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
+        <CartContext.Provider value={{ MinPriceFilters, filterPrice, MaxPriceFilters, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind,CartTotal, setDatos, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
             {children}
         </CartContext.Provider>
     )

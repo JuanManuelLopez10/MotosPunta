@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom'
 
 const ClasesPCMenu = (props) => {
     const context = useContext(CartContext)
-    console.log(props.SelectedOpcion);
     const ArrayOfOptions = []
     context.Datos.map(producto => {
         if (producto.product.Class===props.SelectedOpcion && ArrayOfOptions.find(opcion => opcion===producto.product.Type)===undefined) {
             ArrayOfOptions.push(producto.product.Type)
         }
     })
-    console.log(ArrayOfOptions);
     return (
     <div id='ClasesPCMenu' >
         {

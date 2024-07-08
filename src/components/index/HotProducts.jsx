@@ -148,7 +148,6 @@ const HotProducts = () => {
     
         }
     }else{
-        console.log(arrayOfHotProducts);
         if(arrayOfHotProducts.length>0){
             const texto = `${arrayOfHotProducts[SelectedOption].product.Model} ${arrayOfHotProducts[SelectedOption].product.Cilind?arrayOfHotProducts[SelectedOption].product.Cilind:''}`
             const cantidad = texto.length
@@ -160,20 +159,27 @@ const HotProducts = () => {
                             <h3 style={{fontSize:context.fontPixel*1.8, letterSpacing: `calc(100vw / 15 - 1ch)`}} >DESTACADOS</h3>
                         </div>
                         <div id="ProductDiv">
-                            <img src={arrayOfHotProducts[SelectedOption].product.Options[0].Image} alt="" />
+                            <div id="DivOfImages">
+                                {arrayOfHotProducts.map((producto, index) => {
+                                    return(
+                                        <img key={index} src={producto.product.Options[0].Image} alt="" className={SelectedOption===index?'Seleccionada' : 'NoSeleccionada'} />
+                                    )
+                                })
+                                }
+                            </div>
                             <div id="Informacion">
                                 <h4 style={{fontSize:context.fontPixel*.8, letterSpacing: `calc(20vw / ${cantidad} - 1ch)`}}>{arrayOfHotProducts[SelectedOption].product.Model} {arrayOfHotProducts[SelectedOption].product.Cilind}</h4>
                                 <div id="Buttons">
                                     <button onClick={()=>{
                                         setSelectedOption(SelectedOption===0?arrayOfHotProducts.length-1:SelectedOption-1)
                                         setButtonPressed('Prev')
-                                    }} style={{fontSize: ButtonPressed==='Prev'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Prev'?'red':'black', height: ButtonPressed==='Prev'?'100%':'60%', border: ButtonPressed==='Prev'?'solid red 1px':'solid black 1px'}}>
+                                    }} className={ButtonPressed==='Prev'?'BotonSelected':'BotonNoSelected'} style={{fontSize: context.fontPixel*.4, height: '60%'}}>
                                         {'<'}
                                     </button>
                                     <button onClick={()=>{
                                         setSelectedOption(SelectedOption===arrayOfHotProducts.length-1?0:SelectedOption+1)
                                         setButtonPressed('Next')
-                                    }} style={{fontSize: ButtonPressed==='Next'? context.fontPixel*.8: context.fontPixel*.4, color:ButtonPressed==='Next'?'red':'black', height: ButtonPressed==='Next'?'100%':'60%', border: ButtonPressed==='Next'?'solid red 1px':'solid black 1px'}}>
+                                    }} className={ButtonPressed==='Next'?'BotonSelected':'BotonNoSelected'} style={{fontSize: context.fontPixel*.4, height: '60%'}}>
                                     {'>'}
                                     </button>
                                 </div>

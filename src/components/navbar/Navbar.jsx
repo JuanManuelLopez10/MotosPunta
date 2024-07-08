@@ -19,10 +19,10 @@ const Navbar = (props) => {
                 </Link>
                 <div>
                 <button id='NavbarMobileMenuButton' onClick={()=>{props.setOpenMenu(props.OpenMenu===true ? false : true)}}>
-                    <i style={{fontSize: context.fontPixel*1.5, color: context.Screen==='Product' || context.Screen==='Clase' ? 'grey' : 'white'}} id='NavbarMobileMenuButtonI' class={props.OpenMenu===false ? "bi bi-list" : "bi bi-x"}></i>
+                    <i style={{fontSize: context.fontPixel*1.5, color: context.Screen==='Product' || context.Screen==='Clase' ? 'grey' : 'white'}} id='NavbarMobileMenuButtonI' className={props.OpenMenu===false ? "bi bi-list" : "bi bi-x"}></i>
                 </button>
                 <Link to='/Cart' id='NavbarMobileCartButton' onClick={()=>{context.setScreen('Cart')}}>
-                    <i style={{fontSize: context.fontPixel*1.4, color: context.Screen==='Product' || context.Screen==='Clase' ? 'grey' : 'white'}} id='NavbarMobileCartButtonI' class="bi bi-cart"></i>
+                    <i style={{fontSize: context.fontPixel*1.4, color: context.Screen==='Product' || context.Screen==='Clase' ? 'grey' : 'white'}} id='NavbarMobileCartButtonI' className="bi bi-cart"></i>
                     <span id='NavbarCartLength' style={{fontSize:context.fontPixel*.6}}>{context.TotalQuantity}</span>
                 </Link>
                 </div>
@@ -47,7 +47,7 @@ const Navbar = (props) => {
                     }
                 </div>
             <Link id="NavbarPCCartButton">
-                <i style={{fontSize: context.fontPixel*.5, color: context.Screen==='Product' || context.Screen==='Clase' ? 'grey' : 'white'}} id='NavbarPCCartButtonI' class="bi bi-cart"></i>
+                <i style={{fontSize: context.fontPixel*.5, color: context.Screen==='Product' || context.Screen==='Clase' ? 'grey' : 'white'}} id='NavbarPCCartButtonI' className="bi bi-cart"></i>
             </Link>
             </div>
             {

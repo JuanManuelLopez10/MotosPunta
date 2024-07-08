@@ -308,3 +308,473 @@
         }
     }
 }
+#ClassScreen{
+    @keyframes ApareceClassScreen {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    animation: ApareceClassScreen 1s;
+    width: 100vw;
+    height: 100vh;
+    background-color: #474747;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    #ClassFilters{
+        @keyframes AparecenFiltros {
+            0%{
+                opacity: 0;
+                margin-top: 115vh;
+            }
+            100%{
+                opacity: 1;
+                margin-top: 15vh;
+            }
+        }
+        animation: AparecenFiltros 1s;
+        z-index: 10;
+        width: 15vw;
+        height: 80vh;
+        background-color: #252525;
+        margin-left: 3vw;
+        margin-top: 15vh;
+        border-radius: 1vw;
+        padding-bottom: 2vh;
+        box-shadow: 0px 0px 5px black;
+        display: flex;
+        flex-direction: column;
+        padding-inline: 1%;
+        padding-block: 1%;
+
+        h3{
+            color: white;
+            margin-bottom: 18%;
+        }
+        #ClassFiltersBody{
+            width: 100%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 0.8vw; /* Ancho del scrollbar vertical */
+                height: 12px; /* Alto del scrollbar horizontal */
+              }
+              
+            &::-webkit-scrollbar-track {
+                background: none; /* Color de fondo del track */
+              }
+              
+            &::-webkit-scrollbar-thumb {
+                background: rgb(48, 48, 48); /* Color del thumb */
+                border-radius: 10px; /* Redondear las esquinas */
+              }
+              
+            &::-webkit-scrollbar-thumb:hover {
+                background: #555; /* Color del thumb cuando se pasa el mouse */
+              }
+              
+              // Opcional: personalizar las esquinas del scrollbar
+            &::-webkit-scrollbar-corner {
+                background: #f1f1f1; /* Color de fondo de las esquinas */
+              }
+        }
+        .FilterTitle{
+            background: none;
+            border: none;
+            color: white;
+        }
+        .FilterOptions{
+            background: none;
+            display: flex;
+            flex-direction: column;
+            .OpcionMain{
+                span{
+                    @keyframes ApareceSpanOpt {
+                        0%{
+                            opacity: 0;
+                            margin-right: -2%;
+                        }
+                        100%{
+                            margin-right: 0px;
+                            opacity: 1;
+                        }
+                    }
+                    animation: ApareceSpanOpt 0.5s;
+                    color: white;
+                    
+                }
+            }
+            button{
+                background: none;
+                border: none;
+                width: 100%;
+                text-align: start;
+                color: white;
+            }
+
+        }
+        #ClassFilterPrice{
+            width: 100%;
+            &-Title{
+                color: white;
+            }
+            &-Container{
+                width: 100%;
+                display: flex;
+                div{
+                    width: 40%;
+                    display: flex;
+                    flex-direction: column;
+                    p{
+                        width: 100%;
+                        color: white;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    #ClassProducts{
+        padding-top: 20vh;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 82vw;
+        justify-content: space-around;
+        .PCProductOption{
+            &:hover{
+                text-decoration: none;
+            }
+            &Disapear{
+                    @keyframes DesapareceProducto {
+                        0%{
+                            opacity: 1;
+                            visibility: visible;
+                            overflow: hidden;
+                            margin-top: 0vh;
+                        }
+                        100%{
+                            visibility: visible;
+                            opacity: 0;
+                            overflow: hidden;
+                            margin-top: 100vh;
+                        }
+                    }
+                            visibility: hidden;
+                            animation: DesapareceProducto 1s;
+                    width: 22vw;
+                    height: 50vh;
+                    background-color: #616161;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 5vh;
+                    border-radius: 1vw;
+                    box-shadow: 0px 0px 10px #383838;
+                    .ImageContainer{
+                        width: 90%;
+                        height: 60%;
+                        background-image: linear-gradient(#000000, #252324);
+                        margin-top: 5%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 0.51vw;
+                    }
+                    img{
+                        width: 80%;
+                    }
+                    p{
+                        color: white;
+                        width: 90%;
+                        text-align: start;
+                    }
+                
+        
+            }
+            @keyframes ApareceProducto {
+                0%{
+                    opacity: 0;
+                    overflow: hidden;
+                    margin-top: 10vh;
+                }
+                100%{
+                    opacity: 1;
+                    overflow: hidden;
+                    margin-top: 0vh;
+                }
+            }
+            animation: ApareceProducto 1s;
+            width: 22vw;
+            height: 50vh;
+            background-color: #616161;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5vh;
+            border-radius: 1vw;
+            box-shadow: 0px 0px 10px #383838;
+            .ImageContainer{
+                width: 90%;
+                height: 60%;
+                background-image: linear-gradient(#000000, #252324);
+                margin-top: 5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0.51vw;
+            }
+            img{
+                width: 80%;
+            }
+            p{
+                color: white;
+                width: 90%;
+                text-align: start;
+            }
+        }
+    }
+}
+#ClassScreenHidden{
+    @keyframes DesapareceClassScreen {
+        0%{
+            opacity: 1;
+    height: 100vh;
+    visibility: visible;
+        }
+        100%{
+            opacity: 0;
+    height: 100vh;
+    visibility: visible;
+        }
+    }
+    animation: DesapareceClassScreen 1s;
+    visibility: hidden;
+    width: 100vw;
+    height: 0vh;
+    background-color: #474747;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    #ClassFilters{
+        @keyframes AparecenFiltros {
+            0%{
+                opacity: 0;
+                margin-top: 115vh;
+            }
+            100%{
+                opacity: 1;
+                margin-top: 15vh;
+            }
+        }
+        animation: AparecenFiltros 1s;
+        z-index: 10;
+        width: 15vw;
+        height: 80vh;
+        background-color: #252525;
+        margin-left: 3vw;
+        margin-top: 15vh;
+        border-radius: 1vw;
+        padding-bottom: 2vh;
+        box-shadow: 0px 0px 5px black;
+        display: flex;
+        flex-direction: column;
+        padding-inline: 1%;
+        padding-block: 1%;
+
+        h3{
+            color: white;
+            margin-bottom: 18%;
+        }
+        #ClassFiltersBody{
+            width: 100%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 0.8vw; /* Ancho del scrollbar vertical */
+                height: 12px; /* Alto del scrollbar horizontal */
+              }
+              
+            &::-webkit-scrollbar-track {
+                background: none; /* Color de fondo del track */
+              }
+              
+            &::-webkit-scrollbar-thumb {
+                background: rgb(48, 48, 48); /* Color del thumb */
+                border-radius: 10px; /* Redondear las esquinas */
+              }
+              
+            &::-webkit-scrollbar-thumb:hover {
+                background: #555; /* Color del thumb cuando se pasa el mouse */
+              }
+              
+              // Opcional: personalizar las esquinas del scrollbar
+            &::-webkit-scrollbar-corner {
+                background: #f1f1f1; /* Color de fondo de las esquinas */
+              }
+        }
+        .FilterTitle{
+            background: none;
+            border: none;
+            color: white;
+        }
+        .FilterOptions{
+            background: none;
+            display: flex;
+            flex-direction: column;
+            .OpcionMain{
+                span{
+                    @keyframes ApareceSpanOpt {
+                        0%{
+                            opacity: 0;
+                            margin-right: -2%;
+                        }
+                        100%{
+                            margin-right: 0px;
+                            opacity: 1;
+                        }
+                    }
+                    animation: ApareceSpanOpt 0.5s;
+                    color: white;
+                    
+                }
+            }
+            button{
+                background: none;
+                border: none;
+                width: 100%;
+                text-align: start;
+                color: white;
+            }
+
+        }
+        #ClassFilterPrice{
+            width: 100%;
+            &-Title{
+                color: white;
+            }
+            &-Container{
+                width: 100%;
+                display: flex;
+                div{
+                    width: 40%;
+                    display: flex;
+                    flex-direction: column;
+                    p{
+                        width: 100%;
+                        color: white;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    #ClassProducts{
+        padding-top: 20vh;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 82vw;
+        justify-content: space-around;
+        .PCProductOption{
+            &Disapear{
+                    @keyframes DesapareceProducto {
+                        0%{
+                            opacity: 1;
+                            visibility: visible;
+                            overflow: hidden;
+                            margin-top: 0vh;
+                        }
+                        100%{
+                            visibility: visible;
+                            opacity: 0;
+                            overflow: hidden;
+                            margin-top: 100vh;
+                        }
+                    }
+                            visibility: hidden;
+                            animation: DesapareceProducto 1s;
+                    width: 22vw;
+                    height: 50vh;
+                    background-color: #616161;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 5vh;
+                    border-radius: 1vw;
+                    box-shadow: 0px 0px 10px #383838;
+                    .ImageContainer{
+                        width: 90%;
+                        height: 60%;
+                        background-image: linear-gradient(#000000, #252324);
+                        margin-top: 5%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 0.51vw;
+                    }
+                    img{
+                        width: 80%;
+                    }
+                    p{
+                        color: white;
+                        width: 90%;
+                        text-align: start;
+                    }
+                
+        
+            }
+            @keyframes ApareceProducto {
+                0%{
+                    opacity: 0;
+                    overflow: hidden;
+                    margin-top: 10vh;
+                }
+                100%{
+                    opacity: 1;
+                    overflow: hidden;
+                    margin-top: 0vh;
+                }
+            }
+            animation: ApareceProducto 1s;
+            width: 22vw;
+            height: 50vh;
+            background-color: #616161;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5vh;
+            border-radius: 1vw;
+            box-shadow: 0px 0px 10px #383838;
+            .ImageContainer{
+                width: 90%;
+                height: 60%;
+                background-image: linear-gradient(#000000, #252324);
+                margin-top: 5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0.51vw;
+            }
+            img{
+                width: 80%;
+            }
+            p{
+                color: white;
+                width: 90%;
+                text-align: start;
+            }
+        }
+    }
+}

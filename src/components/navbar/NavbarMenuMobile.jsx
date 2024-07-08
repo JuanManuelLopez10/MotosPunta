@@ -15,7 +15,7 @@ const NavbarMenuMobile = (props) => {
     }
 
     if (context.Datos.length > 0) {
-        context.Datos.map(product => {
+        context.Datos.map((product) => {
             const producto = product.product
             if(producto.Class){
             if(arrayTypes.findIndex(Class => Class.nombre === producto.Type)===-1){
@@ -47,9 +47,9 @@ const NavbarMenuMobile = (props) => {
 
 <div id='MenuMobileClass' className={props.OpenMenu===true && SelectedClass===undefined ? 'MenuMobileClassOpen' : 'MenuMobileClassClosed'} >
 {
-    arrayClases.map(clase => {
+    arrayClases.map((clase, index) => {
         return (
-            <button onClick={()=>{selectClass(clase)}} className={props.OpenMenu===true && SelectedClass===undefined ? 'MenuOption MenuOptionOpen' : 'MenuOption MenuOptionClosed'}>
+            <button key={index} onClick={()=>{selectClass(clase)}} className={props.OpenMenu===true && SelectedClass===undefined ? 'MenuOption MenuOptionOpen' : 'MenuOption MenuOptionClosed'}>
             <p>{clase.toUpperCase()}</p>
                 </button>
         )
@@ -57,15 +57,15 @@ const NavbarMenuMobile = (props) => {
 }
 </div>
 {
-    arrayClases.map(clase => {
+    arrayClases.map((clase, index) => {
         return(
             
-    <div id='MenuMobileType' className={props.OpenMenu===true && SelectedClass===clase ? 'MenuMobileClassOpen' : 'h-0 MenuMobileClassClosed'} >
+    <div id='MenuMobileType' key={index} className={props.OpenMenu===true && SelectedClass===clase ? 'MenuMobileClassOpen' : 'h-0 MenuMobileClassClosed'} >
 
-{        arrayTypes.map(tipo => {
+{        arrayTypes.map((tipo, index) => {
             if(tipo.Class===clase){
                 return (
-                    <Link onClick={()=>{props.setOpenMenu(false)
+                    <Link key={index}  onClick={()=>{props.setOpenMenu(false)
                      setSelectedClass(undefined)
                      context.setScreen('Clase')
                      }} to={`/clase/${tipo.nombre}`} className='MenuOption'>

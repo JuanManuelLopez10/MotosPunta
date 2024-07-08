@@ -465,3 +465,158 @@
         width: 88vw;
     }
 }
+
+#PCProductScreen{
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    #PCProductFirstView{
+        width: 100vw;
+        height: 80vh;
+        overflow: hidden;
+        padding-inline: 3vw;
+        background-color: #181818;
+        display: grid;
+        grid-template-rows: 15vh 52vh 25vh;
+        grid-template-columns: 14vw 60vw 14vw;
+        grid-template-areas: 
+        "nada nada nada"
+        "FVPCTexto Foto Benefits"
+        "abajo abajo abajo";
+        #PCProductFirstViewText{
+            grid-area: FVPCTexto;
+            width: 35vw;
+            height: 90%;
+            align-self: flex-end;
+            color: rgb(187, 187, 187);
+            z-index: 6;
+            #PCProductTextTitle{
+                margin-bottom: -1vh;
+                font-weight: 600;
+            }
+        }
+        #PCProductBackTitle{
+            position: absolute;
+            top: 0vh;
+            left: 0;
+            width: 100vw;
+            text-align: center;
+            color: #c9c9c9;
+            opacity: .08;
+            font-weight: 700;
+            height: 80vh;
+            overflow: hidden;
+        }
+        #PCProductImage{
+            grid-area: Foto;
+            width: 60%;
+            justify-self: center;
+            z-index: 5;
+            filter: brightness(.8);
+            align-self: flex-start;
+        }
+        #PCProductFirstViewCaract{
+            grid-area: Benefits;
+            align-self: center;
+            color: #c9c9c9;
+            text-align: center;
+            .CaractDesc{
+                font-weight: 700;
+            }
+        }
+    }
+    .carousel {
+        display: flex;
+        align-items: center;
+        background-image: linear-gradient(#181818, #3f4040);
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: visible;
+        .carousel-button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+          }
+          
+          .carousel-slides {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
+          }
+          
+          .carousel-slide {
+            position: absolute;
+            transition: opacity 0.5s, transform 0.5s;
+            width: 37vw;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 100%;
+                box-shadow: 0px 0px 15px black;
+            }
+            p{
+                color: rgb(209, 209, 209);
+            }
+            .BenefitTitle{
+                margin-bottom: -1%;
+            }
+          }
+          
+          .carousel-slide-hidden {
+            opacity: 0;
+            transform: scale(0);
+            visibility: hidden;
+          }
+          
+          .carousel-slide-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 2;
+          }
+          
+          .carousel-slide-prev {
+            opacity: 0.5;
+            transform: translateX(-100%) scale(0.75);
+            z-index: 1;
+          }
+          
+          .carousel-slide-next {
+            opacity: 0.5;
+            transform: translateX(100%) scale(0.75);
+            z-index: 1;
+          }
+      }
+    #PCColors{
+        background-image: linear-gradient(#3f4040, #181818, #181818);
+        #ColorsTitleBack{
+            color: rgb(224, 224, 224, 0.3);
+            margin-bottom: -40vh;
+        }
+        #ColoresOptions{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            img{
+                background-image: radial-gradient(rgb(170, 170, 170, 0.5), transparent, transparent, transparent);
+                width: 40vw;
+                filter: brightness(.8);
+            }
+        }
+    }
+
+
+}
