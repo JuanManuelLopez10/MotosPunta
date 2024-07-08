@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import FirstView from '../components/Product/FirstView';
 import Benefits from '../components/Product/Benefits';
