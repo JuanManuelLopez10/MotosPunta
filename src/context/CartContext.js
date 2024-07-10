@@ -173,7 +173,7 @@ const CartContextProvider = ({ children }) => {
     const handleDatos = async () => {
         const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
         const apiKey = 'AIzaSyABqba1Q5R3aDyMVePc7DcBFzzqGCk04ic'; // Reemplaza con tu clave de API
-        const range = 'Hoja10!A1:AJ20'; // Ajusta el rango según tu hoja de cálculo
+        const range = 'Hoja10!A1:AJ100'; // Ajusta el rango según tu hoja de cálculo
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
   
         try {

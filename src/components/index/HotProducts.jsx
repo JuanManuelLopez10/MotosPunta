@@ -16,18 +16,18 @@ const HotProducts = () => {
                 <section onTouchMove={(event) => {context.handleTouchMove(event, 'IndexBrands', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProducts' >
                     <h2>Productos destacados</h2>
                     {
-                        arrayOfCategories.map(clase => {
+                        arrayOfCategories.map((clase, index) => {
                             return(
                                 <>
-                                    <h3>{clase.toUpperCase()}</h3>
-                                    <div className='ClassRow'>
+                                    <h3 key={`h3${index}`} >{clase.toUpperCase()}</h3>
+                                    <div key={index} className='ClassRow'>
                                         {
-                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
+                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map((producto, i) => {
                                                 return(
-                                                    <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
+                                                    <Link key={`${clase}${i}`} to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
                                                     context.setPresection('Wallpaper')
                                                     context.setScreen('Product')
-                                                  }}className='ProductCard' key={producto.id}>
+                                                  }}className='ProductCard'>
 
                                                         <img src={producto.product.Options[0].Image} alt="" />
                                                         <h4 style={{fontSize:context.fontPixel}} >{producto.product.Brand} {producto.product.Model} {producto.product.Cilind} </h4>
@@ -52,18 +52,18 @@ const HotProducts = () => {
                 <section onTouchMove={(event) => {context.handleTouchMove(event, 'Segundo', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProductsAfter' >
                     <h2>Productos destacados</h2>
                     {
-                        arrayOfCategories.map(clase => {
+                        arrayOfCategories.map((clase, index) => {
                             return(
                                 <>
-                                    <h3>{clase.toUpperCase()}</h3>
-                                    <div className='ClassRow'>
+                                    <h3 key={`h3${index}`} >{clase.toUpperCase()}</h3>
+                                    <div key={index} className='ClassRow'>
                                         {
-                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
+                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map((producto, i) => {
                                                 return(
-                                                    <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
+                                                    <Link key={`${clase}${i}`}  to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
                                                     context.setPresection('Wallpaper')
                                                     context.setScreen('Product')
-                                                  }}className='ProductCard' key={producto.id}>                                                    <div className="cardHeader">
+                                                  }}className='ProductCard'>                                                    <div className="cardHeader">
 
                                                             <i className="bi bi-fire"></i>
                                                         </div>
@@ -90,20 +90,19 @@ const HotProducts = () => {
                 <section onTouchMove={(event) => {context.handleTouchMove(event, 'Segundo', 'Wallpaper', 'HotProducts')}} onTouchStart={context.handleTouchStart} id='IndexHotProductsNext' >
                     <h2>Productos destacados</h2>
                     {
-                        arrayOfCategories.map(clase => {
+                        arrayOfCategories.map((clase, index) => {
                             return(
                                 <>
-                                    <h3>{clase.toUpperCase()}</h3>
-                                    <div className='ClassRow'>
+                                    <h3 key={`key${index}`} >{clase.toUpperCase()}</h3>
+                                    <div key={index} className='ClassRow'>
                                         {
-                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map(producto => {
+                                            arrayOfHotProducts.filter(producto => producto.product.Class === clase).map((producto, i) => {
                                                 return(
-                                                    <Link to={`product/${producto.id}`}  onClick={()=>{context.setSection('FirstView')
+                                                    <Link key={`${clase}${i}`}  to={`product/${producto.id}`} onClick={()=>{context.setSection('FirstView')
                                                     context.setPresection('Wallpaper')
                                                     context.setScreen('Product')
-                                                  }} className='ProductCard' key={producto.id}>
+                                                  }} className='ProductCard'>
                                                         <div className="cardHeader">
-
                                                             <i className="bi bi-fire"></i>
                                                         </div>
                                                         <img src={producto.product.Options[0].Image} alt="" />

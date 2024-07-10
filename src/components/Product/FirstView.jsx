@@ -3,7 +3,6 @@ import { CartContext } from '../../context/CartContext'
 
 const FirstView = (props) => {
     const context = useContext(CartContext)
-    const [Opened, setOpened] = useState(undefined)
 
   return (
     <section id='ProductFirstView' >

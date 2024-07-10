@@ -30,7 +30,7 @@ const Brands = () => {
                     <div id="BrandsRow">
                         {arrayOfMainBrands.map((item, index)=>{
                             return(
-                                <img className='BrandOption' src={`./assets/logos/${item.Name}.png`} alt="" />
+                                <img key={index} className='BrandOption' src={`./assets/logos/${item.Name}.png`} alt="" />
                             )
                         })}
                     </div>
@@ -44,7 +44,7 @@ const Brands = () => {
                     <div id="BrandsRow">
                         {arrayOfMainBrands.map((item, index)=>{
                             return(
-                                <img className='BrandOption' src={`./assets/logos/${item.Name}.png`} alt="" />
+                                <img key={index} className='BrandOption' src={`./assets/logos/${item.Name}.png`} alt="" />
                             )
                         })}
                     </div>
