@@ -1,12 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom';
 import { CartContext } from './context/CartContext';
 import Index from './screens/Index';
-import ClassCreen from './screens/ClassScreen'
-import ProductScreen from './screens/ProductScreen';
-import { collection, increment, getDoc, getDocs } from "firebase/firestore"
-import db, { firebaseConfig, st } from './data/FirestoreData'
-
 import LoadingScreen from './components/LOADING.JSX';
 import Navbar from './components/navbar/Navbar';
 import NavbarMenuMobile from './components/navbar/NavbarMenuMobile';
@@ -17,7 +12,6 @@ import CartScreen from './screens/CartScreen';
 
 const Ap = () => {
   const { setOrientation, AddImages, setWidth, setHeigth, handleDatos, Datos } = useContext(CartContext)
-    const [isLoading, setIsLoading] = useState(true);
     const [OpenMenu, setOpenMenu] = useState(false)  
 
   
@@ -63,9 +57,6 @@ const Ap = () => {
         <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
         <NavbarMenuMobile OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
         {/* <NavbarPC/> */}
-        {isLoading===undefined && (
-          <LoadingScreen/>
-          )}
           
           <Index/>
           <ClassScreen/>

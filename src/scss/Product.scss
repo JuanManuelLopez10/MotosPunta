@@ -79,7 +79,7 @@
         z-index: 4;
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         background-image: linear-gradient(transparent, transparent,transparent, transparent, rgb(68, 68, 68, .8),rgb(68, 68, 68));
         &Next{
@@ -100,7 +100,7 @@
             z-index: 4;
             display: flex;
             flex-direction: column;
-            justify-content: end;
+            justify-content: flex-end;
             align-items: center;
             background-image: linear-gradient(transparent, transparent,transparent, rgb(68, 68, 68));
         
@@ -192,7 +192,7 @@
             z-index: 4;
             display: flex;
             flex-direction: column;
-            justify-content: end;
+            justify-content: flex-end;
             align-items: center;
             background-image: linear-gradient(transparent, transparent,transparent, transparent, rgb(68, 68, 68, .8),rgb(68, 68, 68));
             &Next{
@@ -213,7 +213,7 @@
                 z-index: 4;
                 display: flex;
                 flex-direction: column;
-                justify-content: end;
+                justify-content: flex-end;
                 align-items: center;
                 background-image: linear-gradient(transparent, transparent,transparent, rgb(68, 68, 68));
             
@@ -308,7 +308,7 @@
         margin-block: 5px;
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         background-image: linear-gradient(rgb(236, 236, 236), rgb(118, 118, 118));
         img{
@@ -359,7 +359,7 @@
         margin-block: 5px;
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         background-size: cover;
             p{
