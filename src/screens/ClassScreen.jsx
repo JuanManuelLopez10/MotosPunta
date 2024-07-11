@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
 import ClassFilters from '../components/ClassScreen/ClassFilters';
@@ -9,7 +9,6 @@ const ClassScreen = () => {
   const location = useLocation().pathname.split("/clase/")[1];
   const productId = useLocation().pathname.split('/product/')[1]
   const [ClaseSelected, setClaseSelected] = useState('Naked') 
-  const [ProductClassSelected, setProductClassSelected] = useState('Motos') 
   const ArrayOfMotosTypes = ['Naked', 'Sport', 'Scooter', 'Polleritas', 'Calle', 'Multiprop.', ]
   if (ClaseSelected!==location) {
     setClaseSelected(location)

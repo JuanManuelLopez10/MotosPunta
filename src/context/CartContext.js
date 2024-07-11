@@ -1,7 +1,7 @@
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { createContext, useRef, useState } from "react";
 import db, { firebaseConfig, st } from "../data/FirestoreData";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 export const CartContext = createContext();
 
@@ -168,7 +168,6 @@ const CartContextProvider = ({ children }) => {
  
     const [Datas, setData] = useState([])
     const [Datos, setDatos] = useState([])
-    const [FilteredOptions, setFilteredOptions] = useState(Datos)
 
     const handleDatos = async () => {
         const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
@@ -182,7 +181,7 @@ const CartContextProvider = ({ children }) => {
           const resultado = []
             setData(result.values);
             Datas.map(productto => {
-                if (resultado.findIndex(prod => prod===productto)!=0) {
+                if (resultado.findIndex(prod => prod===productto)!==0) {
                   const Benefits=[]
                   const Benefits1 = {
                     Title:productto[16],
