@@ -6,11 +6,7 @@ import ClasesPCMenu from './ClasesPCMenu'
 const Navbar = (props) => {
     const context = useContext(CartContext)
     const [SelectedOpcion, setSelectedOpcion] = useState(undefined)
-    const HandleOpen= (opcion) => {
-        if (SelectedOpcion===opcion) {
-            
-        }
-    }
+
     if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {
         return (
             <div id='NavbarMobile' className='animate__animated animate__fadeInDown'>

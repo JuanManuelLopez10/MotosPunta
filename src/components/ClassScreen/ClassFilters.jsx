@@ -5,7 +5,6 @@ import ClassFilterPrice from './ClassFiltersPrice'
 
 const ClassFilters = (props) => {
     const context = useContext(CartContext)
-    const [Clase, setClase] = useState(undefined)
     
 
     const arrayBrands = ['Marcas']

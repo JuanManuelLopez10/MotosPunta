@@ -42,7 +42,7 @@ const WallpaperIndex = () => {
   )
 }
 }else{
-  if(productShown!==undefined && context.Screen=='Index'){
+  if(productShown!==undefined && context.Screen==='Index'){
     const texto = `${productShown.product.Cilind} ${productShown.product.Model}`
     const cantidadDeLetras = texto.length
     return(

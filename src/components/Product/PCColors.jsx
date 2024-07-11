@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
-import PCBenefitsCarousel from './PCBenefitsCarousel'
 
 const PCColors = (props) => {
     const context = useContext(CartContext) 

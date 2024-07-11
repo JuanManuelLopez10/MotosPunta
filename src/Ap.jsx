@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom';
 import { CartContext } from './context/CartContext';
 import Index from './screens/Index';
-import LoadingScreen from './components/LOADING.JSX';
 import Navbar from './components/navbar/Navbar';
 import NavbarMenuMobile from './components/navbar/NavbarMenuMobile';
 import ClassScreen from './screens/ClassScreen';

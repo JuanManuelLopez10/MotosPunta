@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 const ClassProducts = (props) => {
     const context = useContext(CartContext)
     const ProductsArray = context.Datos.filter(producto => producto.product.Type===props.Clase)
-    const step = (270 - 0) / (ProductsArray.length - 1);
     
     const maxNumero2 = 240;
   const minNumero2 = 0;

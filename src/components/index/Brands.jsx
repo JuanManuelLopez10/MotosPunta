@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 
 const Brands = () => {
@@ -44,7 +44,7 @@ const Brands = () => {
                     <div id="BrandsRow">
                         {arrayOfMainBrands.map((item, index)=>{
                             return(
-                                <img key={index} className='BrandOption' src={`./assets/logos/${item.Name}.png`} alt="" />
+                                <img key={index} className='BrandOption' src={`./assets/logos/${item.Name}.png`} alt={item.Name} />
                             )
                         })}
                     </div>
