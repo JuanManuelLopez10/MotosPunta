@@ -12,7 +12,22 @@ import CartScreen from './screens/CartScreen';
 const Ap = () => {
   const context = useContext(CartContext)
     const [OpenMenu, setOpenMenu] = useState(false)  
+    useEffect(() => {
 
+      const handleResize = () => {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        context.setHeigth(windowHeight)
+        context.setWidth(windowWidth)
+
+      };
+      handleResize(); // Llama a la función para obtener el tamaño inicial
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
     const handleOrientationChange = () => {
       const orientacion = window.screen.orientation.type;
       context.setOrientation(orientacion);

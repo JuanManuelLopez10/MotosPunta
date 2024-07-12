@@ -12,14 +12,10 @@ const ClassFilters = (props) => {
     context.Datos.map(producto=>{
         if (producto.product.Type===props.Clase) {
             if (arrayBrands.findIndex(Brand => Brand===producto.product.Brand)===-1) {
-                return(
-                    arrayBrands.push(producto.product.Brand)
-                )
+                arrayBrands.push(producto.product.Brand)
             }
             if (arrayCilind.findIndex(Brand => Brand===producto.product.Cilind)===-1) {
-                return(
-                    arrayCilind.push(producto.product.Cilind)
-                )
+                arrayCilind.push(producto.product.Cilind)
             }
 
         }
