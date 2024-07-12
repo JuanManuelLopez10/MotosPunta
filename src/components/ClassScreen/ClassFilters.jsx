@@ -33,7 +33,7 @@ const ClassFilters = (props) => {
                 <ClassFiltersOptions Array={arrayBrands} mainSelect={context.BrandFilters} accion={context.HandleChangeBrand}/>
                 {
                     props.ArrayOfMotosTypes.findIndex(a=>a===props.Clase)!==-1
-                    ?
+                    ? 
                     <ClassFiltersOptions Array={arrayCilind} mainSelect={context.CilindFilters} accion={context.HandleChangeCilind}/>
                     :''
                 }
