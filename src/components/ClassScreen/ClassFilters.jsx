@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 import ClassFiltersOptions from './ClassFiltersOptions'
 import ClassFilterPrice from './ClassFiltersPrice'
@@ -12,10 +12,14 @@ const ClassFilters = (props) => {
     context.Datos.map(producto=>{
         if (producto.product.Type===props.Clase) {
             if (arrayBrands.findIndex(Brand => Brand===producto.product.Brand)===-1) {
-                arrayBrands.push(producto.product.Brand)
+                return(
+                    arrayBrands.push(producto.product.Brand)
+                )
             }
             if (arrayCilind.findIndex(Brand => Brand===producto.product.Cilind)===-1) {
-                arrayCilind.push(producto.product.Cilind)
+                return(
+                    arrayCilind.push(producto.product.Cilind)
+                )
             }
 
         }

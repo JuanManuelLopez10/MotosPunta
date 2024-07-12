@@ -17,7 +17,7 @@
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        align-items: end;
+        align-items: flex-end;
         overflow-x: hidden;
         overflow-y: hidden;
         img{
@@ -26,7 +26,7 @@
         &Text{
             display: flex;
             flex-direction: column;
-            justify-content: end;
+            justify-content: flex-end;
             position: absolute;
             bottom: 0px;
             left: 5%;

@@ -10,38 +10,16 @@ import CartScreen from './screens/CartScreen';
 // import { initClient, handleAuthClick, handleSignoutClick } from './data/Gapi';
 
 const Ap = () => {
-  const { setOrientation, AddImages, setWidth, setHeigth, handleDatos, Datos } = useContext(CartContext)
+  const context = useContext(CartContext)
     const [OpenMenu, setOpenMenu] = useState(false)  
 
-  
-      
-
-    useEffect(() => {
-
-      const handleResize = () => {
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        setHeigth(windowHeight)
-        setWidth(windowWidth)
-
-      };
-  
-      handleResize(); // Llama a la función para obtener el tamaño inicial
-  
-      window.addEventListener('resize', handleResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
     const handleOrientationChange = () => {
       const orientacion = window.screen.orientation.type;
-      setOrientation(orientacion);
+      context.setOrientation(orientacion);
     };
 
     useEffect(()=>{
-      handleDatos()
-      AddImages()
+      context.handleDatos()
       handleOrientationChange();
       window.addEventListener('orientationchange', handleOrientationChange);
       return () => {
@@ -49,7 +27,7 @@ const Ap = () => {
       };
 
     },[])
-    if(Datos.length>0){
+    if(context.Datos.length>0){
       return (
         <BrowserRouter>
         
@@ -80,7 +58,7 @@ const Ap = () => {
       )
     
     }else{
-      handleDatos()
+      context.handleDatos()
     }
 }
 
