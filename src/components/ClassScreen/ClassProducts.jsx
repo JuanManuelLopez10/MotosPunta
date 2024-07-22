@@ -61,13 +61,14 @@ const ClassProducts = (props) => {
             ProductsArray.map((producto, key) => {
               if (producto.product.Type===props.Clase) {
                 if (producto.product.Price>=context.MinPriceFilters && producto.product.Price<=context.MaxPriceFilters) {
+                  console.log(producto);
                   if (context.BrandFilters===undefined && context.CilindFilters===undefined) {
                     return(
                       <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
                         <div className='ImageContainer'>
                         <img src={producto.product.Options[0].Image} alt=""/>
                         </div>
-                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Title}</p>
                         <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
                       </Link>
                     )
@@ -77,7 +78,7 @@ const ClassProducts = (props) => {
                         <div className='ImageContainer'>
                         <img src={producto.product.Options[0].Image} alt=""/>
                         </div>
-                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Title}</p>
                         <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
                       </Link>
                     )
@@ -87,17 +88,18 @@ const ClassProducts = (props) => {
                         <div className='ImageContainer'>
                         <img src={producto.product.Options[0].Image} alt=""/>
                         </div>
-                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Title}</p>
                         <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
                       </Link>
                     )
                   }else if(context.BrandFilters===producto.product.Brand && context.CilindFilters===producto.product.Cilind){
+                    
                     return(
                       <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
                         <div className='ImageContainer'>
                         <img src={producto.product.Options[0].Image} alt=""/>
                         </div>
-                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Brand.toUpperCase()} {producto.product.Model} {producto.product.Cilind}</p>
+                        <p className="PCProductOptionName" style={{fontSize:context.fontPixel*.35}}>{producto.product.Title}</p>
                         <p className="PCProductOptionPrice" style={{fontSize:context.fontPixel*.35}}>{producto.product.Price} USD</p>
                       </Link>
                     )
