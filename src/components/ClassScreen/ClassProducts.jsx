@@ -44,7 +44,7 @@ const ClassProducts = (props) => {
                       }} style={{backgroundColor:`rgb(${producto.numero2+30}, ${producto.numero2+30}, ${producto.numero2+30})`}} key={key} id={producto.id} to={`product/${producto.id}`} className={"ProductCard"}>
                           <div className='ProductoNameDiv' >
                               <p style={{fontSize:context.fontPixel*.5, marginBottom:'-2%'}} >{producto.product.Brand}</p>
-                              <p style={{fontSize:context.fontPixel*1.1}} >{producto.product.Model} {producto.product.Cilind}</p>
+                              <p style={{fontSize:context.fontPixel*1.1}} >{producto.product.Title}</p>
                           </div>
                           <img className={producto.product.Class==='motos' ? 'ProductCardImgMoto' : 'ProductCardImgOtro'} src={producto.product.Options[0].Image} alt="" />
                       </Link>

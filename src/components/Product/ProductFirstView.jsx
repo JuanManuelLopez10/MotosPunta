@@ -18,7 +18,7 @@ const ProductFirstView = (props) => {
                         <p id='ProductScreenBrand2' style={{fontSize:context.fontPixel*6}}>{producto.product.Brand.toUpperCase()}</p>
                         <p id="ProductScreenModel"  style={{fontSize:context.fontPixel*7}}>{producto.product.Model.toUpperCase()}</p>
                         <div id="ProductScreenPrice" style={{fontSize:context.fontPixel*2}} >
-                            <p>{producto.product.Brand} {producto.product.Model} {producto.product.Cilind}</p>
+                            <p>{producto.product.Title}</p>
                             <p>{producto.product.Coin} {producto.product.Price}</p>
                             </div>
                         <div id="ProductScreenGradient">
