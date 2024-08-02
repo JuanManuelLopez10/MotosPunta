@@ -172,7 +172,7 @@ const CartContextProvider = ({ children }) => {
     const handleDatos = async () => {
         const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
         const apiKey = 'AIzaSyABqba1Q5R3aDyMVePc7DcBFzzqGCk04ic'; // Reemplaza con tu clave de API
-        const range = 'Hoja10!A1:AJ208'; // Ajusta el rango según tu hoja de cálculo
+        const range = 'Hoja10!A1:AJ200'; // Ajusta el rango según tu hoja de cálculo
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
   
         try {
@@ -221,7 +221,7 @@ const CartContextProvider = ({ children }) => {
                   Benefits6!==undefined && Benefits.push(Benefits6)
                   const indexDelProducto = resultado.findIndex(pro => pro.id===productto[9])
                   if (Datas.findIndex(p=>p===productto)!==0) {
-                    if (indexDelProducto===-1 && productto[3]!=='') {
+                    if (indexDelProducto===-1) {
                         const producto = {
                           id:productto[9],
                           product:{
