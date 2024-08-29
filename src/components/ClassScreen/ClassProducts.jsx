@@ -60,8 +60,6 @@ const ClassProducts = (props) => {
         {
             ProductsArray.map((producto, key) => {
               if (producto.product.Type===props.Clase) {
-                if (producto.product.Price>=context.MinPriceFilters && producto.product.Price<=context.MaxPriceFilters) {
-                  console.log(producto);
                   if (context.BrandFilters===undefined && context.CilindFilters===undefined) {
                     return(
                       <Link key={key} onClick={()=>{context.setScreen('Product')}} to={`product/${producto.id}`} className='PCProductOption'>
@@ -104,7 +102,6 @@ const ClassProducts = (props) => {
                       </Link>
                     )
                   }
-                }
 
               }
 

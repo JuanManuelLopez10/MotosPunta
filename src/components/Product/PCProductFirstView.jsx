@@ -22,7 +22,7 @@ const PCProductFirstView = (props) => {
               }
             </div> */}
           </div>
-          <p id='PCProductBackTitle' style={{fontSize:context.fontPixel*6}}>{producto.product.Model.toUpperCase()}</p>
+          <p id='PCProductBackTitle' style={{fontSize:context.fontPixel*6}}>{producto.product.Pattern.toUpperCase()}</p>
           <img id='PCProductImage' src={producto.product.Options[props.OptionSelected].Image} alt="" />
           <div id='PCProductFirstViewCaract'>
             <p className="CaractTitle" style={{fontSize:context.fontPixel*.2}}>ESTILO</p>

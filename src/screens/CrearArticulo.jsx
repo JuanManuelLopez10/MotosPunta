@@ -1,207 +1,51 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/CartContext'
 import EditArticulo from '../components/CreateArticle/EditArticulo'
+import { useLocation } from 'react-router-dom'
 
-const CrearArticulo = () => {
-    const context = useContext(CartContext)
-    const ClassOptions = ['motos', 'cascos', 'indumentaria', 'accesorios']
-    const BrandOptions = [
-        {Tipo:'motos', Options: ['Honda', 'TVS', 'CFMoto', 'Lifan', 'Vital', 'Suzuki'],    Types: ['Naked', 'Scooter', 'Sport', 'Polleritas', 'Enduro', 'Calle', 'Multipropósito', 'Cuatri']
-    }, {Tipo:'cascos', Options: ['MT', 'AGV', 'LS2', 'Nenki', 'HJC', 'Hawk', 'X-One'], Types: ['Integrales', 'Rebatibles', 'Custom', 'Cross', 'Multipropósito', 'Jet', 'Trial']}, 
-    {Tipo:'indumentaria', Options: ['Seventy', 'Kore', 'LS2', 'Dainese', 'Hevik', 'IXS', 'AGS'], Types: ['Camperas', 'Botas', 'Pantalones', 'Guantes', 'Equipos de lluvia', 'Antiparras', 'Cuellos']}, 
-    {Tipo:'accesorios', Options: ['Givi', 'Kappa', 'Midland', 'Luma'], Types: ['Baules', 'Maletas laterales', 'Alforjas', 'Mochilas', 'Bolsos de tanque', 'Intercomunicadores', 'Trancas', 'Otros']}]
-    
-    const [BrandSelected, setBrandSelected] = useState('Honda')
-    const [Model, setModel] = useState('')
-    const [Cilind, setCilind] = useState('')
-    const [Price, setPrice] = useState()
-    const [Coin, setCoin] = useState('U$S')
-    const [Type, setType] = useState('')
-    const [Options, setOptions] = useState([])
-    const [Class, setClass] = useState('motos')
-    const [ProvisorColor, setProvisorColor] = useState('')
-    const [ProvisorImage, setProvisorImage] = useState('')
-    const [ProvisorDesign, setProvisorDesign] = useState('')
-    const [ProvisorBenefitTitle, setProvisorBenefitTitle] = useState('')
-    const [ProvisorBenefitDescription, setProvisorBenefitDescription] = useState('')
-    const [ProvisorBenefitImage, setProvisorBenefitImage] = useState('')
-    const [Benefits, setBenefits] = useState([])
-
-    const handleProvisorColor = (event) => {
-        setProvisorColor(event.target.value);
-      };
-      const handleProvisorImage = (event) => {
-        setProvisorImage(event.target.value);
-      };
-      const handleProvisorBenefitTitle = (event) => {
-        setProvisorBenefitTitle(event.target.value);
-      };
-      const handleProvisorBenefitDescription = (event) => {
-        setProvisorBenefitDescription(event.target.value);
-      };
-      const handleProvisorBenefitImage = (event) => {
-        setProvisorBenefitImage(event.target.value);
-      };
-
-      const AddBenefit = () => {
-        const Beneficios = Benefits
-        const benefit = {
-            Title: ProvisorBenefitTitle,
-            Description: ProvisorBenefitDescription,
-            Image: ProvisorBenefitImage
-        }
-        Beneficios.push(benefit)
-        setBenefits(Beneficios)
-        setProvisorBenefitTitle('');
-        setProvisorBenefitDescription('');
-        setProvisorBenefitImage('');
-      }
-      const AddOption = () => {
-        const Opciones = Options
-        const opcion = {
-            Color: ProvisorColor,
-            Image: ProvisorImage,
-            Design: ProvisorDesign
-        }
-        Opciones.push(opcion)
-        setProvisorColor('');
-        setProvisorImage('');
-        setProvisorDesign('');
-        setOptions(Opciones)
-    }
-    const handleClase = (event) => {
-        setClass(event.target.value);
-      };
-      
-      const handleBrand = (event) => {
-        setBrandSelected(event.target.value);
-      };
-      const handleModel = (event) => {
-        setModel(event.target.value);
-      };
-      const handleCilind = (event) => {
-        setCilind(parseInt(event.target.value));
-      };
-      const handleDesign = (event) => {
-        setProvisorDesign(event.target.value);
-      };
-      const handleCoin = (event) => {
-        setCoin(event.target.value)
-        };
-        const handlePrice = (event) => {
-            setPrice(parseInt(event.target.value))
-            };
-
-            const handleType = (event) => {
-                setType(event.target.value);
-              };
-
-
-    const AgregarProducto = () => {
-        const producto = {
-            Brand: BrandSelected,
-            Model:Model,
-            Cilind: Cilind,
-            Price: Price,
-            Coin:Coin,
-            Type: Type,
-            Class: Class,
-            Options: Options,
-            Benefits: Benefits,
-            Opinion:{
-                Number: 0,
-                Count:0
-            }
-        }
-        context.PostProductOnFirestore(producto)
-        setOptions([])
-        setBenefits([])
-    }
+const CreateArticle = () => {
+    const contexto = useContext(CartContext)
+    const location = useLocation().pathname.split("/")[1];
+    console.log(location);
+    const [producto, setproducto] = useState({})
+    if (location==='atr') {
         return(
-            <div style={{marginTop:'50px'}} >
-                <select name="Clase" value={Class} onChange={handleClase} id="Clase">
-                    {
-                        ClassOptions.map(item => <option value={item}>{item}</option>)
-                    }
-                </select>
-                    {
-                        BrandOptions.map(Opciones => {
-                            if (Class===Opciones.Tipo) {
-                                return(
-                                    <select name="Brand" value={BrandSelected} onChange={handleBrand} id="Clase">
-                                        {
-                                            Opciones.Options.map(item => <option value={item}>{item}</option>)
-                                        }
-                                    </select>
-                                )              
-                            }
-                        })
-                    }
-                                            <input type="text" value={Model} onChange={handleModel}  placeholder='Modelo'/>
-                    {
-                        Class==='motos'
-                        ?
-                    <input type="number" value={Cilind} onChange={handleCilind}  placeholder='125'/>
-                        :''
-                    }
-                    {
-                                                Class==='cascos'
-                                                ?
-                                            <input type="text" value={ProvisorDesign} onChange={handleDesign}  placeholder='Diseño'/>
-                                                :''
-                                            }
-                    <select name="Price" value={Coin} onChange={handleCoin} >
-                        <option value="US">U$S</option>
-                        <option value="S">$</option>
-                    </select>
-                    <input type="number" value={Price} onChange={handlePrice}  placeholder='0'/>
-                    {
-                        BrandOptions.map(Opciones => {
-                            if (Class===Opciones.Tipo) {
-                                return(
-                                    <select name="Type" value={Type} onChange={handleType} id="Type">
-                                        {
-                                            Opciones.Types.map(item => <option value={item}>{item}</option>)
-                                        }
-                                    </select>
-                                )              
-                            }
-                        })
-                    }
-                    <input type="text" value={ProvisorColor} onChange={handleProvisorColor} placeholder='Color' />
-                    <input type="text" value={ProvisorImage} onChange={handleProvisorImage} placeholder='Imagen' />
-                    <button onClick={()=>{AddOption()}}>Agregar opción</button>
-                    <input type="text" value={ProvisorBenefitTitle} onChange={handleProvisorBenefitTitle} placeholder='Titulo beneficio' />
-                    <input type="text" value={ProvisorBenefitDescription} onChange={handleProvisorBenefitDescription} placeholder='Descr beneficio' />
-                    <input type="text" value={ProvisorBenefitImage} onChange={handleProvisorBenefitImage} placeholder='Imagen benef' />
-                    <button onClick={()=>{AddBenefit()}} >Agregar beneficio</button>                    
-                    <button onClick={()=>{AgregarProducto()}}>Agregar producto</button>
-                    
-
-                    <div id='ProductosCreateDiv'>
-                    <div id='ProductosCreateDivHeader'>
-                        <p>Marca</p>
-                        <p>Modelo</p>
-                        <p>Cilindrada</p>
-                        <p>Precio</p>
-                        <p>Moneda</p>
-                        <p>Tipo</p>
-                        <p>Clase</p>
-                        
-                    </div>
-                        {
-                            context.Datos.map(producto => {
-                                return(
-                                    <EditArticulo producto={producto}/>
-                                    
-                                )
-                            })
-                        }
-                    </div>
-            </div>
-
+            <div>
+                <h1 style={{marginTop:'10vh', marginBottom:'10vh'}}>Crear Articulo</h1>
+                <input type="text" placeholder='Title' onChange={(e)=>{setproducto({...producto, Title:e.target.value})}}/>
+                <input type="text" placeholder='Description'  onChange={(e)=>{setproducto({...producto, Description:e.target.value})}}/>
+                <input type="text" placeholder='Imagen'  onChange={(e)=>{setproducto({...producto, Image:e.target.value})}}/>
+                <input type="text" placeholder='Price'  onChange={(e)=>{setproducto({...producto, Price:e.target.value})}}/>
+                <input type="text" placeholder='Brand'  onChange={(e)=>{setproducto({...producto, Brand:e.target.value})}}/>
+                <input type="text" placeholder='item_group_id'  onChange={(e)=>{setproducto({...producto, id:e.target.value})}}/>
+                <input type="text" placeholder='color'  onChange={(e)=>{setproducto({...producto, Color:e.target.value})}}/>
+                <input type="text" placeholder='product_type'  onChange={(e)=>{setproducto({...producto, ProductType:e.target.value})}}/>
+                <input type="text" placeholder='Pattern'  onChange={(e)=>{setproducto({...producto, Pattern:e.target.value})}}/>
+                <input type="text" placeholder='Type'  onChange={(e)=>{setproducto({...producto, Type:e.target.value})}}/>
+                <input type="text" placeholder='Model'  onChange={(e)=>{setproducto({...producto, Model:e.target.value})}}/>
+                <input type="text" placeholder='Benefit1-Title'  onChange={(e)=>{setproducto({...producto, Benefit1title:e.target.value})}}/>
+                <input type="text" placeholder='Benefit1-Description'  onChange={(e)=>{setproducto({...producto, Benefit1Description:e.target.value})}}/>
+                <input type="text" placeholder='Benefit1-img' onChange={(e)=>{setproducto({...producto, Benefit1Img:e.target.value})}} />
+                <input type="text" placeholder='Benefit2-Title'  onChange={(e)=>{setproducto({...producto, Benefit2title:e.target.value})}}/>
+                <input type="text" placeholder='Benefit2-Description'  onChange={(e)=>{setproducto({...producto, Benefit2Description:e.target.value})}}/>
+                <input type="text" placeholder='Benefit2-img' onChange={(e)=>{setproducto({...producto, Benefit2Img:e.target.value})}} />
+                <input type="text" placeholder='Benefit3-Title'  onChange={(e)=>{setproducto({...producto, Benefit3title:e.target.value})}}/>
+                <input type="text" placeholder='Benefit3-Description'  onChange={(e)=>{setproducto({...producto, Benefit3Description:e.target.value})}}/>
+                <input type="text" placeholder='Benefit3-img' onChange={(e)=>{setproducto({...producto, Benefit3Img:e.target.value})}} />
+                <input type="text" placeholder='Benefit4-Title'  onChange={(e)=>{setproducto({...producto, Benefit4title:e.target.value})}}/>
+                <input type="text" placeholder='Benefit4-Description'  onChange={(e)=>{setproducto({...producto, Benefit4Description:e.target.value})}}/>
+                <input type="text" placeholder='Benefit4-img' onChange={(e)=>{setproducto({...producto, Benefit4Img:e.target.value})}} />
+                <input type="text" placeholder='Benefit5-Title'  onChange={(e)=>{setproducto({...producto, Benefit5title:e.target.value})}}/>
+                <input type="text" placeholder='Benefit5-Description'  onChange={(e)=>{setproducto({...producto, Benefit5Description:e.target.value})}}/>
+                <input type="text" placeholder='Benefit5-img' onChange={(e)=>{setproducto({...producto, Benefit5Img:e.target.value})}} />
+                <input type="text" placeholder='Wallpaper' onChange={(e)=>{setproducto({...producto, Wallpaper:e.target.value})}} />
+                <input type="text" placeholder='HotProduct' onChange={(e)=>{setproducto({...producto, HotProduct:e.target.value})}} />
+                <button onClick={()=>{contexto.addDato(producto)}} >Agregar producto</button>
+                </div>
         )
     
+    }
 }
+export default CreateArticle
 
-export default CrearArticulo
+

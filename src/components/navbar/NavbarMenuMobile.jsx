@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const NavbarMenuMobile = (props) => {
     const context = useContext(CartContext)
     const [SelectedClass, setSelectedClass] = useState(undefined)
-
+    console.log(context.Datos);
     const arrayTypes = []
     const arrayClases = []
 

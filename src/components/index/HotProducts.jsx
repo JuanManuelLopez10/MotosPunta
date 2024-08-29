@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const HotProducts = () => {
     const context = useContext(CartContext)
     const [SelectedOption, setSelectedOption] = useState(0)
-    const arrayOfHotProducts = context.Datos.filter(producto => producto.product.featured)
+    const arrayOfHotProducts = context.Datos.filter(producto => producto.product.HotProduct==='SI')
     const prearrayOfCategories = arrayOfHotProducts.map(producto => producto.product.Class)
     const arrayOfCategories = prearrayOfCategories.filter((category, index) => prearrayOfCategories.indexOf(category) === index)
     const [ButtonPressed, setButtonPressed] = useState('Next')

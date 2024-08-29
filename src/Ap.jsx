@@ -7,6 +7,7 @@ import NavbarMenuMobile from './components/navbar/NavbarMenuMobile';
 import ClassScreen from './screens/ClassScreen';
 import Product from './screens/Product';
 import CartScreen from './screens/CartScreen';
+import CreateArticle from './screens/CrearArticulo';
 // import { initClient, handleAuthClick, handleSignoutClick } from './data/Gapi';
 
 const Ap = () => {
@@ -35,6 +36,7 @@ const Ap = () => {
 
     useEffect(()=>{
       context.handleDatos()
+      // context.handleDatos2()
       handleOrientationChange();
       window.addEventListener('orientationchange', handleOrientationChange);
       return () => {
@@ -42,18 +44,20 @@ const Ap = () => {
       };
 
     },[])
-    if(context.Datos.length>0){
+    
+    if(context.Datos.length>1){
       return (
         <BrowserRouter>
         
         <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
         <NavbarMenuMobile OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
         {/* <NavbarPC/> */}
-          
+          <CreateArticle/>
           <Index/>
           <ClassScreen/>
           <Product/>
           <CartScreen/>
+          
           {/* <Routes>
           <Route path='/' element={<Index/>}/>
           <Route path='/product/:idProduct' element={<ProductScreen/>}/>

@@ -1,8 +1,8 @@
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { createContext, useRef, useState } from "react";
 import db, { firebaseConfig, st } from "../data/FirestoreData";
-import { addDoc, collection } from "firebase/firestore";
-
+import { addDoc, collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
+import HotProducts from "../components/index/HotProducts";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
@@ -165,104 +165,163 @@ const CartContextProvider = ({ children }) => {
     }
 
     const fontPixel = Width/20
- 
-    const [Datas, setData] = useState([])
+    
     const [Datos, setDatos] = useState([])
+    
+    const handleDatos = () => {
 
-    const handleDatos = async () => {
-        const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
-        const apiKey = 'AIzaSyABqba1Q5R3aDyMVePc7DcBFzzqGCk04ic'; // Reemplaza con tu clave de API
-        const range = 'Hoja10!A1:AJ200'; // Ajusta el rango según tu hoja de cálculo
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+          const productsCollection = collection(db, "products")
+          getDocs(productsCollection).then((snapshot) => {
+            setDatos(snapshot.docs.map((doc) => {
+                const producto = {...doc.data()}
+                return(
+                {id: producto.id, laID:doc.id, product:{...doc.data()}}
+            )}))
+
+        })
+
   
-        try {
-          const response = await fetch(url);
-          const result = await response.json();
-          const resultado = []
-            setData(result.values);
-            Datas.map(productto => {
-                if (resultado.findIndex(prod => prod===productto)!==0) {
-                  const Benefits=[]
-                  const Benefits1 = {
-                    Title:productto[16],
-                    Description:productto[17],
-                    Image:productto[18],
-                  }
-                  Benefits.push(Benefits1)
-                  const Benefits2 = {
-                    Title:productto[19],
-                    Description:productto[20],
-                    Image:productto[21],
-                  }
-                  Benefits.push(Benefits2)
-                  const Benefits3 = {
-                    Title:productto[22],
-                    Description:productto[23],
-                    Image:productto[24],
-                  }
-                  Benefits.push(Benefits3)
-                  const Benefits4 = productto[25]!=='' ?{
-                    Title:productto[25],
-                    Description:productto[26],
-                    Image:productto[27],
-                  }:undefined
-                  Benefits4!==undefined && Benefits.push(Benefits4)
-                  const Benefits5 = productto[28]!=='' ?{
-                    Title:productto[28],
-                    Description:productto[29],
-                    Image:productto[30],
-                  }:undefined
-                  Benefits5!==undefined && Benefits.push(Benefits5)
-                  const Benefits6 = productto[31]!=='' ?{
-                    Title:productto[31],
-                    Description:productto[32],
-                    Image:productto[33],
-                  }:undefined
-                  Benefits6!==undefined && Benefits.push(Benefits6)
-                  const indexDelProducto = resultado.findIndex(pro => pro.id===productto[9])
-                  if (Datas.findIndex(p=>p===productto)!==0) {
-                    if (indexDelProducto===-1) {
-                        const producto = {
-                          id:productto[9],
-                          product:{
-                            Description:productto[4],
-                            Benefits:Benefits,
-                            Brand:productto[7],
-                            Cilind:productto[15],
-                            Class:productto[11],
-                            Model: productto[14],
-                            Title: productto[1],
-                            Price:parseFloat(productto[6].replace(' USD', '')),
-                            Type:productto[13],
-                            Options:[{
-                              Color:productto[10],
-                              Design:productto[12],
-                              Image:productto[3]
-                            }],
-                            featured: productto[35]==='SI'?true:false,
-                            Wallpaper: productto[34]==='SI'?true:false,
-                          }
-                        }
-                        resultado.push(producto)
-                      }else{
-                        resultado[indexDelProducto].product.Options.push({
-                          Color:productto[10],
-                          Design:productto[12],
-                          Image:productto[3]
-                        }) 
-                      }
-                  }
-
-                  setDatos(resultado)
-                }
-              })
-
-
-            }          
-         catch (error) {
-          console.error('Error al obtener los datos de la hoja de cálculo', error);
-        }
       };
+      const addDato = (a) => {
+        const Benefits = []
+        const benefit1 = {Title: a.Benefit1title, Description: a.Benefit1Description, Image:a.Benefit1Img}
+        const benefit2 = {Title: a.Benefit2title, Description: a.Benefit2Description, Image:a.Benefit2Img}
+        const benefit3 = {Title: a.Benefit3title, Description: a.Benefit3Description, Image:a.Benefit3Img}
+        Benefits.push(benefit1, benefit2, benefit3)
+        if (Datos.findIndex(prod => prod.product.id===a.id)===-1) {
+          const producto = {
+            Title: a.Title,
+            Description: a.Description,
+            Price: a.Price,
+            Brand: a.Brand,
+            id: a.id,
+            Class: a.ProductType,
+            Pattern: a.Pattern,
+            Type: a.Type,
+            Benefits:Benefits,
+            Options:[
+              {
+                Color: a.Color,
+                Image: a.Image,
+                Model: a.Model,
+            }
+            ],
+            Wallpaper:a.Wallpaper,
+            HotProduct:a.HotProduct
+          }
+          const ProductsCollection = collection(db, "products")
+        addDoc(ProductsCollection, producto)
+        handleDatos()
+
+        }else{
+          handleDatos()
+
+          const nuevaOpcion = {Model: a.Model, Color: a.Color, Image: a.Image}
+          const productoId = Datos[Datos.findIndex(p => p.product.id===a.id)].id
+          const Opciones = Datos[Datos.findIndex(p => p.product.id===a.id)].product.Options
+          Opciones.push(nuevaOpcion)
+          const producdoc = doc(db, "products", productoId)
+          updateDoc(producdoc, {Options: Opciones})
+          handleDatos()
+
+        }
+      }
+      // const handleDatos2 = async () => {
+      //   const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
+      //   const apiKey = 'AIzaSyABqba1Q5R3aDyMVePc7DcBFzzqGCk04ic'; // Reemplaza con tu clave de API
+      //   const range = 'Hoja10!A51:AJ100'; // Ajusta el rango según tu hoja de cálculo
+      //   const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+      //   const range2 = 'Hoja10!A51:AJ90'
+      //   const url2 = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range2}?key=${apiKey}`;
+
+      //   try {
+      //     const response = await fetch(url);
+      //     const result = await response.json();
+      //     const resultado = []
+      //       setData(result.values);
+      //       Datas.map(productto => {
+      //           if (resultado.findIndex(prod => prod===productto)!==0) {
+      //             const Benefits=[]
+      //             const Benefits1 = {
+      //               Title:productto[16],
+      //               Description:productto[17],
+      //               Image:productto[18],
+      //             }
+      //             Benefits.push(Benefits1)
+      //             const Benefits2 = {
+      //               Title:productto[19],
+      //               Description:productto[20],
+      //               Image:productto[21],
+      //             }
+      //             Benefits.push(Benefits2)
+      //             const Benefits3 = {
+      //               Title:productto[22],
+      //               Description:productto[23],
+      //               Image:productto[24],
+      //             }
+      //             Benefits.push(Benefits3)
+      //             const Benefits4 = productto[25]!=='' ?{
+      //               Title:productto[25],
+      //               Description:productto[26],
+      //               Image:productto[27],
+      //             }:undefined
+      //             Benefits4!==undefined && Benefits.push(Benefits4)
+      //             const Benefits5 = productto[28]!=='' ?{
+      //               Title:productto[28],
+      //               Description:productto[29],
+      //               Image:productto[30],
+      //             }:undefined
+      //             Benefits5!==undefined && Benefits.push(Benefits5)
+      //             const Benefits6 = productto[31]!=='' ?{
+      //               Title:productto[31],
+      //               Description:productto[32],
+      //               Image:productto[33],
+      //             }:undefined
+      //             Benefits6!==undefined && Benefits.push(Benefits6)
+      //             const indexDelProducto = resultado.findIndex(pro => pro.id===productto[9])
+      //             if (Datas.findIndex(p=>p===productto)!==0) {
+      //               if (indexDelProducto===-1) {
+      //                   const producto = {
+      //                     id:productto[9],
+      //                     product:{
+      //                       Description:productto[4],
+      //                       Benefits:Benefits,
+      //                       Brand:productto[7],
+      //                       Cilind:productto[15],
+      //                       Class:productto[11],
+      //                       Model: productto[14],
+      //                       Title: productto[1],
+      //                       Price:parseFloat(productto[6].replace(' USD', '')),
+      //                       Type:productto[13],
+      //                       Options:[{
+      //                         Color:productto[10],
+      //                         Design:productto[12],
+      //                         Image:productto[3]
+      //                       }],
+      //                       featured: productto[35]==='SI'?true:false,
+      //                       Wallpaper: productto[34]==='SI'?true:false,
+      //                     }
+      //                   }
+      //                   resultado.push(producto)
+      //                 }else{
+      //                   resultado[indexDelProducto].product.Options.push({
+      //                     Color:productto[10],
+      //                     Design:productto[12],
+      //                     Image:productto[3]
+      //                   }) 
+      //                 }
+      //             }
+
+      //             setDatos(resultado)
+      //           }
+      //         })
+
+      //       }          
+      //    catch (error) {
+      //     console.error('Error al obtener los datos de la hoja de cálculo', error);
+      //   }
+  
+      // };
     const [BrandFilters, setBrandFilters] = useState(undefined)
     const HandleChangeBrand = (a) =>{
       setBrandFilters(a)
@@ -284,7 +343,7 @@ const CartContextProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ MinPriceFilters, filterPrice, MaxPriceFilters, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind,CartTotal, setDatos, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
+        <CartContext.Provider value={{addDato, MinPriceFilters, filterPrice, MaxPriceFilters, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind,CartTotal, setDatos, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
             {children}
         </CartContext.Provider>
     )
