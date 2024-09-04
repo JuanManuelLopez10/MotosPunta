@@ -17,6 +17,7 @@ const Index = () => {
   context.setScreen('Product')
   context.setSection('FirstView')
 }  
+if (context.loaded===true) {
   return (
     <>
     <div id='Index'>
@@ -32,6 +33,8 @@ const Index = () => {
 
     </>
     )
+
+}
 
 }
 

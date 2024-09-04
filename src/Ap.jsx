@@ -36,7 +36,6 @@ const Ap = () => {
 
     useEffect(()=>{
       context.handleDatos()
-      // context.handleDatos2()
       handleOrientationChange();
       window.addEventListener('orientationchange', handleOrientationChange);
       return () => {

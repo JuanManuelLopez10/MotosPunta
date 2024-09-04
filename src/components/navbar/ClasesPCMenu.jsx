@@ -6,9 +6,12 @@ const ClasesPCMenu = (props) => {
     const context = useContext(CartContext)
     const ArrayOfOptions = []
     context.Datos.map(producto => {
-        if (producto.product.Class===props.SelectedOpcion && ArrayOfOptions.find(opcion => opcion===producto.product.Type)===undefined) {
-            ArrayOfOptions.push(producto.product.Type)
+        if (producto.product) {
+            if (producto.product.Class===props.SelectedOpcion && ArrayOfOptions.find(opcion => opcion===producto.product.Type)===undefined) {
+                ArrayOfOptions.push(producto.product.Type)
+            }
         }
+
     })
     return (
     <div id='ClasesPCMenu' >

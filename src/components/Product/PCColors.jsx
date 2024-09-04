@@ -13,7 +13,10 @@ const PCColors = (props) => {
                     {
                         producto.product.Options.map((item, index)=>{
                             return (
+                                <>
                                 <img key={index} style={{width:producto.product.Class==='motos'?'40vw':'25vw'}} src={item.Image}  alt="" />
+                                <p>{item.Model} {item.Color}</p>
+                                </>
                             )
                         })
                     }

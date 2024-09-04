@@ -8,12 +8,18 @@ const WallpaperIndex = () => {
     
     const [productShown, setproductShown] = useState(undefined)
     context.Datos.map(product => {
-      if (product.product.Wallpaper==='SI') {
-        arrayOfProductsForWallpaper.push(product)
-        if (productShown===undefined) {
-          setproductShown(product)
+      const producto = product.product
+      if (producto) {
+        if (producto.Wallpaper==='SI') {
+
           
+          arrayOfProductsForWallpaper.push(product)
+          if (productShown===undefined) {
+            setproductShown(product)
+            
+          }  
         }
+
       }
     })
     if (context.Orientation==='portrait-primary' || context.Orientation==='portrait-secondary') {

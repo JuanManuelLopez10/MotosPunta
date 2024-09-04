@@ -4,7 +4,16 @@ import { Link } from 'react-router-dom'
 
 const ClassProducts = (props) => {
     const context = useContext(CartContext)
-    const ProductsArray = context.Datos.filter(producto => producto.product.Type===props.Clase)
+    
+    const ProductsArray = []
+    context.Datos.map(producto => {
+      if (producto.product) {
+        if (producto.product.Type===props.Clase) {
+          ProductsArray.push(producto)
+        }
+      }
+    })
+    // context.Datos.filter(producto => producto.product.Type===props.Clase)
     
     const maxNumero2 = 240;
   const minNumero2 = 0;

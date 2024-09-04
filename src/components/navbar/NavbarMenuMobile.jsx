@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const NavbarMenuMobile = (props) => {
     const context = useContext(CartContext)
     const [SelectedClass, setSelectedClass] = useState(undefined)
-    console.log(context.Datos);
+
     const arrayTypes = []
     const arrayClases = []
 
@@ -17,7 +17,7 @@ const NavbarMenuMobile = (props) => {
     if (context.Datos.length > 0) {
         context.Datos.map((product) => {
             const producto = product.product
-            if(producto.Class){
+            if(producto){
             if(arrayTypes.findIndex(Class => Class.nombre === producto.Type)===-1){
                 const objeto = {
                     nombre: producto.Type,

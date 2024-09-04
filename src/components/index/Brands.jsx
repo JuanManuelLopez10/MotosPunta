@@ -7,14 +7,17 @@ const Brands = () => {
     const [SelectedOption, setSelectedOption] = useState(undefined)
     const [Brands, setBrands] = useState([])
         context.Datos.map(item=>{
-            const indexOfBrand = Brands.findIndex(marca => marca.Brand===item.product.Brand)
-            if(indexOfBrand===-1){
-                Brands.push({Brand:item.product.Brand, Categories:[item.product.Class]})
-                setBrands(Brands)
-            }else if(indexOfBrand!==-1 && Brands[indexOfBrand].Categories.findIndex(categoria => categoria===item.product.Class)){
-                Brands[indexOfBrand].Categories.push(item.product.Class)
-                setBrands(Brands)
+            if (item.product) {
+                const indexOfBrand = Brands.findIndex(marca => marca.Brand===item.product.Brand)
+                if(indexOfBrand===-1){
+                    Brands.push({Brand:item.product.Brand, Categories:[item.product.Class]})
+                    setBrands(Brands)
+                }else if(indexOfBrand!==-1 && Brands[indexOfBrand].Categories.findIndex(categoria => categoria===item.product.Class)){
+                    Brands[indexOfBrand].Categories.push(item.product.Class)
+                    setBrands(Brands)
+                }
             }
+
         })
 
     const ArrayOfOptions = ['motos', 'cascos', 'indumentaria', 'accesorios']

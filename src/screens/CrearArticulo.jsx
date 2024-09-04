@@ -6,9 +6,14 @@ import { useLocation } from 'react-router-dom'
 const CreateArticle = () => {
     const contexto = useContext(CartContext)
     const location = useLocation().pathname.split("/")[1];
-    console.log(location);
+    useEffect(()=>{
+        if (location==='atr') {
+            contexto.setScreen('CrearProducto')
+            
+        }
+    })
     const [producto, setproducto] = useState({})
-    if (location==='atr') {
+    if (contexto.Screen==='CrearProducto') {
         return(
             <div>
                 <h1 style={{marginTop:'10vh', marginBottom:'10vh'}}>Crear Articulo</h1>

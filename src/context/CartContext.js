@@ -1,7 +1,7 @@
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { createContext, useRef, useState } from "react";
 import db, { firebaseConfig, st } from "../data/FirestoreData";
-import { addDoc, collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import HotProducts from "../components/index/HotProducts";
 export const CartContext = createContext();
 
@@ -167,52 +167,108 @@ const CartContextProvider = ({ children }) => {
     const fontPixel = Width/20
     
     const [Datos, setDatos] = useState([])
-    
-    const handleDatos = () => {
+    const [loaded, setLoaded] = useState(false)
+    // const handleDatos = () => {
+    //         const updateAndRemove = () => {
+    //             const MotosCollection = collection(db, "Cascos")
+    //             getDocs(MotosCollection).then((snapshot) => {
+    //             const datos = snapshot.docs.map((doc) => ({id:doc.id, producto: doc.data()}))            
 
-          const productsCollection = collection(db, "products")
-          getDocs(productsCollection).then((snapshot) => {
-            setDatos(snapshot.docs.map((doc) => {
-                const producto = {...doc.data()}
-                return(
-                {id: producto.id, laID:doc.id, product:{...doc.data()}}
-            )}))
-
-        })
+    //             const uniqueArray = []
+    //             datos.map(pro => {
+    //                 if (uniqueArray.findIndex(d=>d.producto.Title===pro.producto.Title)===-1) {
+    //                     uniqueArray.push(pro)
+    //                 }
+    //             })
+    //             const eliminados = []
+    //             console.log(uniqueArray);
+                
+    //             datos.map(p => {
+    //                 if (uniqueArray.findIndex(a=>a===p) === -1) {
+    //                     eliminados.push(p)
+    //                     }
+    //             })
+    //             eliminados.map(p => {
+    //                 console.log(p);
+    //                 deleteDoc(doc(db, "Cascos", p.id))
+    //                 })
+    //         })}
+    //         updateAndRemove()
+    //       const MotosCollection = collection(db, "Cascos")
+    //       getDocs(MotosCollection).then((snapshot) => {
+    //         const datos = snapshot.docs.map((doc) => (doc.data()))            
+    //         setDatos(datos)
+    //         setLoaded(true)
+    //     })
 
   
-      };
+    //   };
+
+      const handleDatos = () => {
+        const DAATos = []
+        const MotosCollection = collection(db, "Motos")
+        const CascosCollection = collection(db, "Cascos")
+        getDocs(MotosCollection).then((snapshot) => {
+          const datos = snapshot.docs.map((doc) => (doc.data())) 
+          datos.map((doc) => {
+            DAATos.push(doc)
+        })
+      })
+      
+      getDocs(CascosCollection).then((snapshot) => {
+          const datos = snapshot.docs.map((doc) => (doc.data())) 
+          datos.map((doc) => {
+            DAATos.push(doc)
+            
+      })
+    setDatos(DAATos)
+      setLoaded(true)
+    }
+    )
+}
       const addDato = (a) => {
         const Benefits = []
         const benefit1 = {Title: a.Benefit1title, Description: a.Benefit1Description, Image:a.Benefit1Img}
         const benefit2 = {Title: a.Benefit2title, Description: a.Benefit2Description, Image:a.Benefit2Img}
         const benefit3 = {Title: a.Benefit3title, Description: a.Benefit3Description, Image:a.Benefit3Img}
         Benefits.push(benefit1, benefit2, benefit3)
-        if (Datos.findIndex(prod => prod.product.id===a.id)===-1) {
+        if (Datos.findIndex(prod => prod.product===a)===-1) {
           const producto = {
-            Title: a.Title,
-            Description: a.Description,
-            Price: a.Price,
-            Brand: a.Brand,
-            id: a.id,
-            Class: a.ProductType,
-            Pattern: a.Pattern,
-            Type: a.Type,
-            Benefits:Benefits,
-            Options:[
-              {
-                Color: a.Color,
-                Image: a.Image,
-                Model: a.Model,
+            id:a.id,
+            product:{
+                Title: a.Title,
+                Description: a.Description,
+                Price: a.Price,
+                Brand: a.Brand,
+                id: a.id,
+                Class: a.ProductType,
+                Pattern: a.Pattern,
+                Type: a.Type,
+                Benefits:Benefits,
+                Options:[
+                  {
+                    Color: a.Color,
+                    Image: a.Image,
+                    Model: a.Model,
+                }
+                ],
+                Wallpaper:a.Wallpaper,
+                HotProduct:a.HotProduct
             }
-            ],
-            Wallpaper:a.Wallpaper,
-            HotProduct:a.HotProduct
           }
-          const ProductsCollection = collection(db, "products")
-        addDoc(ProductsCollection, producto)
-        handleDatos()
-
+          const MotosCollection = collection(db, "Motos")
+          const IndumCollection = collection(db, "Indumentaria")
+          const CascosCollection = collection(db, "Cascos")        
+          if (a.ProductType==='cascos') {
+          addDoc(CascosCollection, producto)
+          }else if (a.ProductType==='motos') {
+            addDoc(MotosCollection, producto)
+        }else if (a.ProductType==='indumentaria') {
+          addDoc(IndumCollection, producto)
+        }
+        const datos = Datos
+        datos.push(producto)
+        setDatos(datos)
         }else{
           handleDatos()
 
@@ -220,9 +276,13 @@ const CartContextProvider = ({ children }) => {
           const productoId = Datos[Datos.findIndex(p => p.product.id===a.id)].id
           const Opciones = Datos[Datos.findIndex(p => p.product.id===a.id)].product.Options
           Opciones.push(nuevaOpcion)
-          const producdoc = doc(db, "products", productoId)
-          updateDoc(producdoc, {Options: Opciones})
-          handleDatos()
+          if (a.ProductType==='motos') {
+            const producdoc = doc(db, "Motos", productoId)
+            updateDoc(producdoc, {Options: Opciones})
+            }else if (a.ProductType==='cascos') {
+                const producdoc = doc(db, "Cascos", productoId)
+                updateDoc(producdoc, {Options: Opciones})
+          }
 
         }
       }
@@ -343,7 +403,7 @@ const CartContextProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{addDato, MinPriceFilters, filterPrice, MaxPriceFilters, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind,CartTotal, setDatos, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
+        <CartContext.Provider value={{loaded, addDato, MinPriceFilters, filterPrice, MaxPriceFilters, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind,CartTotal, setDatos, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
             {children}
         </CartContext.Provider>
     )
