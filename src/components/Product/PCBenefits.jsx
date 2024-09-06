@@ -7,10 +7,12 @@ const PCBenefits = (props) => {
     const producto = context.Datos.find(prod => prod.id===props.producto)
 
     if (producto) {
+        if (producto.product) {     
         return (
             <PCBenefitsCarousel items={producto.product.Benefits} />
           )
-    
+       
+        }
     }
     
 

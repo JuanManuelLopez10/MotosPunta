@@ -8,7 +8,7 @@ const ProductFirstView = (props) => {
         context.setSection('ProductViewMore')
         context.setPresection('FirstView')
     }
-        if (producto!==undefined) {
+        if (producto.product!==undefined) {
             if(context.Screen==='Product' || context.Screen==='Clase'){
                 return (
                     <div id="ProductScreen">
@@ -28,6 +28,8 @@ const ProductFirstView = (props) => {
                     </div>
               )      
             }else{
+                console.log(producto);
+                
                 return (
                     <div id="ProductScreenClosed">
                         <img id={producto.product.Class==='motos' ? 'ProductScreenIMGMoto' : 'ProductScreenIMGOtros'} src={producto.product.Options[producto.product.Options.length>props.OptionSelected ? props.OptionSelected : 0].Image} alt="" />
