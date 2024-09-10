@@ -2,15 +2,12 @@ import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { createContext, useRef, useState } from "react";
 import db, { firebaseConfig, st } from "../data/FirestoreData";
 import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
-import HotProducts from "../components/index/HotProducts";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
     const [ImageStorage, setImageStorage] = useState([])
     const [Width, setWidth] = useState(1)
     const [Heigth, setHeigth] = useState(1)
-    const [Cart, setCart] = useState([])
-    const [TotalQuantity, setTotalQuantity] = useState(0)
     const [Orientation, setOrientation] = useState('Landscape')
     const [Section, setSection] = useState('Wallpaper')
     const [Presection, setPresection] = useState(undefined)
@@ -19,7 +16,6 @@ const CartContextProvider = ({ children }) => {
     const [MenuSelectedClass, setMenuSelectedClass] = useState(undefined)
     const startY = useRef(null);
     const [ProductShown, setProductShown] = useState(undefined)
-    const [CartTotal, setCartTotal] = useState(0)
     const handleTouchStart = (event) => {
       startY.current = event.touches[0].clientY;
     };
@@ -51,99 +47,14 @@ const CartContextProvider = ({ children }) => {
         setScreen(next)
         setPresection(undefined)
         setSection('Wallpaper')
-    }
+    }    
 
-    const PostProductOnFirestore = async (product) => {
-            const productsCollection = collection(db, 'products');
-            try {
-        const docRef = await addDoc(productsCollection, product);
-    } catch (error) {
-        console.error('Error al agregar el producto:', error);
-    }
 
-            }
-      
-    
-    const AddImages = async () => {
-        const bucketRef = ref(st, firebaseConfig.storageBucket);
-        const imageList = [];
-        listAll(bucketRef)
-            .then((res) => {
-                res.items.forEach((itemRef) => {
-                    getMetadata(itemRef)
-                        .then((metadata) => {
-                            const title = metadata.name;
-                            getDownloadURL(itemRef)
-                                .then((url) => {
-                                    imageList.push({ title, url });
-                                    const arr = ImageStorage
-                                    arr.push({ title, url })
-                                    setImageStorage(arr)
 
-                                })
-                        })
-                        .catch((error) => {
-                            console.error("Error getting metadata:", error);
-                        });
-                });
-            })
-
-    }
-
-    const AddToCart= (productId) => {
-        const carrito = Cart
-        setCartTotal(CartTotal + productId.Price)
-        if(carrito.findIndex(producto => producto.productId===productId.productId)>-1 && carrito.findIndex(producto => producto.Option===productId.Option)>-1){
-            const indexDelProducto = carrito.findIndex(producto => producto.productId===productId.productId && producto.Option===productId.Option)
-            const producto = carrito[indexDelProducto]
-            producto.cantidad = producto.cantidad + 1
-            setCart(carrito)
-        }else{
-            const producto = productId
-            producto.cantidad=1
-            carrito.push(producto)
-            setCart(carrito)
-            setTotalQuantity(TotalQuantity + 1)
-
-        }
-    }
-    const RemoveFromCart = (productId) => {
-        const carrito = Cart
-        const indexDelProducto = carrito.findIndex(producto => producto.productId===productId.productId && producto.Option===productId.Option)
-        setCartTotal(CartTotal-carrito[indexDelProducto].Price*carrito[indexDelProducto].cantidad)
-        carrito.splice(indexDelProducto, 1)
-        setCart(carrito)
-        setTotalQuantity(TotalQuantity-1)
-    }
-    const handleQuantity = (productId, evento) => {
-        const carrito = Cart
-        const producto = Cart.findIndex(producto => producto.productId === productId)
-        if(evento==='Plus'){
-            carrito[producto].cantidad += 1
-            setCartTotal(CartTotal + carrito[producto].Price)
-        }else if(evento==='Minus'){
-            if(carrito[producto].cantidad===1){
-                setCartTotal(CartTotal - carrito[producto].Price)
-
-                carrito.splice(producto, 1)
-
-                setTotalQuantity(TotalQuantity - 1)
-            }else{
-                setCartTotal(CartTotal - carrito[producto].Price)
-                carrito[producto].cantidad -= 1
-            }
-        }
-        setCart(carrito)
-    }
 
     const [OpenMenu, setOperMenu] = useState(false)
     const handleOpenMenu = () => {
-        if (OpenMenu === false) {
-            setOperMenu(true)
-        } else {
-            setOperMenu(false)
-        }
-
+      setOperMenu(!OpenMenu)
     }
 
     const [currentScreen, setCurrentScreen] = useState('Inicio')
@@ -155,8 +66,13 @@ const CartContextProvider = ({ children }) => {
     }
 
     const [SelectedCategory, setSelectedCategory] = useState()
+    const [SelectedClass, setselectedClass] = useState(null)
     const changeCategory = (category) => {
-        setSelectedCategory(category)
+        setSelectedCategory(category.tipo)
+        setselectedClass(category.clase)
+    }
+    const changeClase = (a) => {
+      setselectedClass(a)
     }
 
     const [SelectedMoto, setSelectedMoto] = useState({})
@@ -168,72 +84,14 @@ const CartContextProvider = ({ children }) => {
     
     const [Datos, setDatos] = useState([])
     const [loaded, setLoaded] = useState(false)
-    // const handleDatos = () => {
-    //         const updateAndRemove = () => {
-    //             const MotosCollection = collection(db, "Cascos")
-    //             getDocs(MotosCollection).then((snapshot) => {
-    //             const datos = snapshot.docs.map((doc) => ({id:doc.id, producto: doc.data()}))            
 
-    //             const uniqueArray = []
-    //             datos.map(pro => {
-    //                 if (uniqueArray.findIndex(d=>d.producto.Title===pro.producto.Title)===-1) {
-    //                     uniqueArray.push(pro)
-    //                 }
-    //             })
-    //             const eliminados = []
-    //             console.log(uniqueArray);
-                
-    //             datos.map(p => {
-    //                 if (uniqueArray.findIndex(a=>a===p) === -1) {
-    //                     eliminados.push(p)
-    //                     }
-    //             })
-    //             eliminados.map(p => {
-    //                 console.log(p);
-    //                 deleteDoc(doc(db, "Cascos", p.id))
-    //                 })
-    //         })}
-    //         updateAndRemove()
-    //       const MotosCollection = collection(db, "Cascos")
-    //       getDocs(MotosCollection).then((snapshot) => {
-    //         const datos = snapshot.docs.map((doc) => (doc.data()))            
-    //         setDatos(datos)
-    //         setLoaded(true)
-    //     })
-
-  
-    //   };
-
-      const handleDatos = () => {
-        const DAATos = []
-        const MotosCollection = collection(db, "Motos")
-        const CascosCollection = collection(db, "Cascos")
-        getDocs(MotosCollection).then((snapshot) => {
-          const datos = snapshot.docs.map((doc) => (doc.data())) 
-          datos.map((doc) => {
-            DAATos.push(doc)
-        })
-      })
+    
+    const addDato = (a) => {
+      const Benefits = [{Title: a.Benefit1title, Description: a.Benefit1Description, Image:a.Benefit1Img},{Title: a.Benefit2title, Description: a.Benefit2Description, Image:a.Benefit2Img},{Title: a.Benefit3title, Description: a.Benefit3Description, Image:a.Benefit3Img}]
       
-      getDocs(CascosCollection).then((snapshot) => {
-          const datos = snapshot.docs.map((doc) => (doc.data())) 
-          datos.map((doc) => {
-            DAATos.push(doc)
-            
-      })
-    setDatos(DAATos)
-      setLoaded(true)
-    }
-    )
-}
-      const addDato = (a) => {
-        const Benefits = []
-        const benefit1 = {Title: a.Benefit1title, Description: a.Benefit1Description, Image:a.Benefit1Img}
-        const benefit2 = {Title: a.Benefit2title, Description: a.Benefit2Description, Image:a.Benefit2Img}
-        const benefit3 = {Title: a.Benefit3title, Description: a.Benefit3Description, Image:a.Benefit3Img}
-        Benefits.push(benefit1, benefit2, benefit3)
-        if (Datos.findIndex(prod => prod.product===a)===-1) {
-          const producto = {
+      setDatos((prevDatos) => {
+        if (prevDatos.findIndex(prod => prod.product === a) === -1) {
+          const newProduct = {
             id:a.id,
             product:{
                 Title: a.Title,
@@ -254,134 +112,16 @@ const CartContextProvider = ({ children }) => {
                 ],
                 Wallpaper:a.Wallpaper,
                 HotProduct:a.HotProduct
-            }
-          }
-          const MotosCollection = collection(db, "Motos")
-          const IndumCollection = collection(db, "Indumentaria")
-          const CascosCollection = collection(db, "Cascos")        
-          if (a.ProductType==='cascos') {
-          addDoc(CascosCollection, producto)
-          }else if (a.ProductType==='motos') {
-            addDoc(MotosCollection, producto)
-        }else if (a.ProductType==='indumentaria') {
-          addDoc(IndumCollection, producto)
+              }
+          };
+          return [...prevDatos, newProduct];
+        } else {
+          // handleDatos(); // Si el producto ya existe, actualiza datos
+          return prevDatos;
         }
-        const datos = Datos
-        datos.push(producto)
-        setDatos(datos)
-        }else{
-          handleDatos()
+      });
+    };
 
-          const nuevaOpcion = {Model: a.Model, Color: a.Color, Image: a.Image}
-          const productoId = Datos[Datos.findIndex(p => p.product.id===a.id)].id
-          const Opciones = Datos[Datos.findIndex(p => p.product.id===a.id)].product.Options
-          Opciones.push(nuevaOpcion)
-          if (a.ProductType==='motos') {
-            const producdoc = doc(db, "Motos", productoId)
-            updateDoc(producdoc, {Options: Opciones})
-            }else if (a.ProductType==='cascos') {
-                const producdoc = doc(db, "Cascos", productoId)
-                updateDoc(producdoc, {Options: Opciones})
-          }
-
-        }
-      }
-      // const handleDatos2 = async () => {
-      //   const sheetId = '1onet03eLoYXNx-2cYOjbFG-SHiDy4J54eX_CcQZyy-c'; // Reemplaza con tu ID de hoja de cálculo
-      //   const apiKey = 'AIzaSyABqba1Q5R3aDyMVePc7DcBFzzqGCk04ic'; // Reemplaza con tu clave de API
-      //   const range = 'Hoja10!A51:AJ100'; // Ajusta el rango según tu hoja de cálculo
-      //   const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-      //   const range2 = 'Hoja10!A51:AJ90'
-      //   const url2 = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range2}?key=${apiKey}`;
-
-      //   try {
-      //     const response = await fetch(url);
-      //     const result = await response.json();
-      //     const resultado = []
-      //       setData(result.values);
-      //       Datas.map(productto => {
-      //           if (resultado.findIndex(prod => prod===productto)!==0) {
-      //             const Benefits=[]
-      //             const Benefits1 = {
-      //               Title:productto[16],
-      //               Description:productto[17],
-      //               Image:productto[18],
-      //             }
-      //             Benefits.push(Benefits1)
-      //             const Benefits2 = {
-      //               Title:productto[19],
-      //               Description:productto[20],
-      //               Image:productto[21],
-      //             }
-      //             Benefits.push(Benefits2)
-      //             const Benefits3 = {
-      //               Title:productto[22],
-      //               Description:productto[23],
-      //               Image:productto[24],
-      //             }
-      //             Benefits.push(Benefits3)
-      //             const Benefits4 = productto[25]!=='' ?{
-      //               Title:productto[25],
-      //               Description:productto[26],
-      //               Image:productto[27],
-      //             }:undefined
-      //             Benefits4!==undefined && Benefits.push(Benefits4)
-      //             const Benefits5 = productto[28]!=='' ?{
-      //               Title:productto[28],
-      //               Description:productto[29],
-      //               Image:productto[30],
-      //             }:undefined
-      //             Benefits5!==undefined && Benefits.push(Benefits5)
-      //             const Benefits6 = productto[31]!=='' ?{
-      //               Title:productto[31],
-      //               Description:productto[32],
-      //               Image:productto[33],
-      //             }:undefined
-      //             Benefits6!==undefined && Benefits.push(Benefits6)
-      //             const indexDelProducto = resultado.findIndex(pro => pro.id===productto[9])
-      //             if (Datas.findIndex(p=>p===productto)!==0) {
-      //               if (indexDelProducto===-1) {
-      //                   const producto = {
-      //                     id:productto[9],
-      //                     product:{
-      //                       Description:productto[4],
-      //                       Benefits:Benefits,
-      //                       Brand:productto[7],
-      //                       Cilind:productto[15],
-      //                       Class:productto[11],
-      //                       Model: productto[14],
-      //                       Title: productto[1],
-      //                       Price:parseFloat(productto[6].replace(' USD', '')),
-      //                       Type:productto[13],
-      //                       Options:[{
-      //                         Color:productto[10],
-      //                         Design:productto[12],
-      //                         Image:productto[3]
-      //                       }],
-      //                       featured: productto[35]==='SI'?true:false,
-      //                       Wallpaper: productto[34]==='SI'?true:false,
-      //                     }
-      //                   }
-      //                   resultado.push(producto)
-      //                 }else{
-      //                   resultado[indexDelProducto].product.Options.push({
-      //                     Color:productto[10],
-      //                     Design:productto[12],
-      //                     Image:productto[3]
-      //                   }) 
-      //                 }
-      //             }
-
-      //             setDatos(resultado)
-      //           }
-      //         })
-
-      //       }          
-      //    catch (error) {
-      //     console.error('Error al obtener los datos de la hoja de cálculo', error);
-      //   }
-  
-      // };
     const [BrandFilters, setBrandFilters] = useState(undefined)
     const HandleChangeBrand = (a) =>{
       setBrandFilters(a)
@@ -390,20 +130,41 @@ const CartContextProvider = ({ children }) => {
     const HandleChangeCilind = (a) =>{
       setCilindFilters(a)
     }
-    const [MaxPriceFilters, setMaxPrice] = useState(1000000)
-    const [MinPriceFilters, setMinPrice] = useState(0)
-    const filterPrice = (a, b) =>{
-      setMaxPrice(a)
-      setMinPrice(b)
-    }
-    const [Ofertas, setOfertas] = useState([])
+    const [Clases, setClases] = useState(null)
+    const GetClases = async () => {
+      const MotosCollection = collection(db, "Motos");
+      const CascosCollection = collection(db, "Cascos");
+      const IndumCollection = collection(db, "Indumentaria");
 
-    const handleOfertas = (datos) => {
-        setOfertas(datos)
+      const motosSnapshot = await getDocs(MotosCollection);
+      const clasess = motosSnapshot.docs.map((doc)=> doc.data().product).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
+      const clasesMotos = clasess.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.tipo === value.tipo && t.clase === value.clase
+        ))
+      ) 
+      const cascosSnapshot = await getDocs(CascosCollection);
+      const cascosclasess = cascosSnapshot.docs.map((doc)=> doc.data().product).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
+      const cascosclases = cascosclasess.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.tipo === value.tipo && t.clase === value.clase
+        ))
+      )      
+      const indumSnapshot = await getDocs(IndumCollection);
+      const indumclasess = indumSnapshot.docs.map((doc)=> doc.data().product).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
+      const indumclases = indumclasess.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.tipo === value.tipo && t.clase === value.clase
+        ))
+      )
+      const Clases = [...indumclases, ...cascosclases, ...clasesMotos]
+      console.log(Clases);
+      setClases(Clases);
     }
+
 
     return (
-        <CartContext.Provider value={{loaded, addDato, MinPriceFilters, filterPrice, MaxPriceFilters, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind,CartTotal, setDatos, RemoveFromCart, TotalQuantity, handleQuantity, AddToCart, Cart, setCart, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, PostProductOnFirestore, Orientation, setOrientation, ImageStorage, AddImages, setImageStorage, SelectedCategory, changeCategory, Ofertas, handleOfertas, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, handleDatos, OpenMenu, handleOpenMenu }}>
+        <CartContext.Provider value={{SelectedClass, loaded, Clases, addDato, setselectedClass, GetClases, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind, setDatos, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, Orientation, setOrientation, ImageStorage, setImageStorage, SelectedCategory, changeCategory, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, OpenMenu, handleOpenMenu }}>
             {children}
         </CartContext.Provider>
     )

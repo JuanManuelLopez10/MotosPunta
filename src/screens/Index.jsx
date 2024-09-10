@@ -17,7 +17,6 @@ const Index = () => {
   context.setScreen('Product')
   context.setSection('FirstView')
 }  
-if (context.loaded===true) {
   return (
     <>
     <div id='Index'>
@@ -25,8 +24,6 @@ if (context.loaded===true) {
     <WhiteBack/>
     <HotProducts/>  
     <Brands/>
-      {/* <IndexWallpaperPC/>
-      <IndexHotProducts/> */}
 
     </div>
     
@@ -34,7 +31,6 @@ if (context.loaded===true) {
     </>
     )
 
-}
 
 }
 

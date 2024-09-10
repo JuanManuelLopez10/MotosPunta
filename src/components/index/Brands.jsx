@@ -17,7 +17,6 @@ const Brands = () => {
                     setBrands(Brands)
                 }
             }
-
         })
 
     const ArrayOfOptions = ['motos', 'cascos', 'indumentaria', 'accesorios']

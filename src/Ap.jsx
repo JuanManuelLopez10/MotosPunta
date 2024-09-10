@@ -11,73 +11,43 @@ import CreateArticle from './screens/CrearArticulo';
 // import { initClient, handleAuthClick, handleSignoutClick } from './data/Gapi';
 
 const Ap = () => {
-  const context = useContext(CartContext)
-    const [OpenMenu, setOpenMenu] = useState(false)  
-    useEffect(() => {
+  const { setHeigth, setWidth, setOrientation, Datos, GetClases } = useContext(CartContext);
+  const [OpenMenu, setOpenMenu] = useState(false);
 
-      const handleResize = () => {
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        context.setHeigth(windowHeight)
-        context.setWidth(windowWidth)
-
-      };
-      handleResize(); // Llama a la función para obtener el tamaño inicial
-      window.addEventListener('resize', handleResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
-    const handleOrientationChange = () => {
-      const orientacion = window.screen.orientation.type;
-      context.setOrientation(orientacion);
+  // Manejo de redimensionamiento y orientación
+  useEffect(() => {
+    const handleResizeAndOrientationChange = () => {
+      setHeigth(window.innerHeight);
+      setWidth(window.innerWidth);
+      setOrientation(window.screen.orientation.type);
+      GetClases()
     };
 
-    useEffect(()=>{
-      context.handleDatos()
-      handleOrientationChange();
-      window.addEventListener('orientationchange', handleOrientationChange);
-      return () => {
-        window.removeEventListener('orientationchange', handleOrientationChange);
-      };
+    handleResizeAndOrientationChange(); // Ejecutar al inicio
+    window.addEventListener('resize', handleResizeAndOrientationChange);
+    window.addEventListener('orientationchange', handleResizeAndOrientationChange);
 
-    },[])
-    
-    if(context.Datos.length>1){
-      return (
-        <BrowserRouter>
-        
-        <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
-        <NavbarMenuMobile OpenMenu={OpenMenu} setOpenMenu={setOpenMenu}/>
-        {/* <NavbarPC/> */}
-          <CreateArticle/>
-          <Index/>
-          <ClassScreen/>
-          <Product/>
-          <CartScreen/>
-          
-          {/* <Routes>
-          <Route path='/' element={<Index/>}/>
-          <Route path='/product/:idProduct' element={<ProductScreen/>}/>
-          <Route path='/clase/:idClase' element={<ClassCreen/>}/>
-          <Route path='/atr' element={<CrearArticulo/>}/>
-          {/* <Route path='/Carrito' element={<Carrito/>}/> */}
-          {/* <Route path='/atr' element={<CrearArticulo/>}/>
-          <Route path='/getCredit' element={<GetCreditScreen/>}/>
-          <Route path='/brand' element={<CrearArticulo/>}/>
-          <Route path='/product' element={<CrearArticulo/>}/> */}
-        {/* </Routes> */}
-    
-        {/* <Footer/> */}
-    
-          
-        </BrowserRouter>
-      )
-    
-    }else{
-      context.handleDatos()
-    }
-}
+    return () => {
+      window.removeEventListener('resize', handleResizeAndOrientationChange);
+      window.removeEventListener('orientationchange', handleResizeAndOrientationChange);
+    };
+  }, [setHeigth, setWidth, setOrientation]);
 
-export default Ap
+  // Carga de datos inicial
+
+    return (
+      <BrowserRouter>
+        <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
+        <NavbarMenuMobile OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
+        <CreateArticle />
+        <Index />
+        <ClassScreen />
+        <Product />
+      </BrowserRouter>
+    );
+  
+
+  return null; // Puedes mostrar un loader aquí si lo deseas mientras se cargan los datos.
+};
+
+export default Ap;
