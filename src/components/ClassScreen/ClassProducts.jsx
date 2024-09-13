@@ -1,32 +1,10 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
-import db from '../../data/FirestoreData';
-import { collection, getDocs } from 'firebase/firestore';
 
 const ClassProducts = (props) => {
   const context = useContext(CartContext);
-  const [Productos, setProductos] = useState([])
-
-  const clasee = context.SelectedClass!==null ? context.SelectedClass[0].toUpperCase() + context.SelectedClass.substring(1) : null
-  const GetProductos = async () => {
-    const MotosCollection = collection(db, 'Productos');
-    const motosSnapshot = await getDocs(MotosCollection);
-    const DAATos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}));
-
-    
-    const FilteredDatos = DAATos.filter(producto => producto.product.Type===props.Clase)
-    if (FilteredDatos[0]) {
-      setProductos(FilteredDatos)      
-    }
-    
-    }
-  
-  if(clasee!==null && !Productos[0]){
-    GetProductos();
-
-  }
-
+  const Productos = props.Productos
 
   // Generar el array con los gradientes
   const maxNumero2 = 240;

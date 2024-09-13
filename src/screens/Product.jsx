@@ -22,12 +22,12 @@ const Product = () => {
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      console.log("Document data:", {id: docSnap.id, product:docSnap.data()});
+    setproducto({id: docSnap.id, product:docSnap.data()})
+    
+
     } else {
       // docSnap.data() will be undefined in this case
-      console.log("No such document!");
     }
-    setproducto({id: docSnap.id, product:docSnap.data()})
   // const DAATos = motosSnapshot.docs.map((doc) => doc.data())
   
   // const produ = DAATos.findIndex(pr => pr.product.id===productId)
@@ -37,15 +37,13 @@ const Product = () => {
   // }
 }
 
-    if (productId !== undefined && !producto) {
-      getProduct()
-    }
+useEffect(() => {
+  getProduct()
+  }, [productId])
 
 
-if (ProductShown && clasee!==null) {
-getProduct()
-  
-}
+
+
   const [OptionSelected, setOptionSelected] = useState(0);
   const [BenefitSelected, setBenefitSelected] = useState(undefined);
 
