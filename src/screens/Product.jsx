@@ -7,34 +7,42 @@ import ProductViewMore from '../components/Product/ProductViewMore';
 import ProductBenefitModal from '../components/Product/ProductBenefitModal';
 import PCBenefits from '../components/Product/PCBenefits';
 import PCColors from '../components/Product/PCColors';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import db from '../data/FirestoreData';
 
 const Product = () => {
 
-  const { Datos, SelectedClass, ProductShown, setProductShown, Orientation, Screen } = useContext(CartContext);
+  const { SelectedClass, ProductShown, setProductShown, Orientation, Screen } = useContext(CartContext);
   const productId = useLocation().pathname.split('/product/')[1];
   const [producto, setproducto] = useState(undefined)
   const clasee = SelectedClass!==null ? SelectedClass[0].toUpperCase() + SelectedClass.substring(1) : null
+  const getProduct = async () => {
 
-    if (productId !== undefined) {
-      setProductShown(productId);
+    const docRef = doc(db, "Productos", productId);
+    const docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      console.log("Document data:", {id: docSnap.id, product:docSnap.data()});
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    setproducto({id: docSnap.id, product:docSnap.data()})
+  // const DAATos = motosSnapshot.docs.map((doc) => doc.data())
+  
+  // const produ = DAATos.findIndex(pr => pr.product.id===productId)
+  // if (DAATos[produ]) {    
+  //   setProductShown(DAATos[produ])
+  //   setproducto(DAATos[produ])    
+  // }
+}
+
+    if (productId !== undefined && !producto) {
+      getProduct()
     }
 
 
-  const getProduct = async () => {
-    
-  const MotosCollection = collection(db, clasee);
-  const motosSnapshot = await getDocs(MotosCollection);
-  const DAATos = motosSnapshot.docs.map((doc) => doc.data())
-  
-  const produ = DAATos.findIndex(pr => pr.product.id===productId)
-  if (DAATos[produ]) {    
-    setProductShown(DAATos[produ])
-    setproducto(DAATos[produ])    
-  }
-}
-if (productId && clasee!==null) {
+if (ProductShown && clasee!==null) {
 getProduct()
   
 }

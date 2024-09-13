@@ -9,7 +9,8 @@ const ProductFirstView = (props) => {
         context.setSection('ProductViewMore');
         context.setPresection('FirstView');
     };
-
+    console.log(props.producto);
+    
     if (!producto?.product) return null; // Retornar null si no se encuentra el producto
 
     const optionIndex = producto.product.Options.length > props.OptionSelected ? props.OptionSelected : 0;

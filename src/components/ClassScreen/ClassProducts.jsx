@@ -10,17 +10,19 @@ const ClassProducts = (props) => {
 
   const clasee = context.SelectedClass!==null ? context.SelectedClass[0].toUpperCase() + context.SelectedClass.substring(1) : null
   const GetProductos = async () => {
-    const MotosCollection = collection(db, clasee);
+    const MotosCollection = collection(db, 'Productos');
     const motosSnapshot = await getDocs(MotosCollection);
-    const DAATos = motosSnapshot.docs.map((doc) => doc.data());
+    const DAATos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}));
 
     
-    const FilteredDatos = DAATos.filter(producto => producto.product.Type===context.SelectedCategory)
-    setProductos(FilteredDatos)
+    const FilteredDatos = DAATos.filter(producto => producto.product.Type===props.Clase)
+    if (FilteredDatos[0]) {
+      setProductos(FilteredDatos)      
+    }
     
     }
   
-  if(clasee!==null){
+  if(clasee!==null && !Productos[0]){
     GetProductos();
 
   }

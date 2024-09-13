@@ -19,7 +19,7 @@ const CartContextProvider = ({ children }) => {
     const handleTouchStart = (event) => {
       startY.current = event.touches[0].clientY;
     };
-
+    
 
     const handleTouchMove = (event, a, b, actual) => {
       if (startY.current !== null) {
@@ -132,34 +132,19 @@ const CartContextProvider = ({ children }) => {
     }
     const [Clases, setClases] = useState(null)
     const GetClases = async () => {
-      const MotosCollection = collection(db, "Motos");
-      const CascosCollection = collection(db, "Cascos");
-      const IndumCollection = collection(db, "Indumentaria");
+      const MotosCollection = collection(db, "Productos");
 
       const motosSnapshot = await getDocs(MotosCollection);
-      const clasess = motosSnapshot.docs.map((doc)=> doc.data().product).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
+      const producots = motosSnapshot.docs.map((doc)=> ({id:doc.id, product:doc.data()}))
+      console.log(producots[0]);
+      
+      const clasess = motosSnapshot.docs.map((doc)=> doc.data()).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
       const clasesMotos = clasess.filter((value, index, self) =>
         index === self.findIndex((t) => (
           t.tipo === value.tipo && t.clase === value.clase
         ))
       ) 
-      const cascosSnapshot = await getDocs(CascosCollection);
-      const cascosclasess = cascosSnapshot.docs.map((doc)=> doc.data().product).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
-      const cascosclases = cascosclasess.filter((value, index, self) =>
-        index === self.findIndex((t) => (
-          t.tipo === value.tipo && t.clase === value.clase
-        ))
-      )      
-      const indumSnapshot = await getDocs(IndumCollection);
-      const indumclasess = indumSnapshot.docs.map((doc)=> doc.data().product).map((doc)=>({tipo: doc.Type, clase: doc.Class}))
-      const indumclases = indumclasess.filter((value, index, self) =>
-        index === self.findIndex((t) => (
-          t.tipo === value.tipo && t.clase === value.clase
-        ))
-      )
-      const Clases = [...indumclases, ...cascosclases, ...clasesMotos]
-      console.log(Clases);
-      setClases(Clases);
+      setClases(clasesMotos)
     }
 
 
