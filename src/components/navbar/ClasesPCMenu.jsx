@@ -1,18 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { Link } from 'react-router-dom'
+import { collection, getDocs } from 'firebase/firestore'
+import db from '../../data/FirestoreData'
 
 const ClasesPCMenu = (props) => {
     const context = useContext(CartContext)
-    const ArrayOfOptions = []
-    context.Datos.map(producto => {
-        if (producto.product) {
-            if (producto.product.Class===props.SelectedOpcion && ArrayOfOptions.find(opcion => opcion===producto.product.Type)===undefined) {
-                ArrayOfOptions.push(producto.product.Type)
-            }
-        }
+    const [ArrayOfOptions, setArrayOfOptions] = useState([])
+    const getProducts = async () => {
+        const ProductosCollection = collection(db, "Productos");
+        const motosSnapshot = await getDocs(ProductosCollection);
+        const Datos = motosSnapshot.docs.filter((doc)=>doc.data().Class===props.SelectedOpcion).map((doc)=>doc.data().Type).filter((item, index, self) => 
+            index === self.findIndex((t) => t === item)
+          );
 
-    })
+        setArrayOfOptions(Datos)
+    }    
+    useEffect(()=>{
+        getProducts()
+    },[props.SelectedOpcion])
+
     return (
     <div id='ClasesPCMenu' >
         {

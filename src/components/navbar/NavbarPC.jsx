@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom'
 
 const NavbarPC = () => {
     const context = useContext(CartContext)
-    const arrayTypes = []
+    const [arrayTypes, setarrayTypes] = useState([])
     const arrayClases = []
-    console.log(context.Orientation);
-    if (context.Datos.length > 0) {
+    const getProducts = async () => {
+        const ProductosCollection = collection(db, "Productos");
+        const motosSnapshot = await getDocs(ProductosCollection);
+        const Datos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}))
+    
+    }
+    if (arrayTypes.length < 1) {
+        
         context.Datos.map(product => {
             const producto = product.product
             if(producto.Class){

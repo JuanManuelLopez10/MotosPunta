@@ -3,7 +3,7 @@ import { CartContext } from '../../context/CartContext'
 
 const PCProductFirstView = (props) => {
     const context = useContext(CartContext)
-    const producto = context.Datos.find(prod => prod.id===props.producto)
+    const producto = props.producto
     if (producto) {
       if (producto.product) {
         return (

@@ -2,15 +2,15 @@ import React, { useContext, useState, useMemo } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 
-const HotProducts = () => {
+const HotProducts = (props) => {
     const context = useContext(CartContext);
     const [selectedOption, setSelectedOption] = useState(0);
     const [buttonPressed, setButtonPressed] = useState('Next');
-
+    const getHotProducts = async () => {
+        
+    }
     // Memoizar la lista de productos destacados y categorías
-    const arrayOfHotProducts = useMemo(() => {
-        return context.Datos.filter(producto => producto.product?.HotProduct === 'SI');
-    }, [context.Datos]);
+    const arrayOfHotProducts = props.HotProducts
 
     const arrayOfCategories = useMemo(() => {
         const prearrayOfCategories = arrayOfHotProducts.map(producto => producto.product.Class);
@@ -62,7 +62,8 @@ const HotProducts = () => {
     // Renderizar para pantallas de escritorio
     if (arrayOfHotProducts.length > 0 && context.Screen === 'Index') {
         const selectedProduct = arrayOfHotProducts[selectedOption].product;
-        const productText = `${selectedProduct.Model} ${selectedProduct.Cilind || ''}`;
+        
+        const productText = `${selectedProduct.Pattern} ${selectedProduct.Cilind || ''}`;
 
         return (
             <section id="PCHotProducts">

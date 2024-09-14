@@ -4,48 +4,19 @@ import { CartContext } from '../../context/CartContext';
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import db from '../../data/FirestoreData';
 
-const WallpaperIndex = () => {
+const WallpaperIndex = (props) => {
     const context = useContext(CartContext);
-    const [productShown, setproductShown] = useState(undefined);
-    const GetWallpaperProduct = async () => {
-
-        const ProductosCollection = collection(db, "Productos");
-
-        // const MotosCollection = collection(db, "Cascos");
-        const motosSnapshot = await getDocs(ProductosCollection);
-
-        const Datos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}))
-        setproductShown(Datos[Datos.findIndex(pro=>pro.product.Wallpaper==='SI')])
-        // Datos.map(ddd=>{
-        //     if(ddd.product.product.Type)
-        //     addDoc(ProductosCollection, ddd.product.product)
-        // })
-        // Datos.map(a=>{
-            
-        //     if (a.product.id) {
-        //         deleteDoc(doc(db, "Products", a.));
-        //         console.log(a.id);
-                
-        //     }
-        // })
-        // Datos.find((el)=>el.product.Wallpaper==='SI')
-        // console.log(Datos[0].product.Wallpaper);
-        
-        
-    
-    }
-    if (productShown===undefined) {
-        GetWallpaperProduct()    
-        
-    }
+    const productShown = props.producto
 
 
 
-    if (!productShown) {
-        return null; // O puedes mostrar un spinner o algo similar
+    if (productShown!==undefined) {
+
     }
 
     if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
+        console.log(productShown);
+        
         if (context.Section === 'Wallpaper') {
             return (
                 <section onTouchMove={(event) => {context.handleTouchMove(event, 'HotProducts', 'Wallpaper', 'Wallpaper')}} onTouchStart={context.handleTouchStart} id='IndexWallpaper'>
@@ -75,7 +46,7 @@ const WallpaperIndex = () => {
             </section>
         );
     }
-
+    
     const texto = `${productShown.product.Cilind} ${productShown.product.Pattern}`;
     const cantidadDeLetras = texto.length;
 

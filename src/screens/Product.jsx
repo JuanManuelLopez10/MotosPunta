@@ -26,7 +26,11 @@ const Product = () => {
     
 
     } else {
-      // docSnap.data() will be undefined in this case
+      const ProductosCollection = collection(db, "Productos");
+      const motosSnapshot = await getDocs(ProductosCollection);
+      const pro = motosSnapshot.docs[motosSnapshot.docs.findIndex((doc)=>doc.data().id===productId)]
+      const PProducto = {id:pro.id, product:pro.data()}
+      setproducto(PProducto)
     }
   // const DAATos = motosSnapshot.docs.map((doc) => doc.data())
   
@@ -67,12 +71,12 @@ useEffect(() => {
   const renderPCView = () => (
     <div id="PCProductScreen">
       <PCProductFirstView 
-        producto={ProductShown} 
+        producto={producto} 
         setOptionSelected={setOptionSelected} 
         OptionSelected={OptionSelected} 
       />
-      <PCBenefits producto={ProductShown} />
-      <PCColors producto={ProductShown} />
+      <PCBenefits producto={producto} />
+      <PCColors producto={producto} />
     </div>
   );
 

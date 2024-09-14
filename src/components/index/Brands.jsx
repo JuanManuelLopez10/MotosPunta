@@ -1,24 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 
-const Brands = () => {
+const Brands = (props) => {
     const context = useContext(CartContext)
     const arrayOfMainBrands = [{Name:'TVS', BackColor1:'218, 49, 49', BackColor2:'123, 128, 174'}, {Name:'Honda', BackColor1:'red', BackColor2:'red'}, {Name:'CFMoto', BackColor1:'blue', BackColor2:'blue'}]
     const [SelectedOption, setSelectedOption] = useState(undefined)
-    const [Brands, setBrands] = useState([])
-        context.Datos.map(item=>{
-            if (item.product) {
-                const indexOfBrand = Brands.findIndex(marca => marca.Brand===item.product.Brand)
-                if(indexOfBrand===-1){
-                    Brands.push({Brand:item.product.Brand, Categories:[item.product.Class]})
-                    setBrands(Brands)
-                }else if(indexOfBrand!==-1 && Brands[indexOfBrand].Categories.findIndex(categoria => categoria===item.product.Class)){
-                    Brands[indexOfBrand].Categories.push(item.product.Class)
-                    setBrands(Brands)
-                }
-            }
-        })
-
+    const Brands = props.Brands
+    console.log(Brands);
+    
     const ArrayOfOptions = ['motos', 'cascos', 'indumentaria', 'accesorios']
     const firstFourBrands = Brands.slice(0, 4)
     const [OpnenedBrands, setOpnenedBrands] = useState(false)
@@ -84,7 +73,7 @@ const Brands = () => {
                                     firstFourBrands.map((brand, index)=>{
                                         return(
                                         <p key={index} style={{fontSize: context.fontPixel*.3}} >
-                                            {brand.Brand}
+                                            {brand.Name}
                                         </p>
                                         )
                                    })
