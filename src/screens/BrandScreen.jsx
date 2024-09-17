@@ -4,7 +4,6 @@ import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
 import { collection, getDocs } from 'firebase/firestore';
 import db from '../data/FirestoreData';
-import ClassFilters from '../components/ClassScreen/ClassFilters';
 // import ClassFilters from '../components/ClassScreen/ClassFilters';
 
 const ClassScreen = () => {
@@ -33,18 +32,12 @@ const ClassScreen = () => {
     
   }, [currentClase]);
 
-  const orderToLessPrice = () => {
-    Productos.sort((a, b) => a.price - b.price)
-  }
-  
-
   // Renderización móvil
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
     if (context.Screen === 'Clase') {
       return (
         <div id="Clase">
           <h2>{currentClase}</h2>
-          {/* <ClassFilters Productos={Productos}/> */}
           <ClassProducts productId={productId} Productos={Productos} />
         </div>
       );
