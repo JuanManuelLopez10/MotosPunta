@@ -4,76 +4,43 @@ import { Link } from 'react-router-dom';
 
 const ClassProducts = (props) => {
   const context = useContext(CartContext);
-  const Productos = props.Productos
-
-  // Generar el array con los gradientes
-  const maxNumero2 = 240;
-  const minNumero2 = 0;
-
-  const generateArrayWithGradients = (array, maxNumero2, minNumero2) => {
-    const step = (maxNumero2 - minNumero2) / 3; // Siempre 3 pasos para 4 elementos
-    const newArray = [];
-
-    for (let i = 0; i < array.length; i += 4) {
-      const segment = array.slice(i, i + 4);
-      const isAscending = (i / 4) % 2 === 0;
-
-      segment.forEach((producto, index) => {
-        const numero2 = isAscending 
-          ? minNumero2 + index * step 
-          : maxNumero2 - index * step;
-
-        newArray.push({ ...producto, numero2 });
-      });
-    }
-
-    return newArray;
-  };
-
-  const productosConNumero2 = useMemo(() => 
-    generateArrayWithGradients(Productos, maxNumero2, minNumero2), 
-    [Productos, maxNumero2, minNumero2]
-  );
 
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
     return (
       <section id="ClassProducts">
         {
-          productosConNumero2.map((producto, key) => (
-            <Link 
+          props.Productos.map((producto, key)=>{
+            return(
+              <Link 
               onClick={() => {
                 context.setSection('FirstView');
                 context.setScreen('Product');
-              }} 
-              style={{ backgroundColor: `rgb(${producto.numero2 + 30}, ${producto.numero2 + 30}, ${producto.numero2 + 30})` }} 
+              }}
               key={key} 
               id={producto.id} 
-              to={`product/${producto.id}`} 
+              to={`product/${producto.product.id}`} 
               className="ProductCard"
-            >
-              <div className='ProductoNameDiv'>
-                <p style={{ fontSize: context.fontPixel * 0.5, marginBottom: '-2%' }}>
-                  {producto.product.Brand}
-                </p>
-                <p style={{ fontSize: context.fontPixel * 1.1 }}>
-                  {producto.product.Title}
-                </p>
-              </div>
-              <img 
-                className={producto.product.Class === 'motos' ? 'ProductCardImgMoto' : 'ProductCardImgOtro'} 
-                src={producto.product.Options[0].Image} 
-                alt="" 
-              />
-            </Link>
-          ))
+              style={{height:'20vh', width:'100vw', display:'flex'}}
+               >
+                <img style={{height:'80%'}} src={producto.product.Options[0].Image} alt="" />
+                <div className='ProductoNameDiv'>
+                <p style={{fontSize:context.fontPixel*1}}>{producto.product.Title}</p>
+                <p style={{fontSize:context.fontPixel*1}}>U$S{producto.product.Price}</p>
+
+                </div>
+               </Link>
+            )
+
+          })
         }
+
       </section>
     );
   } else {
     return (
       <section id="ClassProducts">
         {
-          Productos.map((producto, key) => {
+          props.Productos.map((producto, key) => {
             const showProduct = (
               (context.BrandFilters === undefined && context.CilindFilters === undefined) ||
               (context.BrandFilters === undefined && context.CilindFilters === producto.product.Cilind) ||
