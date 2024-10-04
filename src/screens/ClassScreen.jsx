@@ -4,6 +4,7 @@ import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
 import { collection, getDocs } from 'firebase/firestore';
 import db from '../data/FirestoreData';
+import ClassFilters from '../components/ClassScreen/ClassFilters';
 // import ClassFilters from '../components/ClassScreen/ClassFilters';
 
 const ClassScreen = () => {
@@ -13,7 +14,9 @@ const ClassScreen = () => {
   const productId = location.pathname.split('/product/')[1];
   const currentClase = location.pathname.split('/clase/')[1];
   const [Productos, setProductos] = useState([])
-  const [openOrder, setopenOrder] = useState(false)
+  const [FilteredProductos, setFilteredProductos] = useState([])
+
+  const [operFilters, setoperFilters] = useState(false)
   
   const GetProductos = async () => {
     const MotosCollection = collection(db, 'Productos');
@@ -22,30 +25,31 @@ const ClassScreen = () => {
     const FilteredDatos = DAATos.filter(producto => producto.product.Type===currentClase)
     if (FilteredDatos[0]) {
       setProductos(FilteredDatos)   
+      setFilteredProductos(FilteredDatos)
     }
     }
 
-    
+  
     
   useEffect(() => {
       GetProductos()
+      setoperFilters(false)
   }, [currentClase]);
 
-  const orderToMorePrice = () => {
-    const sortedProducts = [...Productos].sort((a, b) => a.product.Price - b.product.Price);
-    setProductos(sortedProducts);
-  }
-  const orderToLessPrice = () => {
-    const sortedProducts = [...Productos].sort((a, b) => b.product.Price - a.product.Price);
-    setProductos(sortedProducts);  }
   
   // Renderización móvil
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
     if (context.Screen === 'Clase' && Productos[0]) {
       return (
         <div id="Clase">
+          <div style={{display:'flex', width:'100vw', justifyContent:'space-around'}}>
           <h2>{currentClase}</h2>
-          <ClassProducts productId={productId} Productos={Productos} />
+          <button id="OpenFilters" style={{border:'none'}} onClick={()=>{setoperFilters(!operFilters)}}>
+            <h3>Filtros</h3>
+          </button>
+          </div>
+          <ClassFilters operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos}/>
+          <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );
     } else {
