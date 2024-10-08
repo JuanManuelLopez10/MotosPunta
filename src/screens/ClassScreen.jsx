@@ -48,7 +48,7 @@ const ClassScreen = () => {
             <h3>Filtros</h3>
           </button>
           </div>
-          <ClassFilters operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos}/>
+          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos}/>
           <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );

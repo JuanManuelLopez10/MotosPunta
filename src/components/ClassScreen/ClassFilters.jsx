@@ -29,11 +29,21 @@ const ClassFilters = (props) => {
     }
 
     const filterProd = () =>{
-        if (selectedBrand !== undefined && selectedColor!== undefined){ 
-        return props.Productos.filter(prod => prod.product.Options.some(obj => obj.Color ===selectedColor) && prod.product.Brand===selectedBrand)
-        }else if (selectedBrand !== undefined && selectedColor!== undefined){
-            
+        let productos = props.Productos
+        if (selectedColor !== undefined){
+            productos=props.Productos.filter(prod => prod.product.Options.some(obj => obj.Color ===selectedColor))
         }
+        if (selectedBrand !== undefined){
+            productos=props.Productos.filter(prod => prod.product.Brand===selectedBrand)
+        }
+        console.log(productos);
+        
+        let nuevoproductosSinmin = productos.filter(prod => prod.product.Price>=minPrice)
+        let nuevoproductosSinmax = nuevoproductosSinmin.filter(prod => prod.product.Price<=maxPrice)
+        console.log(nuevoproductosSinmax);
+        
+        return nuevoproductosSinmax
+
     }
     const changeMinPrice = (e) => {
         const nuevoValor = parseInt(e.target.value)
@@ -81,7 +91,10 @@ const ClassFilters = (props) => {
                     <input type="text" value={minPrice} placeholder='0' onChange={changeMinPrice}/>
                     <p>Hasta {'(USD)'}:</p>
                     <input type="text" value={maxPrice} placeholder='1000000' onChange={changeMaxPrice}/>
-                    <button onClick={()=>{setFilteredProducts()}}>Filtrar</button>
+                    <button onClick={()=>{
+                        setFilteredProducts()
+                        props.setoperFilters(false)
+                        }}>Filtrar</button>
                 </div>
               </div>
         )
