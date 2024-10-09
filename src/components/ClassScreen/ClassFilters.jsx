@@ -8,8 +8,8 @@ const ClassFilters = (props) => {
     const [ArrayOfBrands, setArrayOfBrands] = useState([])
     const [selectedBrand, setselectedBrand] = useState(undefined)
     const [selectedColor, setselectedColor] = useState(undefined)
-    const [minPrice, setminPrice] = useState(0)
-    const [maxPrice, setmaxPrice] = useState(1000000)
+    const [minPrice, setminPrice] = useState()
+    const [maxPrice, setmaxPrice] = useState()
     const GetFilterOptions = () => {
         const arrayBrands = []
         const arrayColors = []
@@ -31,27 +31,37 @@ const ClassFilters = (props) => {
     const filterProd = () =>{
         let productos = props.Productos
         if (selectedColor !== undefined){
-            productos=props.Productos.filter(prod => prod.product.Options.some(obj => obj.Color ===selectedColor))
+            productos=productos.filter(prod => prod.product.Options.some(obj => obj.Color ===selectedColor))
         }
         if (selectedBrand !== undefined){
-            productos=props.Productos.filter(prod => prod.product.Brand===selectedBrand)
+            productos=productos.filter(prod => prod.product.Brand===selectedBrand)
         }
-        console.log(productos);
+        if (minPrice) {
+            productos = productos.filter(prod => prod.product.Price>=minPrice)
+        }        
+        if (maxPrice) {
+            productos = productos.filter(prod => prod.product.Price<=maxPrice)            
+        }
         
-        let nuevoproductosSinmin = productos.filter(prod => prod.product.Price>=minPrice)
-        let nuevoproductosSinmax = nuevoproductosSinmin.filter(prod => prod.product.Price<=maxPrice)
-        console.log(nuevoproductosSinmax);
-        
-        return nuevoproductosSinmax
+        return productos
 
     }
     const changeMinPrice = (e) => {
         const nuevoValor = parseInt(e.target.value)
-        setminPrice(nuevoValor)
+        
+        if (nuevoValor!==NaN) {
+            setminPrice(nuevoValor)
+        }else{
+            setminPrice(0)
+        }
     }
     const changeMaxPrice = (e) => {
         const nuevoValor = parseInt(e.target.value)
-        setmaxPrice(nuevoValor)
+        if (nuevoValor!==NaN) {
+            setmaxPrice(nuevoValor)
+        }else{
+            setmaxPrice(0)
+        }
     }
     useEffect(()=>{
         GetFilterOptions()
@@ -63,39 +73,47 @@ const ClassFilters = (props) => {
     }
     if (props.operFilters) {
         return(
-              <div style={{width:'100vw', height:'60vh', position:'absolute', bottom:'0', backgroundColor:'#bab8b6', borderTopLeftRadius:'5vw', borderTopRightRadius:'5vw', paddingInline:'3%'}}>
+              <div style={{width:'100vw', boxShadow: '0px 0px 10px grey', position:'absolute', bottom:'0', backgroundColor:'#bab8b6', borderTopLeftRadius:'5vw', borderTopRightRadius:'5vw', paddingInline:'3%'}}>
                 <h3>Filtros</h3>
                 <h5>Colores</h5>
+                <div id="FilterColors" className='FilterOptions'>
                 {
                     ArrayOfColours.map((Color, index) => {
                         return (
-                        <button key={index} onClick={()=>{
-                            setselectedColor(Color)
-                        }} style={{marginInline:'1%', padding:'1%'}}>{Color}</button>
+                        <button className='FilterOption' key={index} onClick={()=>{
+                            setselectedColor(selectedColor===Color?undefined:Color)
+                        }} style={{marginInline:'1%', backgroundColor:selectedColor===Color? 'rgb(199, 199, 199)' :'#252324', color:selectedColor===Color? '#252324' : 'rgb(199, 199, 199)', padding:'1%'}}>{Color}</button>
                     )
                     })
                 }
+                </div>
+
                 <h5>Marcas</h5>
+                <div id="FilterBrands" className='FilterOptions'>
+                
                 {
                     ArrayOfBrands.map((Brand, index) => {
                         return (
                         <button key={index} onClick={()=>{
-                            setselectedBrand(Brand)
-                        }} style={{marginInline:'1%', padding:'1%'}}>{Brand}</button>
+                            setselectedBrand(selectedBrand===Brand?undefined:Brand)
+                        }} style={{marginInline:'1%',  backgroundColor:selectedBrand===Brand? 'rgb(199, 199, 199)' :'#252324', color:selectedBrand===Brand? '#252324' : 'rgb(199, 199, 199)', padding:'1%'}}>{Brand}</button>
                     )
                     })
                 }
+                </div>
                 <h5>Precio:</h5>
                 <div id="PriceFilter">
                     <p>Desde {'(USD)'}:</p>
                     <input type="text" value={minPrice} placeholder='0' onChange={changeMinPrice}/>
                     <p>Hasta {'(USD)'}:</p>
                     <input type="text" value={maxPrice} placeholder='1000000' onChange={changeMaxPrice}/>
-                    <button onClick={()=>{
+                </div>
+                <button
+                    id='FilterButton'
+                    onClick={()=>{
                         setFilteredProducts()
                         props.setoperFilters(false)
                         }}>Filtrar</button>
-                </div>
               </div>
         )
     }

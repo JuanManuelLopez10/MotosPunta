@@ -296,6 +296,26 @@
         }
     }
 }
+.FilterOptions{
+    button{
+        width: 20%;
+        border: none;
+        border-radius: 10vw;
+        color: rgb(197, 197, 197);
+        margin-bottom: 2vw;
+        
+    }
+}
+#FilterButton{
+    border: none;
+    width: 40vw;
+    margin-left: 25vw;
+    margin-block: 2vh;
+    background-color: #252324;
+    border-radius: 10vw;
+    color: rgb(197, 197, 197);
+    height: 6vh;
+}
 #ClassScreen{
     @keyframes ApareceClassScreen {
         0%{
