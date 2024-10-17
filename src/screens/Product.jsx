@@ -56,15 +56,9 @@ useEffect(() => {
   const renderMobileView = () => (
     <div id={Screen === 'Product' || Screen === 'Clase' ? "Product1" : "ProductClosed"}>
       <ProductFirstView producto={producto} OptionSelected={OptionSelected} />
-      <ProductViewMore 
-        setOptionSelected={setOptionSelected} 
-        OptionSelected={OptionSelected} 
-        producto={producto} 
-        setBenefitSelected={setBenefitSelected}
-      />
-      {Screen === 'Product' && (
-        <ProductBenefitModal setBenefitSelected={setBenefitSelected} BenefitSelected={BenefitSelected} />
-      )}
+      
+      <ProductViewMore producto={producto}/>
+
     </div>
   );
 

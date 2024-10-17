@@ -73,10 +73,10 @@ const ClassFilters = (props) => {
     }
     if (props.operFilters) {
         return(
-              <div style={{width:'100vw', boxShadow: '0px 0px 10px grey', position:'absolute', bottom:'0', backgroundColor:'#bab8b6', borderTopLeftRadius:'5vw', borderTopRightRadius:'5vw', paddingInline:'3%'}}>
+              <div id='FiltersModal' style={{width:'100vw', boxShadow: '0px 0px 10px grey', position:'absolute', bottom:'0', backgroundColor:'#bab8b6', borderTopLeftRadius:'5vw', borderTopRightRadius:'5vw', paddingInline:'3%'}}>
                 <h3>Filtros</h3>
                 <h5>Colores</h5>
-                <div id="FilterColors" className='FilterOptions'>
+                <div id="FilterColors" className='FilterOptions '>
                 {
                     ArrayOfColours.map((Color, index) => {
                         return (

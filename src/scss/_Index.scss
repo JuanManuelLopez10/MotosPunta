@@ -342,6 +342,9 @@
         width: 100vw;
         margin-left: 5vw;
         margin-bottom: 5vh;
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-style: italic;
     }
     h3{
         animation: ApearTexts .7s;
@@ -461,6 +464,9 @@
             width: 100vw;
             margin-left: -115vw;
             margin-bottom: 5vh;
+            font-family: 'Roboto';
+            font-weight: 700;
+            font-style: italic;
         }
         h3{
             animation: DisApearTexts .7s;
@@ -580,6 +586,9 @@
             width: 100vw;
             margin-left: -115vw;
             margin-bottom: 5vh;
+            font-family: 'Roboto';
+            font-weight: 700;
+            font-style: italic;
         }
         h3{
             animation: DisApearTexts .7s;
@@ -975,6 +984,8 @@
     h2{
         font-weight: 900;
         color: rgb(206, 206, 206);
+        font-family: 'Roboto';
+        font-style: italic;
     }
     h3{
         margin-top: -15%;
@@ -1106,6 +1117,8 @@
         width: 100vw;
         height: 0vh;
         h2{
+            font-family: 'Roboto';
+            font-style: italic;
             @keyframes CloseHotProductsh2 {
                 0%{
                     margin-left: 0vw;
@@ -1122,6 +1135,8 @@
             color: rgb(206, 206, 206);
         }
         h3{
+            font-family: 'Roboto';
+            font-style: italic;
             @keyframes CloseHotProductsh3 {
                 0%{
                     margin-left: 0vw;

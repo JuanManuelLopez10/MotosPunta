@@ -301,10 +301,20 @@
         width: 20%;
         border: none;
         border-radius: 10vw;
-        color: rgb(197, 197, 197);
         margin-bottom: 2vw;
         
     }
+}
+#FiltersModal{
+    @keyframes apearFilters {
+        0%{
+            bottom: -80vh;
+        }
+        100%{
+            bottom: 0vh;
+        }
+    }
+    animation: apearFilters 0.5s;
 }
 #FilterButton{
     border: none;
