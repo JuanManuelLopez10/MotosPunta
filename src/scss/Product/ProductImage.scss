@@ -1,0 +1,390 @@
+#WallpaperProduct{
+    width: 100%;
+        overflow-y: hidden;
+        height: 60vh;
+    display: flex;
+        overflow-x: hidden;
+        flex-direction: column;
+        .botonesWallpaperProduct{
+        position: absolute;
+        font-size: 3rem;
+        text-shadow: 0px 0px 10px black;
+        width: 10vw;
+        height: 10vh;
+        top: 30vh;
+        border: none;
+        background: none;
+        color: white;
+        z-index: 10;
+        &:active{
+            border: none;
+        }
+    }
+    #PreviousButton{
+        left: 0px;
+    }
+    #NextButton{
+        right: 0px;
+    }
+    &-ImageContainer{
+        width: auto;
+        display: flex;
+        align-items: center;
+        height: 40vh;
+        padding-top: 10%;
+        justify-content: center;
+        div{
+            width: 0;
+        }
+        #tadentro0{
+            width: 30vw;
+        }
+        #tadentro1{
+            width: 0vw;
+            animation: toNoNoSelected 1s;
+        }
+        img{
+            width: 30vw;
+            height: fit-content;
+        }
+
+        .imagen-Selected-Cascos{
+            z-index: 3;
+            width: 70vw;
+            animation: toSelected 1s;
+        }
+        .imagen-Selected-Motos{
+            z-index: 3;
+            width: 80vw;
+            animation: toSelectedMoto 1s;
+        }
+        .imagen-NoSelected-Cascos{
+            filter: brightness(0.2);
+            width: 30vw;
+        }
+        .imagen-NoSelected-Motos{
+            filter: brightness(0.2);
+            width: 30vw;
+        }
+        .imagen-NonoSelected-Cascos{
+            filter: brightness(0.2);
+            width: 0vw;
+        }
+        .imagen-NonoSelected-Motos{
+            filter: brightness(0.2);
+            width: 0vw;
+        }
+        .imagen-undefined-Cascos{
+            width: 0px;
+        }
+        .imagen-undefined-Motos{
+            width: 0px;
+        }
+        .Previo-Cascos{
+            animation: toNoSelected 1s;
+        }
+        .Preprevio-Cascos{
+            width: 0vw;
+            animation: toNoNoSelected 1s;
+        }
+        .Post-Cascos{
+
+            animation: toPostNoSelected 1s;
+        }
+
+        .Previo-Motos{
+            animation: toNoSelectedMoto 1s;
+        }
+        .Preprevio-Motos{
+            width: 0vw;
+            animation: toNoNoSelectedMoto 1s;
+        }
+        .Post-Motos{
+            animation: toPostNoSelectedMoto 1s;
+        }
+    }
+}
+@keyframes toSelected {
+    0%{
+        width: 30vw;
+        height: fit-content;
+            filter: brightness(0.2);
+            margin-inline: 0%;
+    }
+    100%{
+            filter: brightness(1);
+            width: 70vw;
+    }
+}
+@keyframes toSelectedMoto {
+    0%{
+        width: 30vw;
+            filter: brightness(0.2);
+            height: fit-content;
+        margin-inline: 0%;
+    }
+    100%{
+            filter: brightness(1);
+            width: 80vw;
+    }
+}
+@keyframes toNoSelected {
+    0%{
+            filter: brightness(1);
+            width: 70vw;
+            height: fit-content;
+    }
+    100%{
+            filter: brightness(0.2);
+            width: 30vw;
+    }
+}
+@keyframes toNoSelectedMoto {
+    0%{
+        width: 80vw;
+            filter: brightness(1);
+            height: fit-content;
+    }
+    100%{
+            filter: brightness(0.2);
+            width: 30vw;
+    }
+}
+@keyframes toNoNoSelected {
+    0%{
+        width: 30vw;
+    }
+    100%{
+        width: 0vw;
+    }
+}
+@keyframes toNoNoSelectedMoto {
+    0%{
+        width: 30vw;
+    }
+    100%{
+        width: 0vw;
+    }
+}
+@keyframes toPostNoSelected {
+    0%{
+        width: 0vw;
+    }
+    100%{
+        width: 30vw;
+    }
+}
+@keyframes toPostNoSelectedMoto {
+    0%{
+        width: 0vw;
+    }
+    100%{
+        width: 30vw;
+    }
+}
+@keyframes toPostSelected {
+    0%{
+        width: 30vw;
+            height: fit-content;
+    }
+    100%{
+        width: 70vw;
+    }
+}
+@keyframes toPostSelectedMoto {
+    0%{
+        width: 30vw;
+            height: fit-content;
+    }
+    100%{
+        width: 80vw;
+    }
+}
+.BotonesProductoWallpaper{
+    border-radius: 5px;
+    padding: 2% 10%;
+    border: none;
+    box-shadow: 0px 0px 10px black;
+    font-size: 1.2rem;
+    color: white;
+}
+#BotonesProductoWallpaperCarrito{
+    background-image: linear-gradient(80deg, rgb(197, 0, 0), rgb(74, 0, 0));
+}
+#BotonesProductoWallpaperWp{
+    background-image: linear-gradient(80deg, rgb(115, 115, 115), rgb(93, 93, 93));
+}
+
+@media screen and (orientation: landscape){
+    #WallpaperProduct{
+        height: 90vh;
+        &-ImageContainer{
+        height: 70vh;
+        width: 80%;
+
+        }
+        
+        &-ImageContainer{
+        padding-top: 0%;
+            #tadentro0{
+                width: 30vw;
+            }
+            #tadentro1{
+                width: 0vw;
+                animation: toNoNoSelected 1s;
+            }
+            img{
+                height: fit-content;
+            }
+    
+            .imagen-Selected-Cascos{
+                z-index: 3;
+                width: 30vw;
+                animation: toSelected 1s;
+            }
+            .imagen-Selected-Motos{
+                z-index: 3;
+                width: 40vw;
+                animation: toSelectedMoto 1s;
+            }
+            .imagen-NoSelected-Cascos{
+            width: 20vw;
+            }
+            .imagen-NoSelected-Motos{
+            width: 20vw;
+            }
+            .imagen-NonoSelected-Cascos{
+            width: 0vw;
+                margin: 0px;
+            }
+            .imagen-NonoSelected-Motos{
+            width: 0vw;
+            }
+            .imagen-undefined-Cascos{
+                width: 0px;
+            }
+            .imagen-undefined-Motos{
+                width: 0px;
+            }
+            .Previo-Cascos{
+                animation: toNoSelected 1s;
+            }
+            .Preprevio-Cascos{
+                width: 0vw;
+                animation: toNoNoSelected 1s;
+            }
+            .Post-Cascos{
+    
+                animation: toPostNoSelected 1s;
+            }
+    
+            .Previo-Motos{
+                animation: toNoSelectedMoto 1s;
+            }
+            .Preprevio-Motos{
+                width: 0vw;
+                animation: toNoNoSelectedMoto 1s;
+            }
+            .Post-Motos{
+                animation: toPostNoSelectedMoto 1s;
+            }
+        }
+    }
+    @keyframes toSelected {
+        0%{
+            width: 20vw;
+            height: fit-content;
+            margin-inline: 0%;
+            filter: brightness(0.2);
+        }
+        100%{
+            filter: brightness(1);
+            width: 30vw;
+        }
+    }
+    @keyframes toSelectedMoto {
+        0%{
+            width: 20vw;
+            height: fit-content;
+            filter: brightness(0.2);
+            margin-inline: 0%;
+        }
+        100%{
+            filter: brightness(1);
+            width: 40vw;
+        }
+    }
+    @keyframes toNoSelected {
+        0%{
+            filter: brightness(1);
+            width: 30vw;
+                height: fit-content;
+        }
+        100%{
+            filter: brightness(0.2);
+            width: 20vw;
+        }
+    }
+    @keyframes toNoSelectedMoto {
+        0%{
+            width: 40vw;
+                height: fit-content;
+        }
+        100%{
+            width: 20vw;
+        }
+    }
+    @keyframes toNoNoSelected {
+        0%{
+            width: 20vw;
+        }
+        100%{
+            width: 0vw;
+        }
+    }
+    @keyframes toNoNoSelectedMoto {
+        0%{
+            width: 20vw;
+        }
+        100%{
+            width: 0vw;
+        }
+    }
+    @keyframes toPostNoSelected {
+        0%{
+            width: 0vw;
+        }
+        100%{
+            width: 20vw;
+        }
+    }
+    @keyframes toPostNoSelectedMoto {
+        0%{
+            width: 0vw;
+        }
+        100%{
+            width: 20vw;
+        }
+    }
+    @keyframes toPostSelected {
+        0%{
+            filter: brightness(1);
+            width: 20vw;
+                height: fit-content;
+        }
+        100%{
+            filter: brightness(0.2);
+            width: 30vw;
+        }
+    }
+    @keyframes toPostSelectedMoto {
+        0%{
+            width: 30vw;
+                height: fit-content;
+        }
+        100%{
+            width: 80vw;
+        }
+    }
+    
+}

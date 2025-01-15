@@ -1,0 +1,150 @@
+#CartScreen{
+    @keyframes OpenCart {
+        0%{
+            top:100vh
+        }
+        100%{
+            top:0vh
+        }
+    }
+    animation: OpenCart 1s;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(68, 68, 68);
+    position: absolute;
+    z-index: 40;
+    top: 0;
+    left: 0;
+}
+#CartScreenClosed{
+    @keyframes CloseCart {
+        0%{
+            top:0vh;    
+            width: 100vw;
+            height: 100vh;
+            visibility: visible;
+        
+        }
+        100%{
+            visibility: visible;
+            top:100vh;
+            width: 100vw;
+            height: 100vh;        
+        }
+    }
+    animation: CloseCart 1s;
+    width: 0vw;
+    visibility: hidden;
+    height: 0vh;
+    background-color: rgb(68, 68, 68);
+    position: absolute;
+    z-index: 40;
+    top: 100vh;
+    left: 0;
+
+}
+#CartHeader{
+    width: 100vw;
+    margin-top: 4vh;
+    height: 10vh;
+    h2{
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    p{
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+}
+#CartProductsSection{
+    width: 100vw;
+    display: flex;
+    height: 50vh;
+    overflow-y: scroll;
+    flex-direction: column;
+    align-items: center;
+}
+.CartProductCard{
+    width: 90vw;
+    padding-inline: 5%;
+    margin-bottom: 3vh;
+    display: grid;
+    background-color: rgb(110, 110, 110);
+    border-radius: 5vw;
+    grid-template-columns: 20% 35% 15% 30%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 'Header Header Header Image'
+    'Delete Quantity Nothing Image';
+    .CardTitle{
+        grid-area: Header;
+        width: 100%;
+        font-weight: 400;
+        color: white;
+        align-self: center;
+    }
+    .DeleteButton{
+        background: none;
+        border: none;
+        grid-area: Delete;
+    }
+    .ImageAndPrice{
+        grid-area: Image;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        img{
+            width: 100%;
+        }
+        p{
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+    }
+    .QuantityDiv{
+        grid-area: Quantity;
+        background-color: grey;
+        border-radius: 10vw;
+        align-self: center;
+        button{
+            border: none;
+            background: none;
+        }
+        width: 100%;
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        p{
+            margin-bottom: 0px;
+        }
+    }
+}
+#CartBottom{
+    width: 100vw;
+    padding-top: 2vh;
+    height: 20vh;
+    .CartBottomDiv{
+        display: flex;
+        width: 90vw;
+        margin-left: 5vw;
+        justify-content: space-between;
+        color: white;
+    }
+    #Precio{
+        border-top: solid 2px white;
+    }
+}
+#CartButton{
+    width: 80vw;
+    margin-left: 10vw;
+    background-image: linear-gradient(rgb(46, 46, 46), rgb(26, 26, 26));
+    color: white;
+    height: 8vh;
+    border-radius: 10vw;
+    border: solid 2px rgb(155, 0, 0);
+    margin-top: 5vh;
+}

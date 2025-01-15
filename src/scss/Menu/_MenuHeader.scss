@@ -1,0 +1,13 @@
+@import '../constants/Constants';
+
+.MenuHeader{
+    height: 13vh;
+    width: 100%;
+    background-color: $extra-dark-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3{
+        color: white;
+    }
+}

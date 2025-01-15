@@ -1,0 +1,31 @@
+#ClassWallpaper{
+    background-image: linear-gradient(rgb(197, 197, 197), white);
+    display: flex;
+    align-items: center;
+    height: 95vh;
+    justify-content: space-between;
+    .Button{
+        background-color: rgb(189, 188, 188);
+        border-width: 0px;
+        width: 5vw;
+    }
+    h2{
+        text-align: center;
+        height: 80%;
+        width: 100vw;
+        overflow: hidden;
+        font-size: 22rem;
+        font-family: $font-family-1;
+        padding-bottom: 30vh;
+        color: white;
+    }
+    #imgContainer{
+        height: 100%;
+        position: absolute;
+        left: 5vw;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

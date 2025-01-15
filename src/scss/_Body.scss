@@ -1,0 +1,99 @@
+@import './Menu/Menu';
+@import './constants/Constants';
+button:focus {
+    outline: none;
+  }
+
+body{
+    font-family: 'Roboto';
+    font-style: italic;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #4f4545;
+}
+@media (orientation: landscape) {
+    #root{
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }    
+}
+@media (orientation: portrait) {
+    body{
+        height: 100vh;
+        overflow-y: hidden;
+    }
+    #root{
+        position: relative;
+        height: 100vh;
+        top: 0px;
+        background-size: cover;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        background-image: url('../../public/assets/R.jpeg');
+    
+    }    
+}
+
+#roote{
+    background-color: $background-color-page;
+        position: absolute;
+        width: 80vw;
+    z-index: 2;
+}
+
+.ProductosCreateDiv{
+    width: 90vw;
+    padding-left: 3vw;
+    
+}
+@media screen and (orientation: portrait) {
+    
+    #root{
+    background-color: rgba(222, 222, 222);
+
+    }
+    #roote{
+    width: 100vw;
+}
+#root{
+    background-size: cover;
+}
+}
+
+@media screen and (orientation: landscape) {
+#roote{
+    right: 0;
+    background-color: rgba(222, 222, 222);
+}
+}
+
+
+.openmenu{
+    margin-left: 80vw;
+    animation: apareceMenu 1s ;
+}
+.closedmenu{
+    margin-left: 0vw;
+    animation: desapareceMenu 1s ;
+}
+@keyframes apareceMenu {
+    0%{
+        margin-left: 0vw;
+    }
+    100%{
+        margin-left: 80vw;
+    }
+    
+}
+@keyframes desapareceMenu {
+    0%{
+        margin-left: 80vw;
+    }
+    100%{
+        margin-left: 0vw;
+    }
+    
+}

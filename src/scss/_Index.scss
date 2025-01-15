@@ -1,0 +1,1843 @@
+@import './Index.scss/IndexWallpaper.scss';
+@import './Index.scss/CategoriesIndex.scss';
+@import './Index.scss/EspecialesIndex.scss';
+@import './Index.scss/IndexHotProducts.scss';
+
+#Index{
+    width: 100vw;
+    height: 100%;
+}
+#whiteBack{
+    &Close{
+        background-color: rgba(217, 217, 217);
+        position: absolute;
+        bottom: 0;
+        left: 0;  
+        border-top-left-radius: 12vw;
+        border-top-right-radius: 12vw;
+        width: 100vw;
+        @keyframes DisApearHotProducts {
+            0%{
+                height: 85vh;
+                padding-top: 4vh;
+            }
+            100%{
+                height: 0vh;
+                padding-top: 4vh;
+                
+            }
+        }
+        animation: DisApearHotProducts 1s;
+    }
+    @keyframes ApearHotProducts {
+        0%{
+            bottom: -100vh;
+            background-color: rgba(217, 217, 217, 0.1);
+         box-shadow: 0px 0px 0px rgb(70, 70, 70);
+}
+        100%{
+         box-shadow: 0px 0px 0px rgb(70, 70, 70);
+         background-color: rgba(217, 217, 217);
+        }
+    }
+    background-color: rgba(217, 217, 217);
+    position: absolute;
+    z-index: 2;
+    border-top-left-radius: 12vw;
+    border-top-right-radius: 12vw;
+    width: 100vw;
+    position: absolute;
+    height: 85vh;
+    animation: ApearHotProducts 1s;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0px 0px 10px rgb(70, 70, 70);
+    &Brands{
+        @keyframes ApearSection {
+            0%{
+                height: 85vh;
+                border-top-left-radius: 12vw;
+                border-top-right-radius: 12vw;
+            
+            }
+            100%{
+                height: 100vh;
+                border-top-left-radius: 0vw;
+                border-top-right-radius: 0vw;        
+            }
+        }
+        position: absolute;
+        width: 100vw;
+        background-color: rgba(217, 217, 217);
+        bottom: 0px;
+        height: 100vh;
+        z-index: 2;
+        animation: ApearSection 1s;
+    }
+    &HotProducts{
+        @keyframes ApearSectionHot {
+            0%{
+                height: 100vh;
+                border-top-left-radius: 0vw;
+                border-top-right-radius: 0vw; 
+            }
+            100%{
+                height: 85vh;
+                border-top-left-radius: 12vw;
+                border-top-right-radius: 12vw;
+            }
+        }
+        position: absolute;
+        width: 100vw;
+        background-color: rgba(217, 217, 217);
+        bottom: 0px;
+        height: 85vh;
+        border-top-left-radius: 12vw;
+        border-top-right-radius: 12vw;
+        z-index: 2;
+        animation: ApearSectionHot 1s;
+    }
+}
+#IndexWallpaper{
+    @keyframes ApearTitle {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    @keyframes ApearTitle {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    width: 100vw;
+    height: 110vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3{
+        animation: ApearTitle 1s;
+        width: 100%;
+        text-align: center;
+        margin-top: 10vh;
+        color: white;
+        font-weight: 600;
+        text-shadow: 0px 0px 10px black;
+    }
+    &-ViewMore{
+        animation: ApearTitle 1s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgb(9, 9, 9);
+        color: white;
+        width: 50vw;
+        height: 6vh;
+        margin-top: 3vh;
+        border-radius: 3vw;
+        border: solid 2px white ;
+        z-index: 4;
+    }
+    &-ProductImage{
+        @keyframes apearImg {
+            0%{
+                margin-right: 50vw;
+                opacity: 0;            }
+            100%{
+            opacity: 1;
+            margin-right: 0vw;
+            }
+        }
+        width: 170vw;
+        animation: apearImg 1s;
+        align-self: flex-end;
+        height: auto;
+        position: absolute;
+        bottom: 0px;
+        filter: brightness(.8);
+        z-index:2
+        
+    }
+
+    &After{
+        @keyframes disapearTitle {
+            0%{
+                opacity: 1;
+            margin-top: 10vh;
+            }
+            100%{
+                opacity: 0;
+            margin-top: -10vh;
+            }
+        }
+        @keyframes disapearButton {
+            0%{
+                opacity: 1;
+                transform: scale(1);
+            }
+            100%{
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+        @keyframes disapearImg {
+            0%{
+                opacity: 1;
+                margin-right: 0vw;
+            }
+            100%{
+            margin-right: 100vw;
+            opacity: 0;
+            }
+        }
+        width: 100vw;
+        height: 110vh;
+        background-image: url('../../public/assets/R.jpeg');
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3{
+            width: 100%;
+            text-align: center;
+            margin-top: -10vh;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0px 0px 10px black;    
+            opacity: 0;
+            animation: disapearTitle 1s;
+        }
+        &-ViewMore{
+            background-color: rgb(9, 9, 9);
+            color: white;
+            width: 50vw;
+            height: 6vh;
+            margin-top: 3vh;
+            border-color: white;
+            opacity: 0;
+            
+            transform: scale(0);
+            animation: disapearButton 1s;
+        }
+        &-ProductImage{
+            width: 170vw;
+            align-self: flex-end;
+            height: auto;
+            position: absolute;
+            bottom: 0px;
+            filter: brightness(.8);
+            margin-right: 100vw;
+            z-index:2;
+            animation: disapearImg 1s;
+        }
+        &ToTop{
+            @keyframes disapearTitle {
+                0%{
+                    opacity: 1;
+                margin-top: 10vh;
+                }
+                100%{
+                    opacity: 0;
+                margin-top: -10vh;
+                }
+            }
+            @keyframes disapearButton {
+                0%{
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                100%{
+                    opacity: 0;
+                    transform: scale(0.2);
+                }
+            }
+            @keyframes disapearImg {
+                0%{
+                    opacity: 1;
+                    margin-right: 0vw;
+                }
+                100%{
+                margin-right: 100vw;
+                opacity: 0;
+                }
+            }
+            width: 100vw;
+            height: 110vh;
+            background-image: url('../../public/assets/R.jpeg');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h3{
+                width: 100%;
+                text-align: center;
+                margin-top: -10vh;
+                color: white;
+                font-weight: 600;
+                text-shadow: 0px 0px 10px black;    
+                opacity: 0;
+                animation: disapearTitle 1s;
+            }
+            &-ViewMore{
+                background-color: rgb(9, 9, 9);
+                color: white;
+                width: 50vw;
+                height: 6vh;
+                margin-top: 3vh;
+                border-color: white;
+                opacity: 0;
+                transform: scale(0);
+                animation: disapearButton 1s;
+            }
+            &-ProductImage{
+                width: 170vw;
+                align-self: flex-end;
+                height: auto;
+                position: absolute;
+                bottom: 0px;
+                filter: brightness(.8);
+                margin-right: 100vw;
+                z-index:2;
+                animation: disapearImg 1s;
+            }   
+        }
+    }
+}
+
+#IndexHotProducts{
+    @keyframes ApearProductsCard {
+        0%{
+            transform: scale(0.1);
+            opacity: 0;
+        }
+        50%{
+            transform: scale(0.1);
+            opacity: 0;
+        }
+        100%{
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    @keyframes ApearTexts {
+        0%{
+            margin-left: 100vw;
+        }
+        50%{
+            margin-left: 100vw;
+        }
+        100%{
+            margin-left: 5vw;
+        }
+    }
+    h2{
+        animation: ApearTexts .7s;
+        width: 100vw;
+        margin-left: 5vw;
+        margin-bottom: 5vh;
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-style: italic;
+    }
+    h3{
+        animation: ApearTexts .7s;
+        margin-left: 5vw;
+    }
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    .ClassRow{
+        width: 100vw;
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        .ProductCard{
+            animation: ApearProductsCard 1s;
+            width: 42vw;
+            height: 30vh;
+            background-color: rgb(226, 226, 226);
+            margin-left: 5vw;
+            border-radius: 5vw;
+            border: solid 2px rgb(50, 50, 50);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+
+            .cardHeader{
+                display: flex;
+                width: 100%;
+                margin-bottom: -10%;
+                padding-inline: 5%;
+                justify-content: space-between;
+                i{
+                    color: red;
+                }
+                .Stars{
+                    width: 60%;
+                    display: flex;
+                    i{
+                        color: rgb(233, 0, 0);
+                    }
+                }
+            }
+            img{
+                width: 90%;
+            }
+            h4{
+                text-align: center;
+                color: black;
+            }
+            .ProductType{
+                width: 100%;
+                color: grey;
+                padding: 5%;
+                margin-top: -10%;
+            }
+            .ProductPrice{
+                width: 100%;
+                color: black;
+                font-weight: 700;
+                margin-top: -5%;
+                padding-inline: 5%;
+            }
+            .LikeButton{
+                height: 15%;
+                width: 20%;
+                margin-top: -30%;
+                margin-right: 5%;
+                background-color: rgb(251, 251, 251, 0.5);
+                margin-bottom: 5%;
+                border-radius: 2vw;
+                align-self: flex-end;
+            }
+        }
+    }
+
+    &After{
+        @keyframes DisApearHotProducts {
+            0%{
+                height: 85vh;
+                padding-top: 4vh;
+            }
+            100%{
+                height: 0vh;
+                padding-top: 4vh;
+                
+            }
+        }
+        @keyframes DisApearProducts {
+            0%{
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            100%{
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes DisApearTexts {
+            0%{
+                margin-left: 5vw;
+            }
+            100%{
+                margin-left: -115vw;
+            }
+        }
+    z-index: 3;
+
+        h2{
+            animation: DisApearTexts .7s;
+            width: 100vw;
+            margin-left: -115vw;
+            margin-bottom: 5vh;
+            font-family: 'Roboto';
+            font-weight: 700;
+            font-style: italic;
+        }
+        h3{
+            animation: DisApearTexts .7s;
+            margin-left: -115vw;
+        }
+        width: 100vw;
+        height: 0vh;
+        box-shadow: 0px 0px 10px rgb(70, 70, 70);
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        border-top-left-radius: 12vw;
+        border-top-right-radius: 12vw;
+        bottom: 0;
+        left: 0;
+        animation: DisApearHotProducts 1s;
+        .ClassRow{
+            width: 100vw;
+            display: flex;
+            overflow-x: scroll;
+            align-items: center;
+            .ProductCard{
+                animation: ApearProducts 1s;
+                width: 42vw;
+                background-color: rgb(226, 226, 226);
+                margin-left: 5vw;
+                border-radius: 5vw;
+                border: solid 2px rgb(50, 50, 50);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+    
+                .cardHeader{
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: -10%;
+                    padding-inline: 5%;
+                    justify-content: space-between;
+                    i{
+                        color: red;
+                    }
+                    .Stars{
+                        width: 60%;
+                        display: flex;
+                        i{
+                            color: rgb(233, 0, 0);
+                        }
+                    }
+                }
+                img{
+                    width: 90%;
+                }
+                h4{
+                    text-align: center;
+                }
+                .ProductType{
+                    width: 100%;
+                    color: grey;
+                    padding: 5%;
+                    margin-top: -10%;
+                }
+                .ProductPrice{
+                    width: 100%;
+                    color: black;
+                    font-weight: 700;
+                    margin-top: -5%;
+                    padding-inline: 5%;
+                }
+                .LikeButton{
+                    height: 15%;
+                    width: 20%;
+                    margin-top: -30%;
+                    margin-right: 5%;
+                    background-color: rgb(251, 251, 251, 0.5);
+                    margin-bottom: 5%;
+                    border-radius: 2vw;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+    &Next{
+
+        @keyframes DisApearHotProductsNext {
+            0%{
+                height: 85vh;
+                padding-top: 4vh;
+            }
+            100%{
+                padding-top: 4vh;
+                height: 85vh;
+            }
+        }
+        @keyframes DisApearProductsNext {
+            0%{
+                transform: scale(1);
+                opacity: 1;
+            }
+            100%{
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+        @keyframes DisApearTexts {
+            0%{
+                margin-left: 5vw;
+            }
+            100%{
+                margin-left: -115vw;
+            }
+        }
+        z-index: 3;
+
+        h2{
+            animation: DisApearTexts .7s;
+            width: 100vw;
+            margin-left: -115vw;
+            margin-bottom: 5vh;
+            font-family: 'Roboto';
+            font-weight: 700;
+            font-style: italic;
+        }
+        h3{
+            animation: DisApearTexts .7s;
+            margin-left: -115vw;
+        }
+        width: 100vw;
+        height: 0vh;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        animation: DisApearHotProductsNext 1s;
+        .ClassRow{
+            width: 100vw;
+            display: flex;
+            overflow-x: scroll;
+            align-items: center;
+            .ProductCard{
+                animation: DisApearProductsNext 1s;
+                width: 42vw;
+                background-color: rgb(226, 226, 226);
+                margin-left: 5vw;
+                border-radius: 5vw;
+                border: solid 2px rgb(50, 50, 50);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+    
+                .cardHeader{
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: -10%;
+                    padding-inline: 5%;
+                    justify-content: space-between;
+                    i{
+                        color: red;
+                    }
+                    .Stars{
+                        width: 60%;
+                        display: flex;
+                        i{
+                            color: rgb(233, 0, 0);
+                        }
+                    }
+                }
+                img{
+                    width: 90%;
+                }
+                h4{
+                    text-align: center;
+                }
+                .ProductType{
+                    width: 100%;
+                    color: grey;
+                    padding: 5%;
+                    margin-top: -10%;
+                }
+                .ProductPrice{
+                    width: 100%;
+                    color: black;
+                    font-weight: 700;
+                    margin-top: -5%;
+                    padding-inline: 5%;
+                }
+                .LikeButton{
+                    height: 15%;
+                    width: 20%;
+                    margin-top: -30%;
+                    margin-right: 5%;
+                    background-color: rgb(251, 251, 251, 0.5);
+                    margin-bottom: 5%;
+                    border-radius: 2vw;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+}
+#IndexBrands{
+    @keyframes ApearTitles {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    width: 100vw;
+    padding-left: 2vw;
+    height: 100vh;
+    display: flex;
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+    bottom: 0px;
+    animation: ApearTitles 1.3s;
+    #BrandsRow{
+        display: flex;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+        padding-right: 10vw;
+        flex-direction: row;
+        width: 100vw;
+        overflow-x: scroll;
+    }
+    .BrandOption{
+        height: 20vh;
+        margin-left: 10vw;
+        border-radius: 5vw;
+    }
+    &ToTop{
+        @keyframes DisApearSection {
+            0%{
+                height: 100vh;
+                opacity: 1;
+            }
+            100%{
+                height: 85vh;
+                opacity: 0;            
+            }
+        }
+        animation: DisApearSection 0.8s;
+        width: 100vw;
+        padding-left: 2vw;
+        height: 0px;
+        display: flex;
+        padding-top: 10vh;
+        padding-bottom: 5vh;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        z-index: 3;
+        bottom: 0px;
+        opacity: 0;
+        #BrandsRow{
+            display: flex;
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+            flex-direction: row;
+            width: 100vw;
+            overflow-x: scroll;
+        }
+        .BrandOption{
+            height: 20vh;
+            margin-left: 10vw;
+            border-radius: 5vw;
+        }
+    }
+}
+
+#LoadingBack{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (orientation: landscape) {
+    #Index{
+        width: 100vw;
+    }
+}
+@media screen and (orientation: portrait) {
+    #Index{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+#WallpaperPC{
+    &Closed{
+        @keyframes DesapareceWPC {
+            0%{
+                height: 100vh;
+                visibility: visible;
+            }
+            100%{
+                visibility: visible;
+                height: 100vh;
+            }
+        }
+        animation: DesapareceWPC 1s;
+                visibility: hidden;
+                width: 100vw;
+        height: 0vh;
+        background-color: rgba(222, 222, 222);    
+        display: flex;
+        justify-content: center;
+        #backtop{
+            @keyframes DesapareceBackTop {
+                0%{
+                    height: 85vh;
+
+                }
+                100%{
+                    height: 0vh;
+                }
+            }
+            animation: DesapareceBackTop 1s;
+            width: 95vw;
+            height: 0vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(222, 222, 222), rgb(222, 222, 222), rgb(85, 85, 85));
+            z-index: 2;
+            #Textos{
+                @keyframes DesapareceBackTopTextos {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                            opacity: 0;
+                    }
+                }
+                animation: DesapareceBackTopTextos 1s;
+                width: 80vw;
+                opacity: 0;
+            }
+            h3{
+                @keyframes DesapareceBackTopTextosH3 {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                            opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceBackTopTextosH3 1s;
+                margin-top: 12vh;
+                font-weight: 300;
+                text-align: center;
+                white-space: nowrap;
+                letter-spacing: calc(50vw / 4 - 1ch);
+                span{
+                    font-weight: 700;
+                    color: rgb(138, 0, 0)
+                }
+            }
+            #LittleTexts{
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                p{
+                    font-weight: 500;
+                }
+            }
+            #WallpaperImg{
+                @keyframes DesapareceBackTopTextosImg {
+                    0%{
+                        margin-right: 0vw;
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                    100%{
+                        margin-right: 100vw;
+                        visibility: visible;
+                        opacity: 0;
+                    }
+                }
+                visibility: hidden;
+
+                        opacity: 0;
+                        margin-right: 100vw;
+                animation: DesapareceBackTopTextosImg 1s;
+                height: 130vh;
+                margin-top: -60vh;
+            }
+        }
+    
+    }
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(222, 222, 222);
+    display: flex;
+    justify-content: center;
+    #backtop{
+        @keyframes ApareceBackTop {
+            0%{
+                height: 0vh;
+
+            }
+            100%{
+                height: 85vh;
+            }
+        }
+        animation: ApareceBackTop 1s;
+        width: 95vw;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(222, 222, 222), rgb(222, 222, 222), rgb(85, 85, 85));
+        z-index: 2;
+        #Textos{
+            @keyframes ApareceBackTopTextos {
+                0%{
+                    opacity: 0;
+                }
+                100%{
+                        opacity: 1;
+                }
+            }
+            animation: ApareceBackTopTextos 1s;
+
+            width: 80vw;
+        }
+        h3{
+            @keyframes ApareceBackTopTextosH3 {
+                0%{
+                    opacity: 0;
+                }
+                100%{
+                    opacity: 1;
+                }
+            }
+            animation: ApareceBackTopTextosH3 1s;
+            margin-top: 12vh;
+            font-weight: 300;
+            text-align: center;
+            white-space: nowrap;
+            letter-spacing: calc(50vw / 4 - 1ch);
+            span{
+                font-weight: 700;
+                color: rgb(138, 0, 0)
+            }
+        }
+        #LittleTexts{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            p{
+                font-weight: 500;
+            }
+        }
+        #WallpaperImg{
+            height: 130vh;
+            margin-top: -60vh;                
+            @keyframes ApareceBackTopTextosImg {
+                0%{
+                    margin-right: 100vw;
+                    opacity: 0;
+                }
+                25%{
+                    margin-right: 75vw;
+                    opacity: 0;
+                }
+                100%{
+                    margin-right: 0vw;
+                    opacity: 1;
+                }
+            }
+            animation: ApareceBackTopTextosImg 1s;
+        }
+    }
+    #ViewMoreButton{
+        // background-color: black;
+        // background-color: rgb(82, 0, 0);
+        background-color: rgb(36, 37, 41);
+        color: white;
+        height: 7vh;
+        width: 10vw;
+        border-radius: 2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+#PCHotProducts{
+    @keyframes ApareceHotProducts {
+        0%{
+            margin-left: 100vw;
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+            margin-left: 0vw;
+        }
+    }
+    animation: ApareceHotProducts 1s;
+    width: 100vw;
+    background-color: rgba(222, 222, 222);
+    h2{
+        font-weight: 900;
+        color: rgb(206, 206, 206);
+        font-family: 'Roboto';
+        font-style: italic;
+    }
+    h3{
+        margin-top: -15%;
+        width: 100vw;
+        padding-left: 5vw;
+        font-weight: 800;
+    }
+    #ProductDiv{
+        width: 100vw;
+        display: flex;
+        #DivOfImages{
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .Seleccionada{
+                @keyframes SeleccionadaImagen {
+                    0%{
+                        width: 0%;
+                    }
+                    100%{
+                        width: 100%;
+                    }
+                }
+                animation: SeleccionadaImagen 1s;
+                width: 100%;
+            }
+            .NoSeleccionada{
+                @keyframes NoSeleccionadaImagen {
+                    0%{
+                        width: 100%;
+                    }
+                    100%{
+                        width: 0%;
+                    }
+                    
+                }
+                animation: NoSeleccionadaImagen 1s;
+                width: 0%;
+            }
+        }
+
+        #Informacion{
+            width: 50%;
+            display: flex;
+            height: 100%;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding-top: 10vh;
+            padding-left: 10%;
+            h4{
+                width: 80%;
+                height: 10vh;
+                font-weight: 700;
+            }
+            #Buttons{
+                height: 10vh;
+                    display: flex;
+                    width: 20%;
+                .BotonSelected{
+                    @keyframes AgrandarBoton {
+                        0%{
+                            transform: scale(1);
+                            border-color: black;                        
+                        }
+                        100%{
+                            transform: scale(1.5);
+                            border-color: red;
+                        }
+                    }
+                    animation: AgrandarBoton 0.5s;
+                    color: red;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: red;
+                    transform: scale(1.5);
+                }
+                .BotonNoSelected{
+                    @keyframes AchicarBoton {
+                        0%{
+                            transform: scale(1.5);
+                            border-color: red;
+                        }
+                        100%{
+                            transform: scale(1);
+                            border-color: black; 
+                        }
+                    }
+                    animation: AchicarBoton 0.5s;
+                    color: black;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: blackred;
+                    transform: scale(1);
+                }
+                button{
+                    background: none;
+                    display: flex;
+                    align-items: center;
+                    align-self: flex-end;
+                    margin-inline: 3%;
+                }
+            }
+            p{
+                margin-top: 0px;
+            }
+            #HotProductsViewMore{
+                width: 35%;
+                height: 7vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+    &Closed{
+        @keyframes CloseHotProducts {
+            0%{
+                height: auto;
+            }
+            100%{
+                height: auto;
+            }
+        }
+        animation:CloseHotProducts 1s;
+        background-color: rgba(222, 222, 222);
+        width: 100vw;
+        height: 0vh;
+        h2{
+            font-family: 'Roboto';
+            font-style: italic;
+            @keyframes CloseHotProductsh2 {
+                0%{
+                    margin-left: 0vw;
+                    opacity: 1;
+                }
+                100%{
+                    margin-left: -100vw;
+                    opacity: 0;
+                }
+            }
+            animation: CloseHotProductsh2 1s;
+            opacity: 0;
+            font-weight: 900;
+            color: rgb(206, 206, 206);
+        }
+        h3{
+            font-family: 'Roboto';
+            font-style: italic;
+            @keyframes CloseHotProductsh3 {
+                0%{
+                    margin-left: 0vw;
+                    opacity: 1;
+                }
+                100%{
+                    margin-left: -100vw;
+                    opacity: 0;
+                }
+            }
+            animation: CloseHotProductsh3 1s;
+            opacity: 0;
+            margin-top: -15%;
+            width: 100vw;
+            padding-left: 5vw;
+            font-weight: 800;
+        }
+        #ProductDiv{
+            @keyframes CloseHotProductsPD {
+
+                0%{
+                    margin-left: 0vw;
+                    visibility: visible;
+            width: 100vw;
+            opacity: 1;
+                }
+                25%{
+                    margin-left: 0vw;
+                    visibility: visible;
+            width: 100vw;
+            opacity: 1;
+                }
+                100%{
+            width: 100vw;
+            margin-left: -50vw;
+                    visibility: visible;
+                    opacity: 0;
+                }
+            }
+            animation: CloseHotProductsPD 1s;
+            width: 0vw;
+            margin-left: -100vw;
+            display: flex;
+            visibility: hidden;
+            img{
+                width: 40%;
+            }
+            #Informacion{
+                width: 50%;
+                display: flex;
+                height: 100%;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                padding-top: 10vh;
+                padding-left: 10%;
+                h4{
+                    width: 60%;
+                    height: 10vh;
+                    font-weight: 700;
+                }
+                #Buttons{
+                    height: 10vh;
+                        display: flex;
+                        width: 40%;
+                    button{
+                        background: none;
+                        display: flex;
+                        align-items: center;
+                        align-self: flex-end;
+                        margin-inline: 3%;
+                    }
+                }
+                p{
+                    margin-top: 0px;
+                }
+                #HotProductsViewMore{
+                    width: 35%;
+                    height: 7vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: black;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+#PCBrands{
+    width: 100vw;
+    margin-top: -2vh;
+    background-color: rgba(222, 222, 222);
+    h2{
+        font-weight: 900;
+        color: rgb(206, 206, 206);
+    }
+    h3{
+        margin-top: -15%;
+        width: 100vw;
+        padding-left: 5vw;
+        font-weight: 800;
+    }
+    #ContainerOfBrands{
+        &Opened{
+            display: flex;
+            flex-direction: column;
+            @keyframes AgrandarBrands {
+             0%{
+                margin-top: 10vh;
+                height: 60vh;
+                width: 95vw;
+                margin-left: 5vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 1vw;
+                border-bottom-left-radius: 1vw;
+             }
+             100%{
+                margin-top: 10vh;
+                height: auto;
+                width: 100vw;
+                margin-left: 0vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 0vw;
+                border-bottom-left-radius: 0vw;
+             }   
+            }
+            animation: AgrandarBrands 0.5s;
+            margin-top: 10vh;
+            width: 100vw;
+            margin-left: 0vw;
+            background-color: rgb(36, 37, 41);
+            #BeforeContainer{
+                @keyframes DesapareceLoBefore {
+                    0%{
+                        height: 60vh;
+                        overflow: visible;
+
+                    }
+                    100%{
+                        height: 60vh;
+                        overflow: visible;
+                    }
+                }
+                animation: DesapareceLoBefore 0.5s;
+                width: 100vw;
+                height: 0vh;
+                display: flex;
+                overflow: hidden;
+            }
+            #LeftSide{
+                @keyframes DesapareceLeftSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceLeftSide 0.5s;
+                width: 60%;
+                padding: 2%;
+                display: flex;
+                .BrandMainOption{
+                    margin-inline: 0.5vw;
+                    height: 60vh;
+                    width: 32%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    overflow: hidden;
+                    img{
+                    border-radius: .5vw;
+                    height: 85%;
+                    }
+                    p{
+                        color: white;
+                    }
+                }
+            }
+            #RightSide{
+                @keyframes DesapareceRightSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceRightSide 0.5s;
+                width: 40%;
+                padding: 2%;
+                height: 60vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                #TopSide{
+                    display: flex;
+                    align-items: flex-end;
+                    flex-wrap: wrap;
+                    p{
+                        color: white;
+                        padding-inline: 3vw;
+                        padding-block: 1vh;
+                        margin-right: 1vw;
+                        border-radius: 3vw;
+                        background-color: rgb(58, 59, 63);
+    
+                    }
+                }
+                #BottomSide{
+                    width: 100%;
+                    button{
+                        color: white;
+                        width: 100%;
+                        text-align: start;
+                        background: none;
+                        border: none;
+                    }
+                }
+    
+            }
+    
+        }
+
+        margin-top: 10vh;
+        height: 60vh;
+        width: 95vw;
+        margin-left: 5vw;
+        display: flex;
+        background-color: rgb(36, 37, 41);
+        border-top-left-radius: 1vw;
+        border-bottom-left-radius: 1vw;
+        #LeftSide{
+            width: 60%;
+            padding: 2%;
+            display: flex;
+            .BrandMainOption{
+                margin-inline: 0.5vw;
+                height: 100%;
+                width: 32%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                overflow: hidden;
+                img{
+                border-radius: .5vw;
+                height: 85%;
+                }
+                p{
+                    color: white;
+                }
+            }
+        }
+        #RightSide{
+            width: 40%;
+            padding: 2%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            #TopSide{
+                display: flex;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                p{
+                    color: white;
+                    padding-inline: 3vw;
+                    padding-block: 1vh;
+                    margin-right: 1vw;
+                    border-radius: 3vw;
+                    background-color: rgb(58, 59, 63);
+
+                }
+            }
+            #BottomSide{
+                width: 100%;
+                button{
+                    color: white;
+                    width: 100%;
+                    text-align: start;
+                    background: none;
+                    border: none;
+                }
+            }
+        }
+    }
+    #ContainerOfBrandsOpened{
+        margin-top: 10vh;
+        width: 100vw;
+        background-color: rgb(36, 37, 41);
+        #ContainerOptions{
+            padding-block: 5vh;
+            display: flex;
+            width: 100vw;
+            justify-content: space-around;
+            button{
+                padding-block: 1vh;
+                padding-inline: 3vw;
+                color: white;
+                border: none;
+                border-radius: 5vw;
+            }
+        }
+        #BrandsOptionsDiv{
+
+            width: 100vw;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            .BrandMainOption{
+                @keyframes ReapareceLaOpcion {
+                    0%{
+                        margin-inline: 0vw;
+                        width: 0vw;
+                    }
+                    100%{
+                        margin-inline: 2vw;
+                        width: 16vw;
+                    }
+                }
+                animation: ReapareceLaOpcion 1s;
+                height: 45vh;
+                width: 16vw;
+                margin-inline: 2vw;
+                overflow: hidden;
+                margin-bottom: 2vh;
+                img{
+                    height: 85%;
+                    &:hover{
+                        @keyframes AgrandaImagen {
+                            0%{
+                                transform: scale(1);
+                            }
+                            100%{
+                                transform: scale(1.1);
+                            }
+                        }
+                        animation: AgrandaImagen 1s;
+                        transform: scale(1.1);
+                    }
+                }
+                p{
+                    color:white;
+                    width: 100%;
+                    text-align: center;
+                }
+                &Not{
+                    @keyframes DesapareceLaOpcion {
+                        0%{
+                            width: 16vw;
+                            margin-inline: 2vw;
+                        
+                        }
+                        100%{
+                            width: 0vw;
+                            margin-inline: 0vw;
+                        }
+                    }
+                    animation: DesapareceLaOpcion 1s;
+                    height: 45vh;
+                    width: 0vw;
+                    margin-inline: 0vw;
+                    overflow: hidden;
+                    margin-bottom: 2vh;
+                    img{
+                        height: 85%;
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                    p{
+                        color:white;
+                        width: 100%;
+                        text-align: center;
+                    }
+    
+                }
+            }
+        }
+    }
+}
+#PCBrandsOut{
+    @keyframes DesaparecePCBrands {
+        0%{
+    width: 100vw;
+    opacity: 1;
+        }
+        100%{
+    opacity: 0;
+    width: 100vw;
+                }
+    }
+    opacity: 0;
+    animation: DesaparecePCBrands 1s;
+    width: 0vw;
+    margin-top: -2vh;
+    background-color: rgba(222, 222, 222);
+    h2{
+        font-weight: 900;
+        color: rgb(206, 206, 206);
+    }
+    h3{
+        margin-top: -15%;
+        width: 100vw;
+        padding-left: 5vw;
+        font-weight: 800;
+    }
+    #ContainerOfBrands{
+        &Opened{
+            display: flex;
+            flex-direction: column;
+            @keyframes AgrandarBrands {
+             0%{
+                margin-top: 10vh;
+                height: 60vh;
+                width: 95vw;
+                margin-left: 5vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 1vw;
+                border-bottom-left-radius: 1vw;
+             }
+             100%{
+                margin-top: 10vh;
+                height: auto;
+                width: 100vw;
+                margin-left: 0vw;
+                display: flex;
+                background-color: rgb(36, 37, 41);
+                border-top-left-radius: 0vw;
+                border-bottom-left-radius: 0vw;
+             }   
+            }
+            animation: AgrandarBrands 0.5s;
+            margin-top: 10vh;
+            width: 100vw;
+            margin-left: 0vw;
+            background-color: rgb(36, 37, 41);
+            #BeforeContainer{
+                @keyframes DesapareceLoBefore {
+                    0%{
+                        height: 60vh;
+                        overflow: visible;
+
+                    }
+                    100%{
+                        height: 60vh;
+                        overflow: visible;
+                    }
+                }
+                animation: DesapareceLoBefore 0.5s;
+                width: 100vw;
+                height: 0vh;
+                display: flex;
+                overflow: hidden;
+            }
+            #LeftSide{
+                @keyframes DesapareceLeftSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceLeftSide 0.5s;
+                width: 60%;
+                padding: 2%;
+                display: flex;
+                .BrandMainOption{
+                    margin-inline: 0.5vw;
+                    height: 60vh;
+                    width: 32%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    overflow: hidden;
+                    img{
+                    border-radius: .5vw;
+                    height: 85%;
+                    }
+                    p{
+                        color: white;
+                    }
+                }
+            }
+            #RightSide{
+                @keyframes DesapareceRightSide {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
+                opacity: 0;
+                animation: DesapareceRightSide 0.5s;
+                width: 40%;
+                padding: 2%;
+                height: 60vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                #TopSide{
+                    display: flex;
+                    align-items: flex-end;
+                    flex-wrap: wrap;
+                    p{
+                        color: white;
+                        padding-inline: 3vw;
+                        padding-block: 1vh;
+                        margin-right: 1vw;
+                        border-radius: 3vw;
+                        background-color: rgb(58, 59, 63);
+    
+                    }
+                }
+                #BottomSide{
+                    width: 100%;
+                    button{
+                        color: white;
+                        width: 100%;
+                        text-align: start;
+                        background: none;
+                        border: none;
+                    }
+                }
+    
+            }
+    
+        }
+
+        margin-top: 10vh;
+        height: 60vh;
+        width: 95vw;
+        margin-left: 5vw;
+        display: flex;
+        background-color: rgb(36, 37, 41);
+        border-top-left-radius: 1vw;
+        border-bottom-left-radius: 1vw;
+        #LeftSide{
+            width: 60%;
+            padding: 2%;
+            display: flex;
+            .BrandMainOption{
+                margin-inline: 0.5vw;
+                height: 100%;
+                width: 32%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                overflow: hidden;
+                img{
+                border-radius: .5vw;
+                height: 85%;
+                }
+                p{
+                    color: white;
+                }
+            }
+        }
+        #RightSide{
+            width: 40%;
+            padding: 2%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            #TopSide{
+                display: flex;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                p{
+                    color: white;
+                    padding-inline: 3vw;
+                    padding-block: 1vh;
+                    margin-right: 1vw;
+                    border-radius: 3vw;
+                    background-color: rgb(58, 59, 63);
+
+                }
+            }
+            #BottomSide{
+                width: 100%;
+                button{
+                    color: white;
+                    width: 100%;
+                    text-align: start;
+                    background: none;
+                    border: none;
+                }
+            }
+
+        }
+    }
+    #ContainerOfBrandsOpened{
+        margin-top: 10vh;
+        width: 100vw;
+        background-color: rgb(36, 37, 41);
+        #ContainerOptions{
+            padding-block: 5vh;
+            display: flex;
+            width: 100vw;
+            justify-content: space-around;
+            button{
+                padding-block: 1vh;
+                padding-inline: 3vw;
+                color: white;
+                border: none;
+                border-radius: 5vw;
+            }
+        }
+        #BrandsOptionsDiv{
+
+            width: 100vw;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            .BrandMainOption{
+                @keyframes ReapareceLaOpcion {
+                    0%{
+                        margin-inline: 0vw;
+                        width: 0vw;
+                    }
+                    100%{
+                        margin-inline: 2vw;
+                        width: 16vw;
+                    }
+                }
+                animation: ReapareceLaOpcion 1s;
+                height: 45vh;
+                width: 16vw;
+                margin-inline: 2vw;
+                overflow: hidden;
+                margin-bottom: 2vh;
+                img{
+                    height: 85%;
+                    &:hover{
+                        @keyframes AgrandaImagen {
+                            0%{
+                                transform: scale(1);
+                            }
+                            100%{
+                                transform: scale(1.1);
+                            }
+                        }
+                        animation: AgrandaImagen 1s;
+                        transform: scale(1.1);
+                    }
+                }
+                p{
+                    color:white;
+                    width: 100%;
+                    text-align: center;
+                }
+                &Not{
+                    @keyframes DesapareceLaOpcion {
+                        0%{
+                            width: 16vw;
+                            margin-inline: 2vw;
+                        
+                        }
+                        100%{
+                            width: 0vw;
+                            margin-inline: 0vw;
+                        }
+                    }
+                    animation: DesapareceLaOpcion 1s;
+                    height: 45vh;
+                    width: 0vw;
+                    margin-inline: 0vw;
+                    overflow: hidden;
+                    margin-bottom: 2vh;
+                    img{
+                        height: 85%;
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                    p{
+                        color:white;
+                        width: 100%;
+                        text-align: center;
+                    }
+    
+                }
+            }
+        }
+    }
+}

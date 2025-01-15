@@ -1,0 +1,24 @@
+@import '../constants/Constants';
+@import './MenuHeader';
+@import './MenuOption';
+
+.PortraitMenu{
+    height: 100vh;
+    background-color: $background-menu-pc;
+}
+@media screen and (orientation: portrait) {
+    .PortraitMenu{
+        width: 80vw;
+        z-index: 1;
+        position: absolute;
+    
+    }
+}
+@media screen and (orientation: landscape) {
+    .PortraitMenu{
+        width: 20vw;
+        z-index: 1;
+        position: fixed;
+    
+    }
+}

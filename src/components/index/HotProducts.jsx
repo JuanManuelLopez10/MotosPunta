@@ -1,0 +1,95 @@
+import React, { useContext, useState, useMemo } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
+
+const HotProducts = (props) => {
+    const context = useContext(CartContext);
+    const [selectedOption, setSelectedOption] = useState(0);
+    const [buttonPressed, setButtonPressed] = useState('Next');
+
+    // Memoizar la lista de productos destacados y categorías
+    const arrayOfHotProducts = props.HotProducts
+    
+    const arrayOfCategories = useMemo(() => {
+        const prearrayOfCategories = arrayOfHotProducts.map(producto => producto.product.productType);
+        return [...new Set(prearrayOfCategories)];  // Elimina categorías duplicadas
+    }, [arrayOfHotProducts]);
+
+    const handleNextPrev = (direction) => {
+        setSelectedOption(prev => {
+            if (direction === 'Next') {
+                return prev === arrayOfHotProducts.length - 1 ? 0 : prev + 1;
+            } else {
+                return prev === 0 ? arrayOfHotProducts.length - 1 : prev - 1;
+            }
+        });
+        setButtonPressed(direction);
+    };
+    const rendermobile = () => {
+        return (
+            <section onTouchMove={(event) => context.handleTouchMove(event, 'IndexBrands', 'Wallpaper', 'HotProducts')} onTouchStart={context.handleTouchStart} id="IndexHotProducts">
+                <h2>Productos destacados</h2>
+                {arrayOfCategories.map((clase, index) => (
+                    <div key={clase}>
+                        <h3>{clase.toUpperCase()}</h3>
+                        <div className="ClassRow">
+                            {arrayOfHotProducts.filter(producto => producto.product.productType === clase).map((producto, i) => (
+                                <Link key={producto.id} to={`product/${producto.id}`} onClick={() => {
+                                    context.setSection('FirstView');
+                                    context.setPresection('Wallpaper');
+                                    context.setScreen('Product');
+                                }} className="ProductCard">
+                                    <img src={producto.product.imageLink} alt={producto.product.model} />
+                                    <h4 style={{ fontSize: context.fontPixel }}>{producto.product.title}</h4>
+                                    <p className="ProductType" style={{ fontSize: context.fontPixel * 0.7 }}>U$S {producto.product.price}</p>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </section>
+        );
+
+    }
+    // Renderizar para pantallas móviles
+    if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
+        if (context.Section === 'HotProducts') {
+            return rendermobile();
+        }
+    }else{
+        const selectedProduct = arrayOfHotProducts[selectedOption].product;
+        
+        const productText = selectedProduct.title;
+
+        return (
+            <section id="PCHotProducts">
+                <div id="HPSectionTitle">
+                    <h2 style={{ fontSize: context.fontPixel * 4 }}>DESTACADOS</h2>
+                    <h3 style={{ fontSize: context.fontPixel * 1.8 }}>DESTACADOS</h3>
+                </div>
+                <div id="ProductDiv">
+                    <div id="DivOfImages">
+                        {arrayOfHotProducts.map((producto, index) => (
+                            <img key={producto.id} src={producto.product.imageLink} alt={producto.product.model} className={selectedOption === index ? 'Seleccionada' : 'NoSeleccionada'} />
+                        ))}
+                    </div>
+                    <div id="Informacion">
+                        <h4 style={{ fontSize: context.fontPixel * 0.8 }}>{productText}</h4>
+                        <div id="Buttons">
+                            <button onClick={() => handleNextPrev('Prev')} className={buttonPressed === 'Prev' ? 'BotonSelected' : 'BotonNoSelected'}>{'<'}</button>
+                            <button onClick={() => handleNextPrev('Next')} className={buttonPressed === 'Next' ? 'BotonSelected' : 'BotonNoSelected'}>{'>'}</button>
+                        </div>
+                        <p>{selectedProduct.brand}</p>
+                        <p>{selectedProduct.description}</p>
+                        <Link to={`/product/${arrayOfHotProducts[selectedOption].id}`} style={{ fontSize: context.fontPixel * 0.2 }}>VER MÁS</Link>
+                    </div>
+                </div>
+            </section>
+        );
+
+    }
+
+    return null;
+};
+
+export default HotProducts;
