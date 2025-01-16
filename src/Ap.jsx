@@ -16,9 +16,7 @@ const Ap = () => {
   const [OpenMenu, setOpenMenu] = useState(false);
   const [articulos, setArticulos] = useState([])
   const fetchProducts = async () => {
-    // const products = await FetchFromGoogle()
-    // setArticulos(FetchFromSheety())
-    // await FetchFromGoogle()
+
     const productos = await FetchFromFirestore()
     setArticulos(productos)
     console.log(productos[0])
