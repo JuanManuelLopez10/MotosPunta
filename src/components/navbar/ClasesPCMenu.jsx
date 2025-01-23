@@ -8,7 +8,7 @@ const ClasesPCMenu = (props) => {
     const context = useContext(CartContext)
     const [ArrayOfOptions, setArrayOfOptions] = useState([])
     const getProducts = () =>{
-        const Datos = props.articulos.filter((doc)=>doc.product.Clase===props.SelectedOpcion).map((doc)=>doc.product.Type).filter((item, index, self) => 
+        const Datos = props.articulos.filter((doc)=>doc.product.productType===props.SelectedOpcion).map((doc)=>doc.product.type).filter((item, index, self) => 
             index === self.findIndex((t) => t === item)
           );
         setArrayOfOptions(Datos)

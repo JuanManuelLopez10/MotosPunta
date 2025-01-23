@@ -4,17 +4,10 @@ import { Link } from 'react-router-dom';
 import ClasesPCMenu from './ClasesPCMenu';
 import { FetchFromTXT } from '../../data/FetchFromTXT';
 
-const Navbar = ({ OpenMenu, setOpenMenu }) => {
+const Navbar = ({ OpenMenu, setOpenMenu, articulos }) => {
   const { Orientation, fontPixel, Screen, MoveToScreen } = useContext(CartContext);
   const [SelectedOpcion, setSelectedOpcion] = useState(undefined);
-  const [articulos, setArticulos] = useState([])
-  const fetchProducts = async () => {
-    const productos = await FetchFromTXT()
-    setArticulos(productos)
-  }
-  useEffect(()=>{
-    fetchProducts()
-  },[])
+
   // Renderizado del menú móvil
   const renderMobileNavbar = () => {
     const isProductOrClassScreen = Screen === 'Product' || Screen === 'Clase';

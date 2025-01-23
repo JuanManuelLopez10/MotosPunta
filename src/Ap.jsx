@@ -74,12 +74,12 @@ const Ap = () => {
     if (articulos[0]) {
       return (
         <BrowserRouter>
-          <Navbar OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
-          <NavbarMenuMobile OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
-          <CreateArticle />
+          <Navbar  articulos={articulos}  OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
+          <NavbarMenuMobile  articulos={articulos}  OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
+          <CreateArticle articulos={articulos}/>
           <Index articulos={articulos} />
-          <ClassScreen />
-          <Product/>
+          <ClassScreen  articulos={articulos} />
+          <Product  articulos={articulos} />
         </BrowserRouter>
       );
     

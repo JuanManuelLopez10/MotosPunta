@@ -5,10 +5,9 @@ import ClassProducts from '../components/ClassScreen/ClassProducts';
 import { collection, getDocs } from 'firebase/firestore';
 import db from '../data/FirestoreData';
 import ClassFilters from '../components/ClassScreen/ClassFilters';
-import { FetchFromFirestore, FetchFromTXT } from '../data/FetchFromTXT';
 // import ClassFilters from '../components/ClassScreen/ClassFilters';
 
-const ClassScreen = () => {
+const ClassScreen = (props) => {
   const context = useContext(CartContext);
 
   const location = useLocation();
@@ -20,7 +19,7 @@ const ClassScreen = () => {
   const [operFilters, setoperFilters] = useState(false)
   
   const GetProductos = async () => {
-    const DAATos = await FetchFromFirestore()
+    const DAATos = props.articulos
 
     // const MotosCollection = collection(db, 'Productos');
     // const motosSnapshot = await getDocs(MotosCollection);

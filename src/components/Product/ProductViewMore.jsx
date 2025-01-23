@@ -7,8 +7,8 @@ const ProductViewMore = (props) => {
     if (props.producto) {
         return (
             <div id='ProductViewMore'>
-                <h2 style={{fontSize:context.fontPixel*2.3}}>{props.producto.product.title.toUpperCase()}</h2>
-                <h3 style={{fontSize:context.fontPixel*2}}>{props.producto.product.price}</h3>
+                <h2 style={{fontSize:context.fontPixel*1.8}}>{props.producto.product.title.toUpperCase()}</h2>
+                <h3 style={{fontSize:context.fontPixel*1.3}}>{props.producto.product.price}</h3>
             </div>
         );
     }

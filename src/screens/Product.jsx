@@ -9,9 +9,8 @@ import PCBenefits from '../components/Product/PCBenefits';
 import PCColors from '../components/Product/PCColors';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import db from '../data/FirestoreData';
-import { FetchFromFirestore, FetchFromTXT } from '../data/FetchFromTXT';
 
-const Product = () => {
+const Product = (props) => {
 
   const { SelectedClass, ProductShown, setProductShown, Orientation, Screen } = useContext(CartContext);
   const productId = useLocation().pathname.split('/product/')[1];
@@ -19,7 +18,7 @@ const Product = () => {
   const clasee = SelectedClass!==null ? SelectedClass[0].toUpperCase() + SelectedClass.substring(1) : null
   
   const getProduct = async () => {
-    const DAATos = await FetchFromFirestore()
+    const DAATos = props.articulos
     const producto = DAATos.find(prod=>prod.id===productId)
     setproducto(producto)
   //   const docRef = doc(db, "Productos", productId);

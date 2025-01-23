@@ -4,28 +4,27 @@ import db from '../../data/FirestoreData';
 import ProductsTableItem from './ProductsTableItem';
 
 const ProductsTable = (props) => {
-    const [Productos, setProductos] = useState([])
-    
-    const GetProductos = async () => {
-        const MotosCollection = collection(db, 'Productos');
-        const motosSnapshot = await getDocs(MotosCollection);
-        const DAATos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}));
-        setProductos(DAATos)    
-        console.log(DAATos[0]);
-    }
-    useEffect(()=>{
-        GetProductos()
-    },[])
+    const uniqueTitles = [...new Set(props.productos.map(item => item.product.title))].sort();
     return(
         <>
         <h2>{props.productos[0].product.Title}</h2>
+        <div style={{width:"100vw", display:"flex", flexDirection:"column", }}>
         {
+            uniqueTitles.map((item, index) => {
+                return(
+                    <button key={index}>{item}</button>
+                )
+            })
+        }
+        </div>
+
+        {/* {
             props.productos.map((item, index) => {
                 return(
                     <ProductsTableItem Producto={item}/>
                 )
         })
-        }
+        } */}
         </>
         )
         

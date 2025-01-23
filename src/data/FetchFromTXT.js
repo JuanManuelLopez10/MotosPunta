@@ -66,6 +66,11 @@ export const FetchFromFirestore = async () => {
   const productos = []
   const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
+  if(doc.data().description===""){
+    console.log(doc.data().title);
+    console.log(doc.data().color);
+    console.log(doc.id);
+  }
   // doc.data() is never undefined for query doc snapshots
   const producto = {
     id: doc.id,

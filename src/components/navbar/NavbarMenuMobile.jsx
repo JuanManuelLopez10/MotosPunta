@@ -3,14 +3,11 @@ import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import { FetchFromTXT } from '../../data/FetchFromTXT';
 
-const NavbarMenuMobile = ({ OpenMenu, setOpenMenu }) => {
+const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
   const { Datos, fontPixel, setMenuSelectedClass, setScreen, changeCategory } = useContext(CartContext);
   const [Clases, setClases] = useState([])
-  const [articulos, setArticulos] = useState([])
   const fetchProducts = async () => {
-    const productos = await FetchFromTXT()
-    setArticulos(productos)
-    const clasess = productos.map((doc) => doc.product).map((doc) => ({ tipo: doc.Type, clase: doc.Clase }))
+    const clasess = articulos.map((doc) => doc.product).map((doc) => ({ tipo: doc.type, clase: doc.productType }))
     const clasesMotos = clasess.filter((value, index, self) =>
       index === self.findIndex((t) => (
         t.tipo === value.tipo && t.clase === value.clase
@@ -27,7 +24,6 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu }) => {
   // Función para seleccionar la clase
   const selectClass = (clase) => {    
     setSelectedClass(clase);
-    console.log(clase);
     
     setMenuSelectedClass(clase);
   };

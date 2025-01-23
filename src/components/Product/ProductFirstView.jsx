@@ -30,9 +30,9 @@ const ProductFirstView = (props) => {
           if(options[0]){
             return(
                 <div id='FirstView' style={{width:'100vw', height:'80vh', paddingTop:'10%'}}>
-                    <img src={selectedOption===null ? producto.product.imageLink : options[selectedOption].product.imageLink} alt={producto.product.Title} style={{width:'200%', position:'absolute', top:'-20vh', opacity:'0.1', left:'-50vw', zIndex:'1'}}/>
-                    <img src={selectedOption===null ? producto.product.imageLink : options[selectedOption].product.imageLink} alt={producto.product.Title} style={{width:'100%', position:'relative', zIndex:2}}/>
-                    <div id='FirstViewOptions' style={{height:'18vh', marginTop:'-5vh', display:'flex', position:'relative', zIndex:'3', width:'100vw', overflow:'scroll'}}>
+                    {/* <img src={selectedOption===null ? producto.product.imageLink : options[selectedOption].product.imageLink} alt={producto.product.Title} style={{width:'200%', position:'absolute', top:'-20vh', opacity:'0.1', left:'-50vw', zIndex:'1'}}/> */}
+                    <img src={selectedOption===null ? producto.product.imageLink : options[selectedOption].product.imageLink} alt={producto.product.Title} style={{width:'90%', position:'relative', zIndex:2}}/>
+                    <div id='FirstViewOptions' style={{height:'18vh', marginTop:'-10vh', display:'flex', position:'relative', zIndex:'3', width:'100vw', overflow:'scroll'}}>
                         {
                             options.map((p, index) => {
                                 if (p.product.availability==="in stock") {
