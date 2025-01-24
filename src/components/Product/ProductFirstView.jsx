@@ -1,58 +1,57 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import db from '../../data/FirestoreData';
+import FirstCarousel from './ProductFirstView/CarouselFirstOption';
+import SecondCarousel from './ProductFirstView/CarouselSecondOption';
+import ThirdCarousel from './ProductFirstView/CarouselThirdOption';
 
 const ProductFirstView = (props) => {
+    const context = useContext(CartContext)
     const producto = props.producto
+    const [selectedSize, setSelectedSize] = useState(0)
     const [selectedOption, setSelectedProduct] = useState(null)
     const [options, setOptions] = useState([])
-    
-    if (producto) {
-        const FetchFromFirestore = async () => {
-            const q = query(collection(db, "products"), 
-            where("title", "==", producto.product.title));
-            const productos = []
-            const querySnapshot = await getDocs(q);
-          querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            const produc = {
-              id: doc.id,
-              product: doc.data()}
-            
-            productos.push(produc)
-          });
-          
-          setOptions(productos)
-          } 
-          FetchFromFirestore()
-          
-          if(options[0]){
-            return(
-                <div id='FirstView' style={{width:'100vw', height:'80vh', paddingTop:'10%'}}>
-                    {/* <img src={selectedOption===null ? producto.product.imageLink : options[selectedOption].product.imageLink} alt={producto.product.Title} style={{width:'200%', position:'absolute', top:'-20vh', opacity:'0.1', left:'-50vw', zIndex:'1'}}/> */}
-                    <img src={selectedOption===null ? producto.product.imageLink : options[selectedOption].product.imageLink} alt={producto.product.Title} style={{width:'90%', position:'relative', zIndex:2}}/>
-                    <div id='FirstViewOptions' style={{height:'18vh', marginTop:'-10vh', display:'flex', position:'relative', zIndex:'3', width:'100vw', overflow:'scroll'}}>
-                        {
-                            options.map((p, index) => {
-                                if (p.product.availability==="in stock") {
-                                    return(
-                                        <button onClick={()=>{setSelectedProduct(index)}} style={{display:'flex', height:'100%', justifyContent:'center', background:'none', border:'none', marginLeft:'10vw', alignItems:'center'}}>
-                                            <img src={p.product.imageLink} alt={p.product.title} style={{height:'75%'}}></img>
-                                        </button>
-                                      )  
-                                }
+    const articulos = props.articulos
+    const [carouselPart, setcarouselPart] = useState(0)
 
-                            })
-                        }
+    const FetchFromFirestore = async () => {
+      const new_array = articulos.filter(prod => prod.product.title===producto.product.title)
+      setOptions(new_array)
+    } 
     
-    
+      if (producto && options.length===0 || producto && options[0].product.title!==producto.product.title) {
+        
+        FetchFromFirestore()
+      }
+
+
+          if (producto){
+            if(options[0]){
+              const all_sizes = [{size:"xs" ,aviable:producto.product.xs}, {size:"s", aviable:producto.product.s}, {size:"m", aviable:producto.product.m}, {size:"l", aviable:producto.product.l}, {size:"xl", aviable:producto.product.xl}, {size:"xxl", aviable:producto.product.xxl}]
+              return(
+                  <div id='FirstView' style={{height:'90vh', paddingTop:'20%'}}>
+                    <h3>{producto.product.title}</h3>                    
+                    <div >
+                      
+                        <FirstCarousel carouselPart={carouselPart} setSelectedSize={setSelectedSize} selectedSize={selectedSize} producto={producto} all_sizes={all_sizes} />
+                        <SecondCarousel carouselPart={carouselPart} producto={producto} />
+                        <ThirdCarousel carouselPart={carouselPart} producto={producto} options={options} />
+
+                                            
                     </div>
-                </div>
-            )  
-          }else{
-            FetchFromFirestore()
+                      {/* <div style={{position:"sticky", bottom:"10vh", width:"100vw", display:"flex", justifyContent:"center"}}>
+                        <button onClick={()=>{setcarouselPart(0)}}>0</button>
+                        <button onClick={()=>{setcarouselPart(1)}}>1</button>
+                        <button onClick={()=>{setcarouselPart(2)}}>2</button>
+                      </div> */}
+                  </div>
+                  )  
+            }else{
+              FetchFromFirestore()
+            }
           }
+
     }
 
     // const viewMore = () => {
@@ -87,6 +86,6 @@ const ProductFirstView = (props) => {
     //         {renderProductContent()}
     //     </div>
     // );
-};
+
 
 export default ProductFirstView;
