@@ -9,6 +9,7 @@ import { collection } from 'firebase/firestore';
 
 const ProductScreen = () => {
     const context = useContext(CartContext);
+    
 //     const [producto, setproducto] = useState({})
 //     const productId = useLocation().pathname.split('/product/')[1];
 //     const clasee = context.SelectedClass!==null ? context.SelectedClass[0].toUpperCase() + context.SelectedClass.substring(1) : null

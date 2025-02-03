@@ -8,9 +8,11 @@ import CreateArticle from './screens/CrearArticulo';
 import { FetchFromFirestore, FetchFromGoogle, FetchFromTXT } from './data/FetchFromTXT';
 import ClassScreen from './screens/ClassScreen';
 import Product from './screens/Product';
+import BrandScreen from './screens/BrandScreen';
 // import FetchFromSheety from './data/FetchFromSheety';
 // import { initClient, handleAuthClick, handleSignoutClick } from './data/Gapi';
 // FetchFromSheety
+
 const Ap = () => {
   const { setHeigth, setWidth, setOrientation, Datwos, GetClases } = useContext(CartContext);
   const [OpenMenu, setOpenMenu] = useState(false);
@@ -80,6 +82,7 @@ const Ap = () => {
           <Index articulos={articulos} />
           <ClassScreen  articulos={articulos} />
           <Product  articulos={articulos} />
+          <BrandScreen articulos={articulos}/>
         </BrowserRouter>
       );
     

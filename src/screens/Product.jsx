@@ -20,6 +20,11 @@ const Product = (props) => {
   const getProduct = async () => {
     const DAATos = props.articulos
     const producto = DAATos.find(prod=>prod.id===productId)
+    if (!producto){
+      const producto = DAATos.find(prod=>prod.itemGroupId===productId)
+      setproducto(producto)
+
+    }
     setproducto(producto)
   //   const docRef = doc(db, "Productos", productId);
   //   const docSnap = await getDoc(docRef);
@@ -60,7 +65,7 @@ useEffect(() => {
     <div id={Screen === 'Product' || Screen === 'Clase' ? "Product1" : "ProductClosed"}>
 
 
-      <ProductFirstView producto={producto} articulos={props.articulos} OptionSelected={OptionSelected} />
+      <ProductFirstView producto={producto} setproducto={setproducto} articulos={props.articulos} OptionSelected={OptionSelected} />
       
       {/* <ProductViewMore producto={producto}/> */}
 

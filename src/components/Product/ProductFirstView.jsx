@@ -36,7 +36,7 @@ const ProductFirstView = (props) => {
                       
                         <FirstCarousel carouselPart={carouselPart} setSelectedSize={setSelectedSize} selectedSize={selectedSize} producto={producto} all_sizes={all_sizes} />
                         <SecondCarousel carouselPart={carouselPart} producto={producto} />
-                        <ThirdCarousel carouselPart={carouselPart} producto={producto} options={options} />
+                        <ThirdCarousel setproducto={props.setproducto}  carouselPart={carouselPart} producto={producto} options={options} />
 
                                             
                     </div>

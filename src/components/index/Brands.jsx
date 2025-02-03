@@ -20,7 +20,9 @@ const Brands = (props) => {
                     <div id="BrandsRow">
                         {arrayOfMainBrands.map((item, index) => {
                             return (
-                                <img key={index} className='BrandOption' src={item.logo} alt="" />
+                                <a href={`/brand/${item.Name}`}>
+                                    <img key={index} className='BrandOption' src={item.logo} alt={item.Name} />
+                                </a>
                             )
                         })}
                     </div>
