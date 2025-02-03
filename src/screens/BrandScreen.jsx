@@ -70,7 +70,7 @@ const BrandScreen = (props) => {
     }
   } else { // Renderización en pantallas más grandes
     return (
-      <div id={context.Screen === 'Clase' ? "ClassScreen" : "ClassScreenHidden"}>
+      <div id={context.Screen === 'Brand' ? "ClassScreen" : "ClassScreenHidden"}>
         <ClassProducts Productos={Productos} />
       </div>
     );
