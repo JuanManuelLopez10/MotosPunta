@@ -5,8 +5,6 @@ import HotProducts from '../components/index/HotProducts'
 import Brands from '../components/index/Brands'
 import WhiteBack from '../components/index/WhiteBack'
 import { useLocation } from 'react-router-dom'
-import { addDoc, collection, getDocs } from 'firebase/firestore'
-import db from '../data/FirestoreData'
 
 
 const Index = ({articulos}) => {
@@ -23,9 +21,6 @@ const Index = ({articulos}) => {
   context.setSection('FirstView')
 }  
   const getProducts = () => {
-    // const ProductosCollection = collection(db, "Productos");
-    // const motosSnapshot = await getDocs(ProductosCollection);
-    // const Datos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}))
     const Datos = articulos
     const HotProducts = Datos.filter(producto => producto.product.hotProduct!=='No')
     const brands = Datos.map((doc)=>({Name:doc.product.brand, clase:doc.product.class})).filter((item, index, self) => 

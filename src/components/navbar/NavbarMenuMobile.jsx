@@ -1,10 +1,9 @@
-import React, { useContext, useState, useMemo, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
-import { FetchFromTXT } from '../../data/FetchFromTXT';
 
 const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
-  const { Datos, fontPixel, setMenuSelectedClass, setScreen, changeCategory } = useContext(CartContext);
+  const { fontPixel, setMenuSelectedClass, setScreen, changeCategory } = useContext(CartContext);
   const [Clases, setClases] = useState([])
   const fetchProducts = async () => {
     const clasess = articulos.map((doc) => doc.product).map((doc) => ({ tipo: doc.type, clase: doc.productType }))
@@ -21,14 +20,12 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
   },[])
   const [SelectedClass, setSelectedClass] = useState(undefined);
 
-  // Función para seleccionar la clase
   const selectClass = (clase) => {    
     setSelectedClass(clase);
     
     setMenuSelectedClass(clase);
   };
 
-  // Memo para evitar el cálculo repetido de `arrayTypes` y `arrayClases`
   const arrayClases = ['motos', 'cascos','accesorios', 'indumentaria']
   if (Clases[0]) {
     return (

@@ -63,10 +63,12 @@ const HotProducts = (props) => {
 
         return (
             <section id="PCHotProducts">
+                
                 <div id="HPSectionTitle">
                     <h2 style={{ fontSize: context.fontPixel * 4 }}>DESTACADOS</h2>
                     <h3 style={{ fontSize: context.fontPixel * 1.8 }}>DESTACADOS</h3>
                 </div>
+
                 <div id="ProductDiv">
                     <div id="DivOfImages">
                         {arrayOfHotProducts.map((producto, index) => (

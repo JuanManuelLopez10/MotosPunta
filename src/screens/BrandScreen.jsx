@@ -2,12 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
-import db from '../data/FirestoreData';
-// import ClassFilters from '../components/ClassScreen/ClassFilters';
 
-import { collection, getDocs } from 'firebase/firestore';
 import ClassFilters from '../components/ClassScreen/ClassFilters';
-// import ClassFilters from '../components/ClassScreen/ClassFilters';
 
 const BrandScreen = (props) => {
   const context = useContext(CartContext);
@@ -22,20 +18,12 @@ const BrandScreen = (props) => {
   
   const GetProductos = async () => {
     const DAATos = props.articulos
-
-    // const MotosCollection = collection(db, 'Productos');
-    // const motosSnapshot = await getDocs(MotosCollection);
-    // const DAATos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}));
-    
     const FilteredDatos = DAATos.filter(producto => producto.product.brand===currentbrand)
     if (FilteredDatos[0]) {
       setProductos(FilteredDatos)   
       setFilteredProductos(FilteredDatos)
     }
     }
-
-  
-    
   useEffect(() => {
     GetProductos()
       setoperFilters(false)
@@ -45,7 +33,6 @@ const BrandScreen = (props) => {
   }, [currentbrand]);
 
   
-  // Renderización móvil
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
     if (context.Screen === 'Brand' && Productos[0]) {
       return (
@@ -68,9 +55,11 @@ const BrandScreen = (props) => {
         </div>
       );
     }
+
   } else { // Renderización en pantallas más grandes
     return (
       <div id={context.Screen === 'Brand' ? "ClassScreen" : "ClassScreenHidden"}>
+          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos}/>
         <ClassProducts Productos={Productos} />
       </div>
     );

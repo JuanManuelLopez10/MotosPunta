@@ -2,10 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
-import { collection, getDocs } from 'firebase/firestore';
-import db from '../data/FirestoreData';
+
 import ClassFilters from '../components/ClassScreen/ClassFilters';
-// import ClassFilters from '../components/ClassScreen/ClassFilters';
 
 const ClassScreen = (props) => {
   const context = useContext(CartContext);
@@ -17,40 +15,36 @@ const ClassScreen = (props) => {
   const [FilteredProductos, setFilteredProductos] = useState([])
 
   const [operFilters, setoperFilters] = useState(false)
-  
+
   const GetProductos = async () => {
     const DAATos = props.articulos
 
-    // const MotosCollection = collection(db, 'Productos');
-    // const motosSnapshot = await getDocs(MotosCollection);
-    // const DAATos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}));
-    const FilteredDatos = DAATos.filter(producto => producto.product.type===currentClase)
+    const FilteredDatos = DAATos.filter(producto => producto.product.type === currentClase)
     if (FilteredDatos[0]) {
-      setProductos(FilteredDatos)   
+      setProductos(FilteredDatos)
       setFilteredProductos(FilteredDatos)
     }
-    }
+  }
 
-  
-    
+
+
   useEffect(() => {
-      GetProductos()
-      setoperFilters(false)
+    GetProductos()
+    setoperFilters(false)
   }, [currentClase]);
 
-  
-  // Renderización móvil
+
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
     if (context.Screen === 'Clase' && Productos[0]) {
       return (
         <div id="Clase">
-          <div style={{display:'flex', width:'100vw', justifyContent:'space-around'}}>
-          <h2>{currentClase}</h2>
-          <button id="OpenFilters" style={{border:'none'}} onClick={()=>{setoperFilters(!operFilters)}}>
-            <h3>Filtros</h3>
-          </button>
+          <div style={{ display: 'flex', width: '100vw', justifyContent: 'space-around' }}>
+            <h2>{currentClase}</h2>
+            <button id="OpenFilters" style={{ border: 'none' }} onClick={() => { setoperFilters(!operFilters) }}>
+              <h3>Filtros</h3>
+            </button>
           </div>
-          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos}/>
+          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos} />
           <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );
@@ -65,6 +59,7 @@ const ClassScreen = (props) => {
   } else { // Renderización en pantallas más grandes
     return (
       <div id={context.Screen === 'Clase' ? "ClassScreen" : "ClassScreenHidden"}>
+        <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos} />
         <ClassProducts Productos={Productos} />
       </div>
     );

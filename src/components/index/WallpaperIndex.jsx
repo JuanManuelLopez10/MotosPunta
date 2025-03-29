@@ -8,14 +8,7 @@ const WallpaperIndex = (props) => {
     const context = useContext(CartContext);
     const productShown = props.producto
 
-
-
-    if (productShown!==undefined) {
-
-    }
-
     if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
-        console.log(productShown);
         
         if (context.Section === 'Wallpaper') {
             return (
@@ -56,7 +49,7 @@ const WallpaperIndex = (props) => {
                 <div id="backtop">
                     <div id='Textos'>
                         <h3 id='Title' style={{ letterSpacing: `calc(80vw / ${cantidadDeLetras} - 1ch)`, fontSize: context.fontPixel * 2.4 }}>
-                            {productShown.product.cilind} <span>{productShown.product.model.toUpperCase()}</span>
+                            <span>{productShown.product.title.toUpperCase()}</span>
                         </h3>
                         <div id="LittleTexts">
                             <p style={{ fontSize: context.fontPixel * 0.5 }}>{productShown.product.brand.toUpperCase()}</p>

@@ -1,7 +1,6 @@
-import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { createContext, useRef, useState } from "react";
-import db, { firebaseConfig, st } from "../data/FirestoreData";
-import { addDoc, arrayUnion, collection, deleteDoc, doc, getDocs, getFirestore, setDoc, updateDoc } from "firebase/firestore";
+import db from "../data/FirestoreData";
+import { arrayUnion, collection, doc, getDocs, updateDoc } from "firebase/firestore";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
@@ -81,7 +80,6 @@ const CartContextProvider = ({ children }) => {
   const fontPixel = Width / 20
 
   const [Datos, setDatos] = useState([])
-  const [loaded, setLoaded] = useState(false)
 
 
   const addDato = async (a) => {
@@ -112,30 +110,6 @@ const CartContextProvider = ({ children }) => {
     } else if (a.Color === 'Marrón') {
       a.Colour = 'b77000'
     }
-
-    const newProduct = {
-      id: a.id,
-      product: {
-        Title: a.Title,
-        Description: a.Description,
-        Price: a.Price,
-        Brand: a.Brand,
-        id: a.id,
-        Class: a.ProductType,
-        Pattern: a.Pattern,
-        Type: a.Type,
-        Options: [
-          {
-            Color: a.Color,
-            Image: a.Image,
-            Model: a.Model,
-            Colour: a.Colour
-          }
-        ],
-        Wallpaper: a.Wallpaper,
-        HotProduct: a.HotProduct
-      }
-    };
     const ProductosCollection = collection(db, "Productos");
     const motosSnapshot = await getDocs(ProductosCollection);
     const Datos = motosSnapshot.docs.map((doc) => ({id:doc.id, product:doc.data()}))
@@ -160,30 +134,8 @@ if (Datos.some(producto => producto.product.Title === a.Title)) {
     await updateDoc(docRef, {
         Options: arrayUnion(nuevoObjeto) // Agregar el nuevo objeto al array Options
     });
-    }else{
-      const docRef = await addDoc(collection(db, "Productos"), {
-
-        Title: a.Title,
-        Description: a.Description,
-        Price: a.Price,
-        Brand: a.Brand,
-        id: a.id,
-        Class: a.ProductType,
-        Pattern: a.Pattern,
-        Type: a.Type,
-        Options: [
-          {
-            Color: a.Color,
-            Image: a.Image,
-            Model: a.Model,
-            Colour: a.Colour
-          }
-        ],
-        Wallpaper: a.Wallpaper,
-        HotProduct: a.HotProduct
-      
-    });
     }
+    
 
   };
 
@@ -200,7 +152,6 @@ if (Datos.some(producto => producto.product.Title === a.Title)) {
     const MotosCollection = collection(db, "Productos");
 
     const motosSnapshot = await getDocs(MotosCollection);
-    const producots = motosSnapshot.docs.map((doc) => ({ id: doc.id, product: doc.data() }))
 
     const clasess = motosSnapshot.docs.map((doc) => doc.data()).map((doc) => ({ tipo: doc.Type, clase: doc.Class }))
     const clasesMotos = clasess.filter((value, index, self) =>
@@ -213,7 +164,7 @@ if (Datos.some(producto => producto.product.Title === a.Title)) {
 
 
   return (
-    <CartContext.Provider value={{ SelectedClass, loaded, Clases, addDato, setselectedClass, GetClases, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind, setDatos, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, setScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, Orientation, setOrientation, ImageStorage, setImageStorage, SelectedCategory, changeCategory, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, OpenMenu, handleOpenMenu }}>
+    <CartContext.Provider value={{ SelectedClass, Clases, addDato, setselectedClass, GetClases, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind, setDatos, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, Orientation, setOrientation, ImageStorage, setImageStorage, SelectedCategory, changeCategory, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, OpenMenu, handleOpenMenu }}>
       {children}
     </CartContext.Provider>
   )
