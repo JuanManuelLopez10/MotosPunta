@@ -42,7 +42,7 @@ const ClassFilters = (props) => {
         if (maxPrice) {
             productos = productos.filter(prod => prod.product.price <= maxPrice)
         }
-
+        context.setFilteredProducts(productos)
         return productos
 
     }

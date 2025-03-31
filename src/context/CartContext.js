@@ -15,6 +15,7 @@ const CartContextProvider = ({ children }) => {
   const [MenuSelectedClass, setMenuSelectedClass] = useState(undefined)
   const startY = useRef(null);
   const [ProductShown, setProductShown] = useState(undefined)
+  const [FilteredProducts, setFilteredProducts] = useState([])
   const handleTouchStart = (event) => {
     startY.current = event.touches[0].clientY;
   };
@@ -164,7 +165,7 @@ if (Datos.some(producto => producto.product.Title === a.Title)) {
 
 
   return (
-    <CartContext.Provider value={{ SelectedClass, Clases, addDato, setselectedClass, GetClases, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind, setDatos, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, Orientation, setOrientation, ImageStorage, setImageStorage, SelectedCategory, changeCategory, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, OpenMenu, handleOpenMenu }}>
+    <CartContext.Provider value={{ FilteredProducts, setFilteredProducts, SelectedClass, Clases, addDato, setselectedClass, GetClases, CilindFilters, BrandFilters, HandleChangeBrand, HandleChangeCilind, setDatos, ProductShown, setScreen, setProductShown, setSection, setMenuSelectedClass, MenuSelectedClass, MoveToScreen, Screen, PreScreen, Section, setPresection, Presection, handleTouchStart, handleTouchMove, setWidth, setHeigth, Orientation, setOrientation, ImageStorage, setImageStorage, SelectedCategory, changeCategory, currentScreen, changeScreen, selectMoto, SelectedMoto, Width, Heigth, fontPixel, Datos, OpenMenu, handleOpenMenu }}>
       {children}
     </CartContext.Provider>
   )

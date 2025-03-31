@@ -44,7 +44,7 @@ const ClassScreen = (props) => {
               <h3>Filtros</h3>
             </button>
           </div>
-          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos} />
+          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={FilteredProductos} />
           <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );
@@ -59,8 +59,8 @@ const ClassScreen = (props) => {
   } else { // Renderización en pantallas más grandes
     return (
       <div id={context.Screen === 'Clase' ? "ClassScreen" : "ClassScreenHidden"}>
-        <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos} />
-        <ClassProducts Productos={Productos} />
+        <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={FilteredProductos} />
+        <ClassProducts Productos={FilteredProductos} />
       </div>
     );
   }
