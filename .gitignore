@@ -22,4 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/data/FirestoreData.js
+/src/data
+package-lock.json
+package.json
