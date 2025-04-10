@@ -37,10 +37,14 @@ const ClassProducts = (props) => {
       </section>
     );
   } else {
+    const productosUnicos = props.Productos.filter((producto, index, self) =>
+      index === self.findIndex(p => p.product.title === producto.product.title && producto.product.availability==="in stock")
+    );
+    
     return (
       <section id="ClassProducts">
         {
-          props.Productos.map((producto, key) => {
+          productosUnicos.map((producto, key) => {
             const showProduct = (
               (context.BrandFilters === undefined && context.CilindFilters === undefined) ||
               (context.BrandFilters === undefined && context.CilindFilters === producto.product.cilind) ||
@@ -59,10 +63,10 @@ const ClassProducts = (props) => {
                   <div className='ImageContainer'>
                     <img src={producto.product.imageLink} alt="" />
                   </div>
-                  <p className="PCProductOptionName" style={{ fontSize: context.fontPixel * 0.35 }}>
+                  <p className="PCProductOptionName" style={{ fontSize: context.fontPixel * 0.35, textAlign:"center", width:"100%" }}>
                     {producto.product.title}
                   </p>
-                  <p className="PCProductOptionPrice" style={{ fontSize: context.fontPixel * 0.35 }}>
+                  <p className="PCProductOptionPrice" style={{ fontSize: context.fontPixel * 0.35, width:"100%", textAlign:"center" }}>
                     {producto.product.price}
                   </p>
                 </Link>

@@ -80,7 +80,7 @@ const Ap = () => {
           <NavbarMenuMobile  articulos={articulos}  OpenMenu={OpenMenu} setOpenMenu={setOpenMenu} />
           <CreateArticle articulos={articulos}/>
           <Index articulos={articulos} />
-          <ClassScreen  articulos={articulos} />
+          <ClassScreen setArticulos={setArticulos} articulos={articulos} />
           <Product  articulos={articulos} />
           <BrandScreen articulos={articulos}/>
         </BrowserRouter>

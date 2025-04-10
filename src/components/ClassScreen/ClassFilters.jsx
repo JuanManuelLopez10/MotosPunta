@@ -27,7 +27,15 @@ const ClassFilters = (props) => {
             }
         })
     }
+    const cleanFilters = () => {
+        setselectedBrand(undefined)
+        setselectedColor(undefined)
+        setminPrice()
+        setmaxPrice()
+        GetFilterOptions()
+        props.GetProductos(props.productos)
 
+    }
     const filterProd = () => {
         let productos = props.Productos
         if (selectedColor !== undefined) {
@@ -69,8 +77,9 @@ const ClassFilters = (props) => {
 
     const setFilteredProducts = () => {
         props.setFilteredProductos(filterProd())
-
     }
+
+
     if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
         if (props.operFilters) {
             return (
@@ -154,12 +163,31 @@ const ClassFilters = (props) => {
                         <p>Hasta {'(USD)'}:</p>
                         <input type="text" value={maxPrice} placeholder='1000000' onChange={changeMaxPrice} />
                     </div>
+                    <div style={{width:"100%", display:"flex"}}>
                     <button
+                        id='CleanButton'
+                        style={{
+                            border:"none",
+                            width: "40%",
+                            marginLeft: "5%",
+                            marginBlock: "2vh",
+                            backgroundColor:"rgb(187, 187, 187)",
+                            borderRadius: "10vw",
+                            color: "rgb(65, 65, 65)",
+                            height: "6vh"
+                        }}
+                        onClick={() => {
+                            cleanFilters()
+                            props.setoperFilters(false)
+                        }}>Borrar</button>
+                        <button
                         id='FilterButton'
                         onClick={() => {
                             setFilteredProducts()
                             props.setoperFilters(false)
                         }}>Filtrar</button>
+                    </div>
+
             </div>
         )
     }

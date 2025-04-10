@@ -59,7 +59,7 @@ const ClassScreen = (props) => {
   } else { // Renderización en pantallas más grandes
     return (
       <div id={context.Screen === 'Clase' ? "ClassScreen" : "ClassScreenHidden"}>
-        <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={FilteredProductos} />
+        <ClassFilters  setoperFilters={setoperFilters} GetProductos={GetProductos} operFilters={operFilters} setFilteredProductos={setFilteredProductos} allProducts={props.articulos} Productos={FilteredProductos} />
         <ClassProducts Productos={FilteredProductos} />
       </div>
     );
