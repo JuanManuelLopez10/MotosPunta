@@ -4,32 +4,56 @@ import { Link } from 'react-router-dom';
 
 const ClassProducts = (props) => {
   const context = useContext(CartContext);
+  const [loadedImages, setLoadedImages] = useState({});
+  const productosUnicos = props.Productos.filter((producto, index, self) =>
+    index === self.findIndex(p => p.product.title === producto.product.title && producto.product.availability==="in stock")
+  );
+  useEffect(() => {
+    const newLoadedImages = {};
+
+    productosUnicos.forEach((product) => {
+      newLoadedImages[product.id] = false; // Inicializar cada imagen como no cargada
+      const img = new Image();
+      img.src = product.product.imageLink;
+      img.onload = () => {
+        setLoadedImages((prev) => ({
+          ...prev,
+          [product.id]: true,
+        }));
+      };
+    });
+  }, [productosUnicos]);
 
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
+    console.log(loadedImages);
+    
     return (
       <section id="ClassProducts">
         {
           props.Productos.map((producto, key)=>{
-            return(
-              <Link 
-              onClick={() => {
-                context.setSection('FirstView');
-                context.setScreen('Product');
-              }}
-              key={key} 
-              id={producto.id} 
-              to={`product/${producto.id}`} 
-              className="ProductCard"
-              style={{height:'20vh', width:'100vw', display:'flex'}}
-               >
-                <img style={{height:'80%'}} src={producto.product.imageLink} alt="" />
-                <div className='ProductoNameDiv'>
-                <p style={{fontSize:context.fontPixel*1}}>{producto.product.title}</p>
-                <p style={{fontSize:context.fontPixel*1}}>U$S{producto.product.price}</p>
+            if (loadedImages[producto.id]) {
+              return(
+                <Link 
+                onClick={() => {
+                  context.setSection('FirstView');
+                  context.setScreen('Product');
+                }}
+                key={key} 
+                id={producto.id} 
+                to={`product/${producto.id}`} 
+                className="ProductCard"
+                style={{height:'20vh', width:'100vw', display:'flex'}}
+                 >
+                  <img style={{height:'80%'}} src={producto.product.imageLink} alt="" />
+                  <div className='ProductoNameDiv'>
+                  <p style={{fontSize:context.fontPixel*1}}>{producto.product.title}</p>
+                  <p style={{fontSize:context.fontPixel*1}}>U$S{producto.product.price}</p>
+  
+                  </div>
+                 </Link>
+              )
+            }
 
-                </div>
-               </Link>
-            )
 
           })
         }
@@ -37,9 +61,7 @@ const ClassProducts = (props) => {
       </section>
     );
   } else {
-    const productosUnicos = props.Productos.filter((producto, index, self) =>
-      index === self.findIndex(p => p.product.title === producto.product.title && producto.product.availability==="in stock")
-    );
+
     
     return (
       <section id="ClassProducts">
@@ -52,7 +74,8 @@ const ClassProducts = (props) => {
               (context.BrandFilters === producto.product.Brand && context.CilindFilters === producto.product.cilind)
             );
 
-            if (showProduct) {
+            if (showProduct && loadedImages[producto.id]) {
+              
               return (
                 <Link 
                   key={key} 

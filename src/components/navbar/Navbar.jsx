@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ClasesPCMenu from './ClasesPCMenu';
 import { FetchFromTXT } from '../../data/FetchFromTXT';
 
 const Navbar = ({ OpenMenu, setOpenMenu, articulos }) => {
   const { Orientation, fontPixel, Screen, MoveToScreen } = useContext(CartContext);
   const [SelectedOpcion, setSelectedOpcion] = useState(undefined);
+  const navigate = useNavigate()
+  const context = useContext(CartContext)
 
-  // Renderizado del menú móvil
   const renderMobileNavbar = () => {
     const isProductOrClassScreen = Screen === 'Product' || Screen === 'Clase';
     const iconColor = isProductOrClassScreen ? 'grey' : 'white';
@@ -56,6 +57,11 @@ const Navbar = ({ OpenMenu, setOpenMenu, articulos }) => {
                 {opcion.toUpperCase()}
               </button>
             ))}
+              {/* <button onClick={() => {
+                navigate("/Agenda")
+                context.setScreen("Agenda")
+                }}>AGENDA</button> */}
+            
           </div>
         </div>
         {SelectedOpcion && (

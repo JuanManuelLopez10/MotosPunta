@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import ProductFirstView from '../components/Product/ProductFirstView';
 import PCProductFirstView from '../components/Product/PCProductFirstView';
 import PCColors from '../components/Product/PCColors';
+import { Helmet } from 'react-helmet';
 
 
 const Product = (props) => {
@@ -11,24 +12,17 @@ const Product = (props) => {
   const { Orientation, Screen } = useContext(CartContext);
   const productId = useLocation().pathname.split('/product/')[1];
   const [producto, setproducto] = useState(undefined)
-  
+
   const getProduct = async () => {
     const DAATos = props.articulos
-    const producto = DAATos.find(prod=>prod.id===productId)
-    if (!producto){
-      const producto = DAATos.find(prod=>prod.itemGroupId===productId)
-      setproducto(producto)
-
-    }
+    const producto = DAATos.find(prod => prod.id === productId)
     setproducto(producto)
 
-}
+  }
 
-useEffect(() => {
-  getProduct()
+  useEffect(() => {
+    getProduct()
   }, [productId])
-
-
 
 
   const [OptionSelected, setOptionSelected] = useState(0);
@@ -40,27 +34,33 @@ useEffect(() => {
 
 
       <ProductFirstView producto={producto} setproducto={setproducto} articulos={props.articulos} OptionSelected={OptionSelected} />
-      
+
 
     </div>
   );
 
   const renderPCView = () => (
     <div id="PCProductScreen">
-      <PCProductFirstView 
-        producto={producto} 
-        setOptionSelected={setOptionSelected} 
-        OptionSelected={OptionSelected} 
+      <Helmet>
+        <title>{producto.product.title ? producto.product.title + " | Motos Punta" : "Motos Punta"}</title>
+        <meta name="description" content={`Encuentra ${producto.product.productType} como ${producto.product.productType} en nuestro local.`} />
+      </Helmet>
+      <PCProductFirstView
+        producto={producto}
+        setOptionSelected={setOptionSelected}
+        OptionSelected={OptionSelected}
       />
       <PCColors producto={producto} />
     </div>
   );
+  if (producto) {
+    return (
+      Orientation === 'portrait-primary' || Orientation === 'portrait-secondary'
+        ? renderMobileView()
+        : Screen === 'Product' && renderPCView()
+    );
+  }
 
-  return (
-    Orientation === 'portrait-primary' || Orientation === 'portrait-secondary'
-      ? renderMobileView()
-      : Screen === 'Product' && renderPCView()
-  );
 };
 
 export default Product;

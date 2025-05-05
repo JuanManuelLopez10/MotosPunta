@@ -4,6 +4,7 @@ import { CartContext } from '../context/CartContext';
 import ClassProducts from '../components/ClassScreen/ClassProducts';
 
 import ClassFilters from '../components/ClassScreen/ClassFilters';
+import { Helmet } from 'react-helmet';
 
 const ClassScreen = (props) => {
   const context = useContext(CartContext);
@@ -31,6 +32,7 @@ const ClassScreen = (props) => {
   useEffect(() => {
     GetProductos()
     setoperFilters(false)
+
   }, [currentClase]);
 
 
@@ -38,13 +40,17 @@ const ClassScreen = (props) => {
     if (context.Screen === 'Clase' && Productos[0]) {
       return (
         <div id="Clase">
+          <Helmet>
+            <title>{currentClase + " | Motos Punta"}</title>
+            <meta name="description" content={`Encuentra ${currentClase} de todas nuestras marcas en nuestro local.`} />
+          </Helmet>
           <div style={{ display: 'flex', width: '100vw', justifyContent: 'space-around' }}>
             <h2>{currentClase}</h2>
             <button id="OpenFilters" style={{ border: 'none' }} onClick={() => { setoperFilters(!operFilters) }}>
               <h3>Filtros</h3>
             </button>
           </div>
-          <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={FilteredProductos} />
+          <ClassFilters setoperFilters={setoperFilters} GetProductos={GetProductos} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={FilteredProductos} />
           <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );
@@ -59,7 +65,11 @@ const ClassScreen = (props) => {
   } else { // Renderización en pantallas más grandes
     return (
       <div id={context.Screen === 'Clase' ? "ClassScreen" : "ClassScreenHidden"}>
-        <ClassFilters  setoperFilters={setoperFilters} GetProductos={GetProductos} operFilters={operFilters} setFilteredProductos={setFilteredProductos} allProducts={props.articulos} Productos={FilteredProductos} />
+        <Helmet>
+          <title>{currentClase + " | Motos Punta"}</title>
+          <meta name="description" content={`Encuentra ${currentClase} de todas nuestras marcas en nuestro local.`} />
+        </Helmet>
+        <ClassFilters setoperFilters={setoperFilters} GetProductos={GetProductos} operFilters={operFilters} setFilteredProductos={setFilteredProductos} allProducts={props.articulos} Productos={FilteredProductos} />
         <ClassProducts Productos={FilteredProductos} />
       </div>
     );

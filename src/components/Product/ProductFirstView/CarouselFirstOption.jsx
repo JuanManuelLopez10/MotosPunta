@@ -13,7 +13,7 @@ const FirstCarousel = ({producto, all_sizes, setSelectedSize, selectedSize, caro
             : {width : "80vw", marginLeft: "0vw",  marginTop: "0vw", height:"fit-content" }
             }/>
             <p style={{paddingLeft:"5%"}} >Talles:</p>
-            <div style={{display:"flex", width:"80%", height:"20%", marginBottom:all_sizes.findIndex(siz => siz.aviable===true)!==-1 ? "20vh" : "0px"}}>
+            <div style={{display:"flex", width:"80%", height:"20%", marginBottom:all_sizes.findIndex(siz => siz.aviable===true)!==-1 ? "10vh" : "10vh"}}>
             {
               producto.product.productType!=="motos"
               ?

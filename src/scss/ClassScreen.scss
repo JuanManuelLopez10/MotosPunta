@@ -5,6 +5,9 @@
 @import './Class/ClassBrands.scss';
 @import './Class/ClassEcom.scss';
 
+
+
+
 #Clase{
     @keyframes ApearClaseScreen {
         0%{
@@ -296,6 +299,20 @@
         }
     }
 }
+#PCFilters::-webkit-scrollbar {
+    width: 10px; /* Ajusta el ancho según lo necesites */
+    background: transparent;
+  }
+  
+  #PCFilters::-webkit-scrollbar-thumb {
+    background: rgb(43, 43, 43); /* Azul transparente */
+    border-radius: 5px;
+  }
+  
+  #PCFilters::-webkit-scrollbar-button {
+    display: none; /* Oculta las flechas */
+  }
+  
 .FilterOptions{
     button{
         width: 20%;
@@ -316,6 +333,7 @@
     }
     animation: apearFilters 0.5s;
 }
+
 #FilterButton{
     border: none;
     width: 40%;

@@ -10,8 +10,8 @@ const ClassFilters = (props) => {
 
     const [selectedBrand, setselectedBrand] = useState(undefined)
     const [selectedColor, setselectedColor] = useState(undefined)
-    const [minPrice, setminPrice] = useState()
-    const [maxPrice, setmaxPrice] = useState()
+    const [minPrice, setminPrice] = useState(0)
+    const [maxPrice, setmaxPrice] = useState(1000000)
 
     const GetFilterOptions = () => {
         const arrayBrands = []
@@ -27,6 +27,7 @@ const ClassFilters = (props) => {
             }
         })
     }
+    
     const cleanFilters = () => {
         setselectedBrand(undefined)
         setselectedColor(undefined)
@@ -36,6 +37,8 @@ const ClassFilters = (props) => {
         props.GetProductos(props.productos)
 
     }
+
+
     const filterProd = () => {
         let productos = props.Productos
         if (selectedColor !== undefined) {
@@ -45,10 +48,11 @@ const ClassFilters = (props) => {
             productos = productos.filter(prod => prod.product.brand === selectedBrand)
         }
         if (minPrice) {
-            productos = productos.filter(prod => prod.product.price >= minPrice)
+
+            productos = productos.filter(prod => parseInt(prod.product.price.replace("USD ", "")) >= minPrice)
         }
         if (maxPrice) {
-            productos = productos.filter(prod => prod.product.price <= maxPrice)
+            productos = productos.filter(prod => parseInt(prod.product.price.replace("USD ", "")) <= maxPrice)
         }
         context.setFilteredProducts(productos)
         return productos
@@ -119,6 +123,22 @@ const ClassFilters = (props) => {
                         <input type="text" value={maxPrice} placeholder='1000000' onChange={changeMaxPrice} />
                     </div>
                     <button
+                        id='CleanButton'
+                        style={{    border: "none",
+                            width: "40%",
+                            marginLeft: "25%",
+                            marginBlock: "2vh",
+                            backgroundColor:" #252324",
+                            borderRadius: "10vw",
+                            color: "rgb(197, 197, 197)",
+                            height: "6vh"}}
+                        onClick={() => {
+                            cleanFilters()
+                            props.setoperFilters(false)
+                        }}>Borrar filtros</button>
+
+
+                    <button
                         id='FilterButton'
                         onClick={() => {
                             setFilteredProducts()
@@ -128,9 +148,11 @@ const ClassFilters = (props) => {
             )
         }
     }else{
+
+
         return(
-            <div style={{width:"20vw", height:"100vh", paddingTop:"8%", paddingLeft:"1%", overflow:"scroll", scrollbarColor: "transparent transparent"}}>
-                    <h5>Colores</h5>
+            <div id='PCFilters' style={{width:"20vw", height:"100vh", paddingTop:"8%", paddingLeft:"1%", overflowY:"scroll"  }}>
+                    <h5 style={{color:"white"}}>Colores</h5>
                     <div id="FilterColors" className='FilterOptions '>
                         {
                             ArrayOfColours.map((Color, index) => {
@@ -143,7 +165,8 @@ const ClassFilters = (props) => {
                         }
                     </div>
 
-                    <h5>Marcas</h5>
+                    <h5 style={{color:"white"}}>Marcas</h5>
+
                     <div id="FilterBrands" className='FilterOptions'>
 
                         {
@@ -156,14 +179,15 @@ const ClassFilters = (props) => {
                             })
                         }
                     </div>
-                    <h5>Precio:</h5>
+                    <h5 style={{color:"white"}} >Precio:</h5>
                     <div id="PriceFilter">
-                        <p>Desde {'(USD)'}:</p>
+                        <p  style={{color:"white"}}>Desde {'(USD)'}:</p>
                         <input type="text" value={minPrice} placeholder='0' onChange={changeMinPrice} />
-                        <p>Hasta {'(USD)'}:</p>
+                        <p style={{color:"white"}}>Hasta {'(USD)'}:</p>
                         <input type="text" value={maxPrice} placeholder='1000000' onChange={changeMaxPrice} />
                     </div>
                     <div style={{width:"100%", display:"flex"}}>
+
                     <button
                         id='CleanButton'
                         style={{
@@ -180,6 +204,7 @@ const ClassFilters = (props) => {
                             cleanFilters()
                             props.setoperFilters(false)
                         }}>Borrar</button>
+                        
                         <button
                         id='FilterButton'
                         onClick={() => {

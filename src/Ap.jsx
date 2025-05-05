@@ -9,6 +9,7 @@ import { FetchFromFirestore, FetchFromGoogle, FetchFromTXT } from './data/FetchF
 import ClassScreen from './screens/ClassScreen';
 import Product from './screens/Product';
 import BrandScreen from './screens/BrandScreen';
+import AgendaScreen from './screens/AgendaScreen';
 // import FetchFromSheety from './data/FetchFromSheety';
 // import { initClient, handleAuthClick, handleSignoutClick } from './data/Gapi';
 // FetchFromSheety
@@ -71,7 +72,7 @@ const Ap = () => {
       window.removeEventListener('orientationchange', handleResizeAndOrientationChange);
     };
   }, [setHeigth, setWidth, setOrientation]);
-
+  
   // Carga de datos inicial
     if (articulos[0]) {
       return (
@@ -83,6 +84,7 @@ const Ap = () => {
           <ClassScreen setArticulos={setArticulos} articulos={articulos} />
           <Product  articulos={articulos} />
           <BrandScreen articulos={articulos}/>
+          <AgendaScreen/>
         </BrowserRouter>
       );
     
