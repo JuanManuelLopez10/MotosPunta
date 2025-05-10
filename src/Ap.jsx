@@ -25,33 +25,7 @@ const Ap = () => {
     console.log(productos[0])
   }
   
-  // const fetchProductsArray = async () => {
-  //   try {
-  //     // Realiza la solicitud para obtener el contenido del archivo
-  //     const response = await fetch("/productos.txt");
-  
-  //     // Verifica si la respuesta es exitosa
-  //     if (!response.ok) {
-  //       throw new Error(`Error al cargar el archivo: ${response.statusText}`);
-  //     }
-  
-  //     const text = await response.text();
-  
-  //     // Convierte el texto directamente a JSON
-  //     const productArray = JSON.parse(text);
-  
-  //     setArticulos(productArray); // Retorna el array de productos
-  //     console.log(articulos);
-      
-  //   } catch (error) {
-  //     console.error("Error al leer o parsear el archivo:", error);
-  //     return []; // Retorna un array vacío en caso de error
-  //   }
-  // };
 
-
-
-  // Manejo de redimensionamiento y orientación
   useEffect(() => {
     const handleResizeAndOrientationChange = () => {
       setHeigth(window.innerHeight);
@@ -59,7 +33,6 @@ const Ap = () => {
       setOrientation(window.screen.orientation.type);
       GetClases()
       fetchProducts()
-      // fetchProductsArray()
 
     };
 

@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 
 const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
   const { fontPixel, setMenuSelectedClass, setScreen, changeCategory } = useContext(CartContext);
   const [Clases, setClases] = useState([])
+  const navigate = useNavigate()
   const fetchProducts = async () => {
     const clasess = articulos.map((doc) => doc.product).map((doc) => ({ tipo: doc.type, clase: doc.productType }))
     const clasesMotos = clasess.filter((value, index, self) =>
@@ -18,6 +19,7 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
   useEffect(()=>{
     fetchProducts()
   },[])
+
   const [SelectedClass, setSelectedClass] = useState(undefined);
 
   const selectClass = (clase) => {    
@@ -52,6 +54,18 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
                   <p>{clase.toUpperCase()}</p>
                 </button>
               ))}
+                <button
+                  key={"Agenda"}
+                  className={OpenMenu && SelectedClass === undefined ? 'MenuOption MenuOptionOpen' : 'MenuOption MenuOptionClosed'}
+                  onClick={() => {
+                    setOpenMenu(false);
+                    setSelectedClass(undefined);
+                    setScreen('Agenda');
+                    navigate("/Agenda")
+                  }}
+                >
+                  <p>AGENDA</p>
+                </button>
             </div>
     
 
@@ -81,6 +95,7 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
                   ))}
               </div>
             ))}
+
           </div>
         </>
       );

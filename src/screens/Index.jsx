@@ -40,7 +40,6 @@ const Index = ({articulos}) => {
   }
   useEffect(() => {
     getProducts()
-    // document.title = "Motos Punta | Inicio ";
 
     }, [])
     if (WallpaperProduct!==undefined) {
