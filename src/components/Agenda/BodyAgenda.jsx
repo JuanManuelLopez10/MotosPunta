@@ -23,7 +23,7 @@ const BodyAgenda = ({ date, setHour }) => {
 
     if (events[0]) {
         return (
-            <div id='AGENDA-Body' style={{ height: "100vh", marginTop: "5vh", width: "100vw", display: "flex", flexDirection: "column", overflowY: "scroll", overflowX: "hidden", paddingBottom: "30vh" }}>
+            <div id='AGENDA-Body' style={{ height: "100vh", marginTop: "5vh", width: "100vw", display: "flex", flexDirection: "column", overflowY: "scroll", overflowX: "hidden", paddingBottom: "40vh" }}>
 
                 {
                     hours.map(hour => {

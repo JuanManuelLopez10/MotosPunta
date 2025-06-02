@@ -95,7 +95,7 @@ const ClassProducts = (props) => {
                 </Link>
               );
             }
-            return null; // Si no pasa el filtro, no renderizar nada
+            return null;
           })
         }
       </section>
