@@ -24,9 +24,9 @@ const PCColors = (props) => {
                         {
                             arrayOfOptions.map((item, index)=>{
                                 return (
-                                    <>
-                                    <img key={'coso'+index} style={{width:producto.product.class==='motos'?'40vw':'25vw'}} src={item.product.imageLink}  alt="" />
-                                    </>
+                                    <a href={`/product/${item.id}`} style={{background:"none", border:"none"}} >
+                                        <img key={'coso'+index} style={{width:producto.product.class==='motos'?'40vw':'25vw'}} src={item.product.imageLink}  alt="" />
+                                    </a>
                                 )
                             })
                         }
