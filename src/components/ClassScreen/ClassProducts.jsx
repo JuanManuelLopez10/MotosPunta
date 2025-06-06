@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 const ClassProducts = (props) => {
   const context = useContext(CartContext);
   const [loadedImages, setLoadedImages] = useState({});
-  const productosUnicos = props.Productos.filter((producto, index, self) =>
-    index === self.findIndex(p => p.product.title === producto.product.title && producto.product.availability==="in stock")
-  );
+  const productosUnicos = props.Productos
   useEffect(() => {
     const newLoadedImages = {};
 
