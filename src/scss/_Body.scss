@@ -22,8 +22,7 @@ body{
 }
 @media (orientation: portrait) {
     body{
-        height: 100vh;
-        overflow-y: hidden;
+        overflow-y: scroll;
     }
     #root{
         position: relative;

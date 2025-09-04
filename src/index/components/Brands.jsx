@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import brands from "../../data/brands.json"
-const Brands = (props) => {
+const Brands = () => {
     const context = useContext(CartContext)
     const arrayOfMainBrands = brands
     const [SelectedOption, setSelectedOption] = useState(undefined)
@@ -10,12 +10,11 @@ const Brands = (props) => {
     const ArrayOfOptions = ['motos', 'cascos', 'indumentaria', 'accesorios']
     const firstFourBrands = Brands.slice(0, 4)
     const [OpnenedBrands, setOpnenedBrands] = useState(false)
-
+    if(context.Screen==="Index"){
     if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
 
-        if (context.Section === 'IndexBrands') {
             return (
-                <section onTouchMove={(event) => { context.handleTouchMove(event, 'Segundo', 'HotProducts', 'IndexBrands') }} onTouchStart={context.handleTouchStart} id='IndexBrands' >
+                <section id='PortraitIndexBrands' >
                     <h3 style={{ fontSize: context.fontPixel * 2.5 }}>Nuestras <span style={{ color: 'red', fontSize: context.fontPixel * 3.2 }}>Marcas <i className="bi bi-chevron-compact-down"></i></span> </h3>
                     <div id="BrandsRow">
                         {arrayOfMainBrands.map((item, index) => {
@@ -34,25 +33,8 @@ const Brands = (props) => {
                     </div>
                 </section>
             )
-        } else if (context.Section === 'HotProducts' && context.Presection === 'IndexBrands') {
-            return (
-                <section onTouchMove={(event) => { context.handleTouchMove(event, 'Segundo', 'HotProducts', 'IndexBrands') }} onTouchStart={context.handleTouchStart} id='IndexBrandsToTop' >
-                    <h3 style={{ fontSize: context.fontPixel * 2.5 }}>Nuestras <span style={{ color: 'red', fontSize: context.fontPixel * 3.2 }}>Marcas <i className="bi bi-chevron-compact-down"></i></span> </h3>
-                    <div id="BrandsRow">
-                        {arrayOfMainBrands.map((item, index) => {
-                            return (
-                                <img key={index} className='BrandOption' src={item.logo} alt={item.Name} />
-                            )
-                        })}
-                    </div>
-                    <h3 style={{ fontSize: context.fontPixel * 3.1 }}>Contactanos </h3>
-
-                </section>
-            )
-        }
     } else {
         if (Brands.length > 0) {
-
             return (
                 <section id={context.Screen === 'Index' ? "PCBrands" : "PCBrandsOut"}>
                     <div id="PCBrandsTitle">
@@ -68,7 +50,7 @@ const Brands = (props) => {
                                         if (index < 4) {
                                             return (
                                                 <div key={index} className="BrandMainOption" id={`BrandMainOption${index}`} >
-                                                    <img src={item.img} />
+                                                    <img src={item.img} alt={item.Name}/>
                                                     <p style={{ fontSize: context.fontPixel * .35 }} >{item.Name}</p>
                                                 </div>
                                             )
@@ -100,7 +82,7 @@ const Brands = (props) => {
                                         {arrayOfMainBrands.map((item, index) => {
                                             return (
                                                 <div className="BrandMainOption" id={`BrandMainOption${index}`} >
-                                                    <img src={`./assets/logos/${item.Name}.jpg`} />
+                                                    <img src={`./assets/logos/${item.Name}.jpg`} alt={item.Name} />
                                                     <p style={{ fontSize: context.fontPixel * .35 }} >{item.Name}</p>
                                                 </div>
                                             )
@@ -146,14 +128,14 @@ const Brands = (props) => {
 
                                                     return (
                                                         <div className="BrandMainOption" id={`BrandMainOption${index}`} >
-                                                            <img src={item.img} />
+                                                            <img src={item.img} alt={item.Name}/>
                                                             <p style={{ fontSize: context.fontPixel * .35 }} >{item.Name}</p>
                                                         </div>
                                                     )
                                                 } else {
                                                     return (
                                                         <div className="BrandMainOptionNot" id={`BrandMainOption${index}`} >
-                                                            <img src={item.img} />
+                                                            <img src={item.img} alt={item.Name} />
                                                             <p style={{ fontSize: context.fontPixel * .35 }} >{item.Name}</p>
                                                         </div>
                                                     )
@@ -170,6 +152,8 @@ const Brands = (props) => {
 
         }
     }
+    }
+
 }
 
 export default Brands

@@ -33,9 +33,9 @@ const BrandScreen = (props) => {
     }
   }, [currentbrand]);
 
+    if (context.Screen === 'Brand' && Productos[0]) {
 
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
-    if (context.Screen === 'Brand' && Productos[0]) {
       return (
         <div id="Clase">
           <Helmet>
@@ -52,23 +52,16 @@ const BrandScreen = (props) => {
           <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );
-    } else {
-      return (
-        <div id="ClaseClosed">
-          <h2>{currentbrand}</h2>
-          <ClassProducts Productos={Productos} />
-        </div>
-      );
-    }
+  
 
   } else { // Renderización en pantallas más grandes
     return (
-      <div id={context.Screen === 'Brand' ? "ClassScreen" : "ClassScreenHidden"}>
+      <div id="ClassScreen">
         <ClassFilters setoperFilters={setoperFilters} operFilters={operFilters} setFilteredProductos={setFilteredProductos} Productos={Productos} />
         <ClassProducts Productos={Productos} />
       </div>
     );
   }
 };
-
+}
 export default React.memo(BrandScreen);

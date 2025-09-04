@@ -1,0 +1,72 @@
+#Clase{
+    @keyframes ApearClaseScreen {
+        0%{
+            background-color: transparent;
+        }
+        100%{
+    background-color: rgb(236, 236, 236);
+
+        }
+    }
+    @keyframes ApearProducts {
+        0%{
+            opacity: 0;
+            transform: scale(0);
+        }
+        100%{
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(236, 236, 236);
+    position: absolute;
+    overflow-y: hidden;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    padding-top: 10vh;
+    animation: ApearClaseScreen .8s;
+
+}
+#ClassProducts{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    padding-bottom: 2vh;
+    .ProductCard{
+        overflow: hidden;
+        max-height: 50vh;
+        animation: ApearProducts 1.5s;
+        .ProductoNameDiv{
+            width: 60%;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5%;
+            p{
+                color: black;
+            }
+        }
+        &ImgMoto{
+            width: 130%;
+            margin-left: -15%;
+            margin-top: -45%;
+            align-self: flex-end;
+
+        }
+        &ImgOtro{
+            height: 120%;
+            margin-top: -25%;
+            margin-left: 40%;
+            align-self: center;
+            z-index: 5;
+        }
+    }
+}
+

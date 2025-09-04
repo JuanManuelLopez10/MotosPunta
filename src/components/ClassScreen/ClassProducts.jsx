@@ -23,7 +23,6 @@ const ClassProducts = (props) => {
   }, [productosUnicos]);
 
   if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
-    console.log(loadedImages);
     
     return (
       <section id="ClassProducts">

@@ -1,0 +1,24 @@
+#NavbarMobile{
+    height: 10vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(black, rgba(158, 158, 158, 0));
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 2vw;
+    z-index: 100;
+    #NavbarMobileLogo{
+        width: 10vh;
+    }
+    #NavbarMobileMenuButton{
+        border: none;
+        background: none;
+        &I{
+            color: rgb(255, 255, 255);
+            text-shadow: 0px 0px 3px rgb(0, 0, 0);
+        }
+
+    }
+}

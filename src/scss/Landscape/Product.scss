@@ -1,0 +1,113 @@
+
+#ProductScreen{
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+}
+
+#ProductOptions{
+    .ProductOption{
+        height: 25vh;
+        width: 25vh;
+        margin-left: 5vw;
+        border-radius: 5vw;
+        box-shadow: 5px 0px 10px black;
+        margin-block: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        background-image: linear-gradient(rgb(236, 236, 236), rgb(118, 118, 118));
+
+            p{
+                color: white;
+                width: 25vh;
+                text-shadow: 1px 0px 3px black;
+                margin-left: 2vw;
+                text-align: center;
+            }
+        }
+}
+#PCProductScreen{
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    #PCProductFirstView{
+        width: 100vw;
+        height: 80vh;
+        overflow: hidden;
+        padding-inline: 3vw;
+        background-color: #bdbdbd;
+        display: grid;
+        grid-template-rows: 15vh 52vh 25vh;
+        grid-template-columns: 14vw 60vw 14vw;
+        grid-template-areas:
+        "nada nada nada"
+        "FVPCTexto Foto Benefits"
+        "abajo abajo abajo";
+        #PCProductFirstViewText{
+            grid-area: FVPCTexto;
+            width: 35vw;
+            height: 90%;
+            align-self: flex-end;
+            color: rgb(71, 71, 71);
+            z-index: 6;
+            #PCProductTextTitle{
+                margin-bottom: -1vh;
+                font-weight: 600;
+            }
+        }
+        #PCProductBackTitle{
+            position: absolute;
+            top: 0vh;
+            left: 0;
+            width: 100vw;
+            text-align: center;
+            color: rgb(71, 71, 71);
+            opacity: .08;
+            font-weight: 700;
+            height: 80vh;
+            overflow: hidden;
+        }
+        #PCProductImage{
+            grid-area: Foto;
+            width: 60%;
+            justify-self: center;
+            z-index: 5;
+            filter: brightness(.8);
+            align-self: flex-start;
+        }
+        #PCProductFirstViewCaract{
+            grid-area: Benefits;
+            align-self: center;
+            color: rgb(71, 71, 71);
+            text-align: center;
+            .CaractDesc{
+                font-weight: 700;
+            }
+        }
+    }
+
+    #PCColors{
+        background-image: linear-gradient(#bdbdbd, #bdbdbd, #3f4040);
+        #ColorsTitleBack{
+            color: rgb(224, 224, 224, 0.3);
+            margin-bottom: -40vh;
+        }
+        #ColoresOptions{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            img{
+                filter: brightness(.8);
+            }
+        }
+    }
+
+
+}

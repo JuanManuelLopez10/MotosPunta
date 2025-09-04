@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom';
 import { CartContext } from './context/CartContext';
-import Index from './screens/Index';
+import Index from './index/Index';
 import Navbar from './components/navbar/Navbar';
 import NavbarMenuMobile from './components/navbar/NavbarMenuMobile';
 import CreateArticle from './screens/CrearArticulo';
@@ -10,6 +10,7 @@ import ClassScreen from './screens/ClassScreen';
 import Product from './screens/Product';
 import BrandScreen from './screens/BrandScreen';
 import AgendaScreen from './screens/AgendaScreen';
+import ServicesScreen from './screens/ServicesScreen';
 // import FetchFromSheety from './data/FetchFromSheety';
 // import { initClient, handleAuthClick, handleSignoutClick } from './data/Gapi';
 // FetchFromSheety
@@ -58,6 +59,7 @@ const Ap = () => {
           <Product  articulos={articulos} />
           <BrandScreen articulos={articulos}/>
           <AgendaScreen/>
+          <ServicesScreen/>
         </BrowserRouter>
       );
     

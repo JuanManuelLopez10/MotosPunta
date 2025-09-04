@@ -25,9 +25,10 @@ const HotProducts = (props) => {
         });
         setButtonPressed(direction);
     };
+
     const rendermobile = () => {
         return (
-            <section onTouchMove={(event) => context.handleTouchMove(event, 'IndexBrands', 'Wallpaper', 'HotProducts')} onTouchStart={context.handleTouchStart} id="IndexHotProducts">
+            <section id="PortraitIndexHotProducts">
                 <h2>Productos destacados</h2>
                 {arrayOfCategories.map((clase, index) => (
                     <div key={clase}>
@@ -41,7 +42,7 @@ const HotProducts = (props) => {
                                 }} className="ProductCard">
                                     <img src={producto.product.imageLink} alt={producto.product.model} />
                                     <h4 style={{ fontSize: context.fontPixel }}>{producto.product.title}</h4>
-                                    <p className="ProductType" style={{ fontSize: context.fontPixel * 0.7 }}>U$S {producto.product.price}</p>
+                                    <p className="ProductType" style={{ fontSize: context.fontPixel * 0.7 }}>{producto.product.price}</p>
                                 </Link>
                             ))}
                         </div>
@@ -51,11 +52,9 @@ const HotProducts = (props) => {
         );
 
     }
-    // Renderizar para pantallas móviles
+    if (context.Screen==="Index") {
     if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
-        if (context.Section === 'HotProducts') {
             return rendermobile();
-        }
     }else{
         const selectedProduct = arrayOfHotProducts[selectedOption].product;
         
@@ -89,7 +88,9 @@ const HotProducts = (props) => {
             </section>
         );
 
+    }        
     }
+
 
     return null;
 };

@@ -1,14 +1,23 @@
-@import './scss/Navbar';
-@import './scss/Body';
-@import './scss/Index.scss/';
-@import './scss/ClassScreen.scss';
-@import './scss/Product.scss';
-@import './scss/Carrito.scss';
-@import './scss/ModalCredito.scss';
+// @import './scss/Navbar';
+// @import './scss/Body';
+// @import './scss/Index.scss/';
+// @import './scss/ClassScreen.scss';
+// @import './scss/Product.scss';
+// @import './scss/Carrito.scss';
+// @import './scss/ModalCredito.scss';
 
-@import './scss/Menu.scss';
+// @import './scss/Menu.scss';
 
-@import './scss/CreateArticle.scss';
+// @import './scss/CreateArticle.scss';
 
-@import './scss/Payment';
+// @import './scss/Payment';
 
+@import './scss/portrait';
+@import './scss/landscape';
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}

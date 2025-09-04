@@ -1,23 +1,19 @@
 #NavbarPC{
     display: flex;
     position: fixed;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
     padding-inline: 3vw;
     height: 15vh;
-    top: 0;
     z-index: 100;
     background-image: linear-gradient(black,transparent);
-    &Logo{
-        height: 100%;
+    img{
+        height: 15vh;
     }
     
     &Opciones{
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         align-items: center;
         height: 100%;
         width: 40%;
@@ -29,13 +25,6 @@
             border: none;
             color: white;
         }
-    }
-    &#CartButton{
-        height: 100%;
-        align-self: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 }
 #ClasesPCMenu{

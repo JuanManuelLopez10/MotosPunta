@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/CartContext'
-import WallpaperIndex from '../components/index/WallpaperIndex'
-import HotProducts from '../components/index/HotProducts'
-import Brands from '../components/index/Brands'
-import WhiteBack from '../components/index/WhiteBack'
+import WallpaperIndex from './components/WallpaperIndex'
+import HotProducts from './components/HotProducts'
+import Brands from './components/Brands'
 import { useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
@@ -42,7 +41,7 @@ const Index = ({articulos}) => {
     getProducts()
 
     }, [])
-    if (WallpaperProduct!==undefined) {
+    if (WallpaperProduct!==undefined && context.Screen==="Index") {
       return (
         <>
         <div id='Index'>
@@ -50,7 +49,7 @@ const Index = ({articulos}) => {
         <meta name="description" content="Distribuidor oficial Honda, TVS, CFMoto, AGV, MT y LS2 entre otros. Venta de motos, cascos, accesorios e indumentaria para motociclístas." />
         </Helmet>
         <WallpaperIndex producto={WallpaperProduct}/>
-        <WhiteBack/>
+        {/* <WhiteBack/> */}
         <HotProducts HotProducts={HotProduct}/>  
         <Brands Brands={BrandsArray}/>
     

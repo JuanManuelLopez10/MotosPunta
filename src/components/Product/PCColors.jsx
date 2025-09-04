@@ -12,7 +12,6 @@ const PCColors = (props) => {
         setColores(productos)
       }
 
-    // const colorOptions = products.filter(prod => prod.preid === producto.id)
 
     if (colores[0] && producto) {
         if (producto.product) {

@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Link, useNavigate, useNavigation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
-  const { fontPixel, setMenuSelectedClass, setScreen, changeCategory } = useContext(CartContext);
+  const { fontPixel, setMenuSelectedClass, setScreen, changeCategory, Orientation } = useContext(CartContext);
   const [Clases, setClases] = useState([])
   const navigate = useNavigate()
   const fetchProducts = async () => {
@@ -29,22 +29,29 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
   };
 
   const arrayClases = ['motos', 'cascos','accesorios', 'indumentaria']
-  if (Clases[0]) {
+  if (Orientation === 'portrait-primary' || Orientation === 'portrait-secondary') {
+        if (Clases[0]) {
     return (
         <>
+          {
+            SelectedClass !== undefined &&
           <button
             onClick={() => setSelectedClass(undefined)}
-            className={SelectedClass !== undefined ? 'MenuMobileGoBackOpen' : 'MenuMobileGoBackClosed'}
+            className='MenuMobileGoBackOpen'
             id='MenuMobileGoBack'
           >
-            <p style={{ fontSize: fontPixel * 1.3 }}>
+            <p style={{ fontSize: fontPixel * 1.3}}>
               {'<'}
             </p>
           </button>
+          }
+
     
 
           <div id='MenuMobile' className={OpenMenu ? 'MenuMobileOpened' : 'MenuMobileClosed'}>
-            <div id='MenuMobileClass' className={OpenMenu && SelectedClass === undefined ? 'MenuMobileClassOpen' : 'MenuMobileClassClosed'}>
+            {
+              OpenMenu && SelectedClass === undefined &&
+            <div id='MenuMobileClass'>
               {arrayClases.map((clase, index) => (
                 <button
                   key={index}
@@ -67,13 +74,16 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
                   <p>AGENDA</p>
                 </button>
             </div>
+            }
+          
     
 
-            {arrayClases.map((clase, index) => (
-              <div
+            {arrayClases.map((clase, index) => {
+              if(OpenMenu && SelectedClass === clase){
+                return(
+                                <div
                 key={index}
                 id='MenuMobileType'
-                className={OpenMenu && SelectedClass === clase ? 'MenuMobileClassOpen' : 'h-0 MenuMobileClassClosed'}
               >
     
                 {Clases
@@ -94,13 +104,19 @@ const NavbarMenuMobile = ({ OpenMenu, setOpenMenu, articulos }) => {
                     </Link>
                   ))}
               </div>
-            ))}
+                )
+              }
+            }
+
+            )}
 
           </div>
         </>
       );
     
   }
+      
+      }
 };
 
 export default NavbarMenuMobile;

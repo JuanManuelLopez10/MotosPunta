@@ -36,12 +36,13 @@ const ClassScreen = (props) => {
   }, [currentClase]);
 
 
-  if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
     if (context.Screen === 'Clase' && Productos[0]) {
+  if (context.Orientation === 'portrait-primary' || context.Orientation === 'portrait-secondary') {
+
       return (
         <div id="Clase">
           <Helmet>
-            <title>{currentClase + " | Motos Punta"}</title>
+            <title>{currentClase!==undefined ? + " | Motos Punta" : "Motos Punta"}</title>
             <meta name="description" content={`Encuentra ${currentClase} de todas nuestras marcas en nuestro local.`} />
           </Helmet>
           <div style={{ display: 'flex', width: '100vw', justifyContent: 'space-around' }}>
@@ -54,19 +55,11 @@ const ClassScreen = (props) => {
           <ClassProducts productId={productId} Productos={FilteredProductos} />
         </div>
       );
-    } else {
-      return (
-        <div id="ClaseClosed">
-          <h2>{currentClase}</h2>
-          <ClassProducts Productos={Productos} />
-        </div>
-      );
-    }
   } else { // Renderización en pantallas más grandes
     return (
-      <div id={context.Screen === 'Clase' ? "ClassScreen" : "ClassScreenHidden"}>
+      <div id="ClassScreen">
         <Helmet>
-          <title>{currentClase + " | Motos Punta"}</title>
+            <title>{currentClase!==undefined ? + " | Motos Punta" : "Motos Punta"}</title>
           <meta name="description" content={`Encuentra ${currentClase} de todas nuestras marcas en nuestro local.`} />
         </Helmet>
         <ClassFilters setoperFilters={setoperFilters} GetProductos={GetProductos} operFilters={operFilters} setFilteredProductos={setFilteredProductos} allProducts={props.articulos} Productos={FilteredProductos} />
@@ -75,5 +68,5 @@ const ClassScreen = (props) => {
     );
   }
 };
-
+}
 export default React.memo(ClassScreen);

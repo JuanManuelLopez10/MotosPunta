@@ -1,0 +1,68 @@
+.MenuMobileOpened{
+    @keyframes MenuMobileOpened {
+        0%{
+            opacity: 0;
+            visibility: hidden;
+        }
+        100%{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    animation: MenuMobileOpened 1s;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-image: linear-gradient(rgba(62, 62, 62, 1), rgba(62, 62, 62, 0.9));
+    top: 0;
+    position: absolute;
+    z-index: 10;
+    padding-top: 10vh;
+}
+.MenuMobileGoBackOpen{
+    @keyframes OpenButton {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    animation: OpenButton 1s;
+    z-index: 101;
+    margin-left: 70vw;
+    position: absolute;
+    background: none;
+    border: none;
+    color: white;
+}
+#MenuMobileClass{
+
+    animation: OpenButton 1s;
+
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#MenuMobileType{
+
+    animation: OpenButton 1s;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.MenuOption{
+    background: none;
+    text-align: center;
+    border: none;
+    color:white
+}
+.MenuOptionClosed{
+    width: 0vw;
+    overflow: hidden;
+}
