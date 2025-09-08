@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ClasesPCMenu from './ClasesPCMenu';
 
 const Navbar = ({ OpenMenu, setOpenMenu, articulos }) => {
@@ -51,13 +51,13 @@ const Navbar = ({ OpenMenu, setOpenMenu, articulos }) => {
                 {opcion.toUpperCase()}
               </button>
             ))}
-
             
           </div>
         </div>
         {SelectedOpcion && (
           <ClasesPCMenu articulos={articulos} setSelectedOpcion={setSelectedOpcion} SelectedOpcion={SelectedOpcion} />
         )}
+
       </>
     );
   };

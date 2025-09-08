@@ -16,6 +16,7 @@ const CartContextProvider = ({ children }) => {
   const startY = useRef(null);
   const [ProductShown, setProductShown] = useState(undefined)
   const [FilteredProducts, setFilteredProducts] = useState([])
+
   const handleTouchStart = (event) => {
     startY.current = event.touches[0].clientY;
   };
