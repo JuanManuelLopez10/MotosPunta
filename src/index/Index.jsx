@@ -46,6 +46,7 @@ const Index = ({articulos}) => {
         <>
         <div id='Index'>
         <Helmet>
+        <title>Motos Punta </title>
         <meta name="description" content="Distribuidor oficial Honda, TVS, CFMoto, AGV, MT y LS2 entre otros. Venta de motos, cascos, accesorios e indumentaria para motociclístas." />
         </Helmet>
         <WallpaperIndex producto={WallpaperProduct}/>

@@ -8,6 +8,9 @@
     justify-content: flex-start;
     padding-top: 15vh;
     padding-left: 2vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
     &Header{
         width: 80vw;
         display: flex;

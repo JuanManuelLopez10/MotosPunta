@@ -13,7 +13,7 @@ const ServicesScreen = () => {
   const [preUser, setPreUser] = useState(undefined)
   const [prePassword, setPrePassword] = useState(undefined)
   const [User, setUser] = useState(undefined)
-  
+
   const formatFirestoreDate = (ts) => {
     const date = new Date(ts.seconds * 1000 + ts.nanoseconds / 1e6);
 
@@ -41,21 +41,33 @@ const ServicesScreen = () => {
     }
   };
 
+
+
   const auth = getAuth();
   const signIn = (email, password) => {
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
+
         const user = userCredential.user;
         setUser(user)
-        // ...
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('password', password);
+
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
   }
+  useEffect(() => {
+    const storedName = localStorage.getItem('userEmail');
+    const storedPassword = localStorage.getItem('password');
 
+    if (storedName && storedPassword && !User ) {
+      signIn(storedName, storedPassword)
+    }
+  })
 
   if (productId && !producto) {
     fetchPlate();
@@ -63,52 +75,53 @@ const ServicesScreen = () => {
 
   }
   if (producto && context.Screen === "Services") {
-    if(User){
+    if (User) {
 
-    return (
-      <div id='ServicesScreen' >
-        <div id='ServicesScreenHeader'>
-          <h2>Historial de services de {producto.id}</h2>
-          <h5>Dueño: {producto.user}</h5>
-          <h5>Teléfono: {producto.phone}</h5>
+      return (
+        <div id='ServicesScreen' >
+          <div id='ServicesScreenHeader'>
+            <h2>Historial de services de {producto.id}</h2>
+            <h5>Dueño: {producto.user}</h5>
+            <h5>Teléfono: {producto.phone}</h5>
+          </div>
+          <div id="ServicesScreenBody">
+            {
+              producto.services.map((item, index) => {
+                const dateString = formatFirestoreDate(item.date)
+                const tareasCompletadas = Object.entries(item.jobDone)
+                  .filter(([tarea, done]) => done)
+                  .map(([tarea]) => tarea)
+                  .sort();
+
+
+                return (
+                  <div className='serviceCard' key={index}>
+                    <p>Servicio de {item.km}km</p>
+                    <p>Fecha: {dateString}</p>
+                    {
+                      tareasCompletadas.map((task, index) => (
+                        <p>{task}</p>
+                      ))
+                    }
+                  </div>
+                )
+              })
+            }
+          </div>
+
+
         </div>
-        <div id="ServicesScreenBody">
-          {
-            producto.services.map((item, index) => {
-              const dateString = formatFirestoreDate(item.date)
-              const tareasCompletadas = Object.entries(item.jobDone)
-                .filter(([tarea, done]) => done)
-                .map(([tarea]) => tarea)
-                .sort();
+      )
+    } else {
 
-
-              return (
-                <div className='serviceCard' key={index}>
-                  <p>Servicio de {item.km}km</p>
-                  <p>Fecha: {dateString}</p>
-                  {
-                    tareasCompletadas.map((task, index) => (
-                      <p>{task}</p>
-                    ))
-                  }
-                </div>
-              )
-            })
-          }
+      return (
+        <div id='ServicesScreen' >
+          <input type="text" placeholder='email' value={preUser} onChange={(e) => { setPreUser(e.target.value) }} />
+          <input type="text" placeholder='contraseña' value={prePassword} onChange={(e) => { setPrePassword(e.target.value) }} />
+          <button onClick={() => {
+            signIn(preUser, prePassword)
+          }}>Log in</button>
         </div>
-
-
-      </div>
-    )
-    }else{
-      return(
-      <div id='ServicesScreen' >
-        <input type="text" placeholder='email' value={preUser} onChange={(e)=>{setPreUser(e.target.value)}} />
-        <input type="text" placeholder='contraseña' value={prePassword} onChange={(e)=>{setPrePassword(e.target.value)}} />
-        <button onClick={()=>{
-          signIn(preUser, prePassword)
-        }}>Log in</button>
-      </div>
       )
     }
   }
