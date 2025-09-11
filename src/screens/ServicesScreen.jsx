@@ -61,6 +61,8 @@ const ServicesScreen = () => {
         const errorCode = error.code;
       });
   }
+
+
   useEffect(() => {
     const storedName = localStorage.getItem('userEmail');
     const storedPassword = localStorage.getItem('password');
@@ -75,8 +77,10 @@ const ServicesScreen = () => {
     context.setScreen("Services")
 
   }
+
+
  const FetchFromFirestore = async () => {
-  const docRef = doc(db, "others", "webEnv");
+  const docRef = doc(db, "APIs", "PDFMonkey");
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
   setMonkeyData(docSnap.data())
@@ -87,7 +91,7 @@ const ServicesScreen = () => {
   const generarPDF = async (matricula, fecha) => {
     const body = {
       document: {
-        document_template_id: MonkeyData.MONKEY_TEMPLATE_ID,
+        document_template_id: MonkeyData.ServiceStoryTemplateID,
         status: "pending",
         payload: {
           matricula,
@@ -103,7 +107,7 @@ const ServicesScreen = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${MonkeyData.PDFMONKEY_API_KEY}`,
+          Authorization: `Bearer ${MonkeyData.APIKey}`,
         },
         body: JSON.stringify(body)
       });
