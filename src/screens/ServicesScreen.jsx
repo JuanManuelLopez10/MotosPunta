@@ -1,18 +1,19 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, query } from 'firebase/firestore';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-
 import { useLocation } from 'react-router-dom';
 import db from '../data/FirestoreData';
 import { CartContext } from '../context/CartContext';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const ServicesScreen = () => {
+
   const context = useContext(CartContext)
   const productId = useLocation().pathname.split('/services/')[1];
   const [producto, setproducto] = useState(undefined)
   const [preUser, setPreUser] = useState(undefined)
   const [prePassword, setPrePassword] = useState(undefined)
   const [User, setUser] = useState(undefined)
+  const [MonkeyData, setMonkeyData] = useState(undefined)
 
   const formatFirestoreDate = (ts) => {
     const date = new Date(ts.seconds * 1000 + ts.nanoseconds / 1e6);
@@ -23,6 +24,7 @@ const ServicesScreen = () => {
 
     return `${day}-${month}-${year}`;
   }
+
   const fetchPlate = async () => {
     try {
       const docRef = doc(db, "plates", productId); // Referencia al documento por ID
@@ -41,6 +43,7 @@ const ServicesScreen = () => {
     }
   };
 
+  
 
 
   const auth = getAuth();
@@ -48,7 +51,6 @@ const ServicesScreen = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-
         const user = userCredential.user;
         setUser(user)
         localStorage.setItem('userEmail', email);
@@ -57,23 +59,92 @@ const ServicesScreen = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
       });
   }
   useEffect(() => {
     const storedName = localStorage.getItem('userEmail');
     const storedPassword = localStorage.getItem('password');
-
-    if (storedName && storedPassword && !User ) {
+    FetchFromFirestore()
+    if (storedName && storedPassword && !User) {
       signIn(storedName, storedPassword)
     }
-  })
+  },[])
 
   if (productId && !producto) {
     fetchPlate();
     context.setScreen("Services")
 
   }
+ const FetchFromFirestore = async () => {
+  const docRef = doc(db, "others", "webEnv");
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+  setMonkeyData(docSnap.data())
+} 
+} 
+
+
+  const generarPDF = async (matricula, fecha) => {
+    const body = {
+      document: {
+        document_template_id: MonkeyData.MONKEY_TEMPLATE_ID,
+        status: "pending",
+        payload: {
+          matricula,
+          date: fecha,
+        },
+        meta: {
+          _filename: "Factura-BFP1540-10-09-2025.pdf"
+        }
+      }
+    }
+    try {
+      const response = await fetch("https://api.pdfmonkey.io/api/v1/documents", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${MonkeyData.PDFMONKEY_API_KEY}`,
+        },
+        body: JSON.stringify(body)
+      });
+      const data = await response.json();
+      const pdfUrl = data.document.preview_url
+      if (pdfUrl) {
+        window.open(data.document.preview_url, "_blank");
+      }
+    }
+    catch (error) {
+      console.error("Error generando PDF:", error);
+    }
+
+  }
+
+  const generate = () => {
+    const services = []
+    producto.services.map((item) => {
+      const dateString = formatFirestoreDate(item.date)
+      const tareasCompletadas = Object.entries(item.jobDone)
+        .filter(([tarea, done]) => done)
+        .map(([tarea]) => tarea)
+        .sort();
+      const servicio = { date: dateString, km: item.km, jobDone: tareasCompletadas }
+      services.push(servicio)
+    })
+
+    const matricula = {
+      plate: producto.plate,
+      bike: producto.bike,
+      user: producto.user,
+      services: services
+    }
+    const today = new Date()
+    const todayString = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
+    generarPDF(matricula, todayString)
+
+  }
+
+
+
   if (producto && context.Screen === "Services") {
     if (User) {
 
@@ -83,6 +154,7 @@ const ServicesScreen = () => {
             <h2>Historial de services de {producto.id}</h2>
             <h5>Dueño: {producto.user}</h5>
             <h5>Teléfono: {producto.phone}</h5>
+            <button onClick={() => { generate() }}>Generar PDF</button>
           </div>
           <div id="ServicesScreenBody">
             {
