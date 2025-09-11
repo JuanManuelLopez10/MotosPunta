@@ -98,7 +98,7 @@ const ServicesScreen = () => {
           date: fecha,
         },
         meta: {
-          _filename: "Factura-BFP1540-10-09-2025.pdf"
+          _filename: `Historial de servicios-${matricula.plate}-${fecha}.pdf`
         }
       }
     }
